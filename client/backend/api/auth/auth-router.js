@@ -81,7 +81,7 @@ router.delete('/logout', (req, res) => {
 
   let promise3 = new Promise(function (resolve,reject,next){
     try{
-      console.log(res);
+      console.log(req);
 
   if (isValid(req.body)){
     console.log(res?.session)
@@ -91,7 +91,7 @@ router.delete('/logout', (req, res) => {
           if (err) {
               resolve(res.status(400).json({ message: 'error logging out' }));
           } else {
-              next(
+              resolve(
                   res.json({ message: 'logged out' })
               );
           }
