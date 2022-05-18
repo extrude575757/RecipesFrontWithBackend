@@ -4,7 +4,7 @@ const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
 
   return axios.create({
-    baseURL: "http://localhost:8022/api",
+    baseURL: "http://localhost:7666/api",
     headers: {
       Authorization: token
     }

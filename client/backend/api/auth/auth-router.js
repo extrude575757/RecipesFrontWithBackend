@@ -60,6 +60,108 @@ router.post("/login", (req, res) => {
   }
 });
 
+
+
+
+router.delete('/logout', (req, res) => {
+// try removing manualing from raw headers and bearer authorization
+  // if (req?.session) {
+  //   console.log(req);
+  //   console.log('why'+req?.session);
+  //     req?.session.destroy((err) => {
+  //         if (err) {
+  //             res.status(200).json({ message: 'error logging out' });
+  //         } else {
+  //             res.json({ message: 'logged out' });
+  //         }
+  //     });
+  // } else {
+  //     res.end();
+  // }
+
+  let promise3 = new Promise(function (resolve,reject,next){
+    try{
+      console.log(res);
+
+  if (isValid(req.body)){
+    console.log(res?.session)
+    if (req?.session) {
+  
+      req?.session.destroy((err) => {
+          if (err) {
+              resolve(res.status(400).json({ message: 'error logging out' }));
+          } else {
+              next(
+                  res.json({ message: 'logged out' })
+              );
+          }
+      });
+  } else {
+      reject(res.end());
+  }
+  }else{
+    throw(e)=>{
+      res.setHeader("application/json","text/html");
+      
+      reject(res.status(200).json( {message:"thrown 200"+e} ));
+  } 
+  }
+
+    }catch(e){
+        res.setHeader("application/json","text/html");
+          reject(res.status(403).json({
+            message: "404 Malformed issues"+e
+        }));
+    }
+});
+
+
+promise3.catch(function(error) {
+  // reject("error");
+  console.log('error promise3catch');
+});
+
+
+//   let promise3 = new Promise(function (resolve,reject){
+//     try{
+//         if (req?.session) {
+//             req?.session.destroy((err) => {
+//                 if (err) {
+//                     resolve(res.status(400).json({ message: 'error logging out' }));
+//                 } else {
+//                     reject(
+//                         res.json({ message: 'logged out' })
+//                     );
+//                 }
+//             });
+//         } else {
+//             reject(res.end());
+//         }
+//     }catch(e){
+//         res.setHeader("application/json","text/html");
+//           reject(res.status(404).json({
+//             message: "404 Malformed issues"+e
+//         }));
+//     }
+//     throw(e)=>{
+//         res.setHeader("application/json","text/html");
+//         reject(res.status(200).json( {message:"thrown 200"+e} ));
+//     }
+// });
+
+
+// promise3.catch(function(error) {
+//   // reject("error");
+//   console.log(error);
+// });
+
+
+
+});
+
+
+
+
 function generateToken(user) {
   const payload = {
     subject: user.id,
