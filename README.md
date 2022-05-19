@@ -18,16 +18,15 @@ Add All recipes to the database which get referenced by localstorage threw the d
 RecipeBuild.v2
     -Has no database until jwt token authentication is made
 
-4]  Navbar & CardAdd
+4]  Navbar & CardAdds
 All recipes titles are added to the nav by the CardAdd Component.
     - Still needs a Genre Input button on CardADD & it is genre which should be within the navbar upon adding each card not the recipes title
     - Recipe titles should all belong to each genre category and be displayable from the navbar's category titles. 
 # Optional Addin Features 
 
-Recipe API for startup examples viewable on the user's dashboard with a add feature so all recipes can be saved from the api onto the user's navboard under each category. 
+Recipe API for startup examples viewable on the user's dashboard with a add feature so all recipes can be saved from the api onto the user's navboard under each category.
 
-Edit ALL feature. Click Edit All to edit all the forms at once  Then click the dragon to save the edits as they are. 
-
+Edit ALL feature. Click Edit All to edit all the forms at once  Then click the dragon to save the edits as they are.
 
 Dynamic NAV bar with category added leading to each recipe in that category.
 
