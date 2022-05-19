@@ -7,9 +7,9 @@ class Register extends React.Component {
       this.state = {
         credentials: {
           username: '',
-          department: '',
+          department: 'No Dep',
           password: '',
-          role:''
+          role:2
         }
       };
   }
