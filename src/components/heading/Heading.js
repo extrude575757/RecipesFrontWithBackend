@@ -23,7 +23,7 @@ render(){
                 <Link onClick={logout}>Logout</Link>
             </li>
             <li>
-                <Link to="/protected">Get Users</Link>
+                <Link to="/protected">Recipes</Link>
             </li>
         </ul>
         </div>

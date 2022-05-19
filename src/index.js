@@ -12,7 +12,7 @@ import Nav from "./components/navbar/Nav"
 import CardAdd from "./components/add/CardAdd";
 import "./styles.css";
 // import TodoIndex from "./editForm/TodoIndex";
- import Heading from "./Heading"
+ import Heading from "./components/heading/Heading"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from './components/login/Login.js';

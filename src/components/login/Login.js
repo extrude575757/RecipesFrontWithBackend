@@ -40,7 +40,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>Login as adminGuy: Useron Password: jahhhfhdwqi3hfh
+      <div>LOGIN
         <form onSubmit={this.login}>
           <label for='username'>
             Username
