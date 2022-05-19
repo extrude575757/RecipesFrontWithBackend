@@ -1,7 +1,3 @@
-
-
-
-
 import React from 'react';
 // import logout from './index'
 import {  Link, } from 'react-router-dom';
@@ -12,7 +8,6 @@ render(){
     const logout = () => {
         localStorage.removeItem('token')
       };
-    
     return(
 
 
@@ -32,7 +27,6 @@ render(){
             </li>
         </ul>
         </div>
-            
     )
 }
 
