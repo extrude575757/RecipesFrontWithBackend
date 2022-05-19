@@ -1,35 +1,23 @@
-# Family Recipes Build Week 
+set your environment variables for the backend
+GO TO YOUR HOME DIRECTORY
+type 
+export NOPORT=7776 
+export JWT_SECRETS=hggjdhdrttt
 
-ChangeLog for RecipeBuilder Version 2.0.1
+Also make sure to choose 1 or 2 for role
 
-# Priorities 
-1]  Editting
-Edit individually Selected  Parts with a edit now button when they are selected they get highlighted some how. Then you can edit it liket he Title (category) gets edited
-RecipeBuild.v2
-    - Editing only works if you press edit then save after first pressing the edit button with the dragon. 
-    - Merge Editting branch to toggle-editing branch so more work can be done on the edit feature. 
-2]  Authentication
-JWT token authentication with a login page and registration page. 
-RecipeBuild.v2
-    - Needs Registration Page
-    - Has no login or authentication
-3]  Database
-Add All recipes to the database which get referenced by localstorage threw the database and the authenticated name. 
-RecipeBuild.v2
-    -Has no database until jwt token authentication is made
-
-4]  Navbar & CardAdds
-All recipes titles are added to the nav by the CardAdd Component.
-    - Still needs a Genre Input button on CardADD & it is genre which should be within the navbar upon adding each card not the recipes title
-    - Recipe titles should all belong to each genre category and be displayable from the navbar's category titles. 
-# Optional Addin Features 
-
-Recipe API for startup examples viewable on the user's dashboard with a add feature so all recipes can be saved from the api onto the user's navboard under each category.
-
-Edit ALL feature. Click Edit All to edit all the forms at once  Then click the dragon to save the edits as they are.
-
-Dynamic NAV bar with category added leading to each recipe in that category.
-
-
-
-ww
+# After testing more Features to come
+[ ] Error control for login and  Register
+[ ] Show name of user for when they login 
+[ ] Yup use on Form control
+[ ] Each Recipe will be saved in the database under each user's ID
+[ ] Ability to Delete Recipes
+[ ] Add Icon Options in blank space for each Recipe Option 
+[ ] Clean up the Edit button bug & have all information using Redux or context api
+[ ] Smaller Icons for Recipe Header Section and a better CSS container for them making them clickable to view
+[ ] When clicked on in Recipe Header Large view of the Recipe and all options shows 
+[ ] Make directions into an array so each Step is on a new line and iterated threw a ordered list 
+[ ] Media query varieties for accessability reasons
+[ ] Organizable by Category on the side
+[ ] Create Different View Skin styles
+[ ] Look to create 2fa authentication and other options to stay logged in
