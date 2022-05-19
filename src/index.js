@@ -3,21 +3,21 @@ import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 // import TodoIndex from "./editForm/TodoIndex"
-import Title from "./components/Title";
-import List from "./components/List";
+import Title from "./components/title/Title";
+import List from "./components/list/List";
 // import { titleReducer } from "./reducers/titleReducer";
 // import { recipesReducer } from "./reducers/recipesReducer";
 import rootReducer from "./reducers";
 import Nav from "./components/navbar/Nav"
-import CardAdd from "./components/CardAdd";
+import CardAdd from "./components/add/CardAdd";
 import "./styles.css";
 // import TodoIndex from "./editForm/TodoIndex";
  import Heading from "./Heading"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Login from './components/Login.js';
-import Register from './components/Register.js'
-import PrivateRoute from './components/PrivateRoute';
+import Login from './components/login/Login.js';
+import Register from './components/register/Register.js'
+import PrivateRoute from './components/auth/PrivateRoute';
 
 
 

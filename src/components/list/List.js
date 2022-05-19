@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addNewRecipe, editRecipe, editNewRecipe } from "../actions/recipeActions";
+import { addNewRecipe, editRecipe, editNewRecipe } from "../../actions/recipeActions";
 // import CardAdd from "./CardAdd";
-import CardEdit from "./CardEdit";
+import CardEdit from "../edit/CardEdit";
 class List extends React.Component {
   constructor(props){
     super(props);

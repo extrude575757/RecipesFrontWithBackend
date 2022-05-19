@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { toggleEditing, setTitle } from "../actions/titleActions";
+import { toggleEditing, setTitle } from "../../actions/titleActions";
 
 // import { initialState, titleReducer } from "../reducers/titleReducer";
 
