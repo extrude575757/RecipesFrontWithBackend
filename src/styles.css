@@ -61,16 +61,26 @@ body {
   #838491,#838491,#6289d3,#56598f,#797cb9, #63c456,#797cb9);
   color: white;
 }
+body,div {
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  height:100%;
+}
 
 
 
-
-
+/*Sofar good for 350px - 500 px range*/
 .App {
+  display: flex;
+  width:60%;
+  height: 100%;
   font-family: sans-serif;
   text-align: center;
   padding: 2px;
 }
+
+
 
 i {
   font-size: 12px;
