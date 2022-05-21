@@ -61,12 +61,6 @@ body {
   #838491,#838491,#6289d3,#56598f,#797cb9, #63c456,#797cb9);
   color: white;
 }
-body,div {
-  display: flex;
-  flex-direction: row;
-  width:100%;
-  height:100%;
-}
 
 
 
