@@ -39,7 +39,7 @@ function App() {
       <div id="AssApp" className="App">
       
       
-      <Heading  className="App heading"/>
+      <Heading className="App"/>
       
         <Switch>
         

@@ -1,5 +1,5 @@
-  span, applet, object, iframe,
-  h3, h4, h5, h6, p, blockquote, pre,
+span, applet, object, iframe,
+h3, h4, h5, h6, p, blockquote, pre,
 abbr, acronym, address, big, cite, code,
 del, dfn, em, font, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -7,42 +7,42 @@ dl, dt, dd,
 fieldset,  legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
 
-	border: 0;
-	outline: 0;
-	font-weight: inherit;
-	font-style: inherit;
-	font-size: 100%;
-	font-family: inherit;
-	vertical-align: baseline;
+border: 0;
+outline: 0;
+font-weight: inherit;
+font-style: inherit;
+font-size: 100%;
+font-family: inherit;
+vertical-align: baseline;
 }
 /* remember to define focus styles! */
 /* :focus {
-	outline: 15B;
+outline: 15B;
 } */
 /* body {
-	line-height: 1;
-	color: black;
-	background: white;
+line-height: 1;
+color: black;
+background: white;
 } */
 
 
 
- 
+
 /* tables still need 'cellspacing="0"' in the markup */
 table {
-	border-collapse: separate;
-	border-spacing: 0;
+border-collapse: separate;
+border-spacing: 0;
 }
 caption, th, td {
-	text-align: left;
-	font-weight: normal;
+text-align: left;
+font-weight: normal;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: "";
+content: "";
 }
 blockquote, q {
-	quotes: "" "";
+quotes: "" "";
 }
 
 
@@ -52,235 +52,236 @@ blockquote, q {
 
 html,
 body {
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  background-image: linear-gradient(#56598f,#838491,#56598f,
-  #56598f,#838491,#56598f,#56598f,#56598f,
-  #838491,#838491,#6289d3,#56598f,#797cb9, #63c456,#797cb9);
-  color: white;
+height: 100%;
+width: 100%;
+padding: 0;
+margin: 0;
+background-image: linear-gradient(#56598f,#838491,#56598f,
+#56598f,#838491,#56598f,#56598f,#56598f,
+#838491,#838491,#6289d3,#56598f,#797cb9, #63c456,#797cb9);
+color: white;
 }
 body,div {
-    display: flex; 
-  width:100%;
-  height:100%;
+  display: flex; 
+width:100%;
+height:100%;
 }
 
 #AssApp {
-  display: flex;
-  width:40%;
-  height:100%;
+display: flex;
+width:40%;
+height:100%;
 }
 
 div.App {
-  display:flex; 
-  flex-direction: column;
-  height: 100%; 
-  width:20%; 
+display:flex; 
+flex-direction: column;
+height: 100%; 
+width:20%; 
 
 }
 Aside {
-  display: flex;
-  flex-direction: row;
-  width:100%;
-  height:100%;
+display: flex;
+flex-direction: row;
+width:100%;
+height:100%;
 }
 Aside#AssApp {
-  display: flex; 
-  width:20%;
-  height:100%;
+display: flex; 
+width:20%;
+height:100%;
 }
 
 /*Sofar good for 350px - 500 px range*/
 .App {
-  display: flex;
-  width:60%;
-  height: 100%;
-  font-family: sans-serif;
-  text-align: center;
-  padding: 2px;
+display: flex;
+width:60%;
+height: 100%;
+font-family: sans-serif;
+text-align: center;
+padding: 2px;
 }
 
 
 
 i {
-  font-size: 12px;
+font-size: 12px;
 }
 
 
 
 nav{
 
-  display:flex;
-  
-  padding: 0.1rem;
-  margin:0rem .5rem .5rem .5rem;
-  width:100%;
-  height:100%;
-  background-color: black;
+display:flex;
+
+padding: 0.1rem;
+margin:0rem .1rem .1rem .1rem;
+width:100%;
+height:100%;
+background-color: black;
 }
 input {
 
-  padding: 6px;
-  background: black;
-  border: none;
-  color: white;
-  border-bottom: 1px solid white;
-  margin-top: 0;
-  margin-right: 8px;
+padding: 6px;
+background: black;
+border: none;
+color: white;
+border-bottom: 1px solid white;
+margin-top: 0;
+margin-right: 8px;
 }
 
 input::placeholder {
-  color: #4147ad;
+color: #4147ad;
 }
 
 .title-input {
-  font-size: 24px;
+font-size: 24px;
 }
 
 input:focus {
-  outline: none;
+outline: none;
 }
 
 nav h1 {
-  color:red;
-  margin: 0;
+color:red;
+margin: 0;
 }
 
 div > form {
-  display: flex;
+display: flex;
 
-  flex-wrap: nowrap;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  margin: .1rem;
-  padding: .1rem;
-  background-color: brown;
+flex-wrap: nowrap;
+flex-direction: column;
+width: 100%;
+height: 100%;
+margin: .1rem;
+padding: .1rem;
+background-color: brown;
 }
 div > form > input {
-  width:100%;
+width:100%;
 
 }
 
 
 
 button {
-  padding: 2px 3px;
-  font-size: 16px;
-  background: none;
-  color: white;
-  border: 1px solid white;
-  border-radius: 4px;
+padding: 2px 3px;
+font-size: 16px;
+background: none;
+color: white;
+border: 1px solid white;
+border-radius: 4px;
 }
 
 button:hover {
-  background-color: #ffffff22;
+background-color: #ffffff22;
 }
 
 button:focus {
-  outline: none;
+outline: none;
 }
 .recipeCard{
-  padding:.2rem;
-  margin:.8rem;
-  background:brown;
-  width:70%;
-  min-width:30%;
-  min-height: 100%;
-  display:flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  /* justify-content: space-evenly; */
+padding:.2rem;
+margin:.8rem;
+background:brown;
+width:70%;
+min-width:30%;
+min-height: 100%;
+display:flex;
+flex-flow: column nowrap;
+align-items: center;
+/* justify-content: space-evenly; */
 }
 .friends-list {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  margin:10%;
-  padding:5%;
-  min-width:300px;
+display: flex;
+flex-flow: column nowrap;
+align-items: center;
+margin:10%;
+padding:5%;
+min-width:300px;
 }
 div.recipeCard i{
-  font-size: 12px;
-  width:70%;
-  min-width:300px;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  float:right;
-  justify-content: right;
-  flex-flow: row nowrap;
-  margin:10%;
-  padding:5%;
+font-size: 12px;
+width:70%;
+min-width:300px;
+display: flex;
+position: relative;
+flex-direction: row;
+float:right;
+justify-content: right;
+flex-flow: row nowrap;
+margin:10%;
+padding:5%;
 
 }
 h2 {
-  margin: 4px 0;
-  border-bottom: 1px solid white;
-  padding: 6px;
-  position: relative;
-  /* width: 180px; */
-  width: 60%;
-  display: flex;
-  cursor: pointer;
+margin: 4px 0;
+border-bottom: 1px solid white;
+padding: 6px;
+position: relative;
+/* width: 180px; */
+width: 60%;
+display: flex;
+cursor: pointer;
 }
 
 .fa-dragon {
-  display: block;
-  float:right;
-  position: absolute;
-  right: 12px;
-  top: 9px;
+display: block;
+float:right;
+position: absolute;
+right: 12px;
+top: 9px;
 }
 
 
 div.heading{
-  display:flex;
-  width:100%;
-  height:100%;
-  margin: 1.2rem;
-  padding: .1rem;
-  
-  flex-wrap: nowrap;
-  color:white;
-  
-  text-decoration-color:white;
+display:flex;
+width:100%;
+height:100%;
+margin: 0.2rem;
+padding: 0.1rem;
+
+flex-wrap: nowrap;
+color:white;
+
+text-decoration-color:white;
 }
 
 a:visited{
-  color:white;
+color:white;
 }
 a:active{
-  color:red;
+color:red;
 }
 div ul.heading{
-  display:flex;
-  width:100%;
-  height:100%;
-  margin: .2rem;
-  padding: .1rem;
-  
-  /* flex-wrap: nowrap; */
-  
-  text-decoration: none;
+display:flex;
+flex-direction: row;
+width:100%;
+height:40%;
+margin: 0.01rem;
+padding: 0.01rem;
+
+/* flex-wrap: nowrap; */
+
+text-decoration: none;
 }
 ul.heading{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width:100%;
-  height:100%;
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+width:100%;
+height:30%;
 }
 
 ul.heading li{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width:40%;
-  height:100%;
-  text-decoration: none;
-  color: white;
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+width:40%;
+height:20%;
+text-decoration: none;
+color: white;
 
 }
