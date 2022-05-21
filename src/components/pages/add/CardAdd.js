@@ -1,32 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addNewRecipe, editRecipe, editNewRecipe } from "../../actions/recipeActions";
+import { addNewRecipe, editRecipe  } from "../../../actions/recipeActions";
 
-class CardEdit extends React.Component {
+class CardAdd extends React.Component {
   constructor(props){
     super(props);
-    // newRecipeDir needs to either be changed into a string like all the others. or 
-    // Or the array elements each need a new line feature at each step of the directions so each array is one new line and has numeric srteps written out fro each procedure
         this.state = {
-          newRecipe: this.props.recipes[this.props.oneToEdit].name, recStatus: false, 
-          newRecipeMat: this.props.recipes[this.props.oneToEdit].recipeMat, editStatus: false,
-           newRecipeDir:[ this.props.recipes[this.props.oneToEdit].recipeDir], oneToEdit: [0]
+          newRecipe: "", recStatus: false, 
+          newRecipeMat: "", editStatus: false, newRecipeDir:""
         };
   }
         handleChanges = (e) => {
           this.setState({ newRecipe: e.target.value});
-          };
-        handleMatChanges = (e) => {
-          console.log('withinhandlematchanges',this.props.oneToEdit)
-          console.log(this.props.recipes[this.props.oneToEdit].name)
-          
-          this.setState({ newRecipeMat: e.target.value });
-          };
-        handleDirChanges = (e) =>{
-          this.setState({newRecipeDir: [e.target.value]})
-          
         };
+        handleMatChanges = (e) => {
+          this.setState({ newRecipeMat: e.target.value });
+        };
+        // handleDirChanges = (e) =>{
+        //   this.setState({newRecipeDir: e.target.value})
+        // };
         // handleRecStatus = (e) =>{
         //   this.props.editRecipe();
         //   this.setState({recStatus: !this.state.recStatus})
@@ -55,48 +48,33 @@ class CardEdit extends React.Component {
       <React.Fragment>
 
 
-        <label for='title'>
-        Title
-        </label>
+        
         <input
           type="text"
           value={this.state.newRecipe}
           onChange={this.handleChanges}
-          placeholder={this.state.newRecipe}
+          placeholder="Add new Recipe Title"
         />
-        <label for='materials'>
-          Materials
-        </label>
         <input
           type="text"
           value={this.state.newRecipeMat}
           onChange={this.handleMatChanges}
-          placeholder={this.state.newRecipeMat}
+          placeholder="Add new Recipe Materials"
         />
-        <label for='directions'>
-          Directions
-        </label>
         <input
           type="text"
-          value={this.state.newRecipeDir[0]}
+          value={this.state.newRecipeDir}
           onChange={this.handleDirChanges}
-          placeholder={this.state.newRecipeDir[0]}
+          placeholder="Add new Recipe Directions"
         />
         <button
           onClick={() => {
-
-            
-            this.props.recipes[this.props.oneToEdit].recipeMat = this.state.newRecipeMat;
-            this.props.recipes[this.props.oneToEdit].name = this.state.newRecipe;
-        
-            this.props.recipes[this.props.oneToEdit].recipeDir = this.state.newRecipeDir;
-            
-            // this.props.editNewRecipe({recipes:this.state});
+            this.props.addNewRecipe(this.state);
             // this.props.addNewRecipe(this.state.newRecipe);
             // this.props.addNewRecipeMat(this.state.newRecipeMat);
           }}
         >
-          1st Clk This Button Then Clk Save
+          Add recipe
         </button>
       </React.Fragment>
     );
@@ -109,4 +87,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addNewRecipe, editRecipe, editNewRecipe })(CardEdit);
+export default connect(mapStateToProps, { addNewRecipe, editRecipe })(CardAdd);

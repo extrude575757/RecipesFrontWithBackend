@@ -69,7 +69,7 @@ body {
 .App {
   font-family: sans-serif;
   text-align: center;
-  padding: 36px;
+  padding: 2px;
 }
 
 i {
@@ -82,7 +82,7 @@ nav{
 
   display:flex;
   
-  padding:.1rem;
+  padding: 0.1rem;
   margin:0rem .5rem .5rem .5rem;
   width:100%;
   height:100%;
@@ -135,7 +135,7 @@ div > form > input {
 
 
 button {
-  padding: 6px 8px;
+  padding: 2px 3px;
   font-size: 16px;
   background: none;
   color: white;

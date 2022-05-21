@@ -1,18 +1,13 @@
 import React from 'react';
-import axiosWithAuth from '../../utils/axiosWithAuth';
+import axiosWithAuth from '../../../utils/axiosWithAuth';
 
-class Register extends React.Component {
-  constructor(props){
-      super(props);
-      this.state = {
-        credentials: {
-          username: '',
-          department: 'No Dep',
-          password: '',
-          role:2
-        }
-      };
-  }
+class Login extends React.Component {
+  state = {
+    credentials: {
+      username: '',
+      password: ''
+    }
+  };
 
   handleChange = e => {
     this.setState({
@@ -26,13 +21,13 @@ class Register extends React.Component {
   /*
     1. connect to server with username/passowrd
     2. store the token that gets passed on successful login
-    3. output an error when we have an unsuccessful login
+    3. output an error when we have an unsuccessful login <TODO></TODO>
   */
 
   login = e => {
     e.preventDefault();
     // login to server
-    axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", this.state.credentials)
+    axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/login", this.state.credentials)
       .then(res => {
         console.log('bk: Login.js: login: res: ', res)
         localStorage.setItem('token', res.config.data)
@@ -45,7 +40,7 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div>Register
+      <div>LOGIN
         <form onSubmit={this.login}>
           <label for='username'>
             Username
@@ -54,15 +49,6 @@ class Register extends React.Component {
             type="text"
             name="username"
             value={this.state.credentials.username}
-            onChange={this.handleChange}
-          />
-          <label for='department'>
-              Department
-          </label>
-          <input 
-            type="text"
-            name="department"
-            value={this.state.credentials.department}
             onChange={this.handleChange}
           />
           <label for='password'>
@@ -74,20 +60,11 @@ class Register extends React.Component {
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
-          <label for='role'>
-              Role
-          </label>
-          <input 
-            type="text"
-            name="role"
-            value={this.state.credentials.role}
-            onChange={this.handleChange}
-          />
-          <button>Register</button>
+          <button>Log in</button>
         </form>
       </div>
     );
   }
 }
 
-export default Register;
+export default Login;
