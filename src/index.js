@@ -36,14 +36,19 @@ function AppComp() {
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Heading />
+      <div id="AssApp" className="App">
+      
+      
+      <Heading  className="App heading"/>
+      
         <Switch>
+        
           <PrivateRoute exact path="/protected" component={AppComp}/>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
         </Switch>
-      </div>
+        </div>
+ 
     </Router>
   );
 }
