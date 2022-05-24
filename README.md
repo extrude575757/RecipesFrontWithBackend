@@ -20,4 +20,4 @@ Also make sure to choose 1 or 2 for role
 [ ] Media query varieties for accessability reasons
 [ ] Organizable by Category on the side
 [ ] Create Different View Skin styles
-[ ] Look to create 2fa authentication and other options to stay logged in
+[ ] Look to create 2fa authentication and other options to stay logged inhttp://frontrecipes1.herokuapp.com/

@@ -10,9 +10,10 @@ import List from "./components/pages/list/List";
 import rootReducer from "./reducers";
 import Nav from "./components/pages/navbar/Nav"
 import CardAdd from "./components/pages/add/CardAdd";
+import AppComp from "./components/common/AppComp"
 import "./styles.css";
 // import TodoIndex from "./editForm/TodoIndex";
- import Heading from "./components/pages/heading/Heading"
+import Heading from "./components/pages/heading/Heading"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from './components/pages/login/Login.js';
@@ -21,16 +22,16 @@ import PrivateRoute from './components/pages/auth/PrivateRoute';
 
 
 
-function AppComp() {
-  return (
-    <div  className="App">
-      <Nav/>
-      <Title/>
-      <List/>
-      <CardAdd/>
-    </div>
-  );
-}
+// function AppComp() {
+//   return (
+//     <div  className="App">
+//       <Nav/>
+//       <Title/>
+//       <List/>
+//       <CardAdd/>
+//     </div>
+//   );
+// }
 
 
 function App() {

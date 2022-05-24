@@ -179,9 +179,9 @@ button:hover {
 background-color: #ffffff22;
 }
 
-button:focus {
+/* button:focus {
 outline: none;
-}
+} */
 .recipeCard{
 padding:.2rem;
 margin:.8rem;
