@@ -13,7 +13,7 @@ import CardAdd from "./components/pages/add/CardAdd";
 import AppComp from "./components/common/AppComp"
 import "./styles.css";
 // import TodoIndex from "./editForm/TodoIndex";
-import Heading from "./components/pages/heading/Heading"
+import Heading from "./components/common/Heading"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from './components/pages/login/Login.js';

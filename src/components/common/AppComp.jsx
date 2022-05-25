@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Title from "../pages/title/Title";
 import List from "../pages/list/List";
 // import { titleReducer } from "./reducers/titleReducer";
@@ -12,10 +11,10 @@ const AppComp = ( ) =>{
 
     return(
         <div  className="App">
-        <Nav/>
-        <Title/>
-        <List/>
-        <CardAdd/>
+            <Nav/>
+            <Title/>
+            <List/>
+            <CardAdd/>
       </div>
     );
 }
