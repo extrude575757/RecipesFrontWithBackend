@@ -11,11 +11,11 @@ const TitlePass1 = ({...props})=>{
 
     return (
         <h1>
-        {title2}{editing}
+        {title2}h{editing}
         <i
           className="far fa-edit"
           onClick={
-            props.toggleEditing
+            toggleEditing
           }
         />
       </h1>

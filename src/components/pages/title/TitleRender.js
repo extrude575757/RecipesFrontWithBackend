@@ -8,7 +8,7 @@ import { toggleEditing, setTitle } from "../../../actions/titleActions";
 
 
 const TitleRender = ({...props}) =>{
-    const {editing,title2,setTitle,handleChanges} = props;
+    const {editing,title2,setTitle,handleChanges,toggleEditing} = props;
   const title11 = (e) =>{
     return(
       props.editing && <div>{editing}
@@ -27,7 +27,7 @@ const TitleRender = ({...props}) =>{
       <label for='category'>
             Category
           </label>
-      <TitlePass2 title2={props.title2} handleChanges={props.handleChanges} setTitle={setTitle}/>
+      <TitlePass2 title2={props.title2} handleChanges={props.handleChanges} setTitle={props.setTitle}/>
   
       </div>
     )
@@ -36,16 +36,25 @@ const TitleRender = ({...props}) =>{
 
   return(
    <>
-    {editing === true ? (
-      title11(editing)
+    {editing !== undefined && editing === false ? (
+             <h1>
+             {title2}{editing}
+             <i
+               className="far fa-edit"
+              onClick={()=>{
+                 toggleEditing
+               }}
+             />
+           </h1>
 
     ) : (
-      title12(editing)
-    )}
+      <TitlePass2 title2={props.title2} handleChanges={props.handleChanges} setTitle={props.setTitle} />
+    
 
+
+  )}
   </>
-  );
-}
+)}
 const mapStateToProps = ({ titleState }) => {
     return {
       title2: titleState.title,

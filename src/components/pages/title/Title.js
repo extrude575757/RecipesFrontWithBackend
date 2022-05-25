@@ -7,37 +7,40 @@ import { AppComp } from "../../common";
 
 // import { initialState, titleReducer } from "../reducers/titleReducer";
 
-const Title = ({...props}) => {
-  const [newTitleText, setNewTitleText] = useState();
+const Title = (props ) => {
+  const [newTitleText, setNewTitleText] = useState('');
   // const [state, dispatch] = useReducer(titleReducer, initialState);
   // console.log(state);
 
   const [edit,setTitle] = useState(false);
 
   const handleChanges = (e) => {
-    const nt = e.target.value;
+    const nt = newTitleText+e.target.value;
     console.log(nt)
-    setNewTitleText(e.target.value);
+    if(newTitleText !== ''){
+      setNewTitleText( e.target.value);
+
+    }
   };
     useEffect(()=>{
-        if(edit !== undefined || props.editing === undefined){
-
-
-          if (props.editing === undefined && edit !== undefined&& props.title2 !== undefined){
+        if(edit !== undefined && props !== undefined ||  
+          props.editing === undefined && props !== undefined){
+          if (props.editing === undefined && edit !== undefined&& props.title2 !== undefined && newTitleText !== undefined){
             console.log(newTitleText + props.title2, edit);
+            if(props.title2.length !== newTitleText.length && props.title2.length > newTitleText.length){
+              newTitleText =props.title2
+            }
             props.editing = edit;
+            setTitle(newTitleText);
           }
           if (props.editing === undefined && edit !== undefined&& props.title2 === undefined){
             handleChanges();
           }
-          
         }
     },[{edit,newTitleText}]);
 
   return (
-     <TitleRender editing={props.editing}setTitle={setTitle} title2={newTitleText} handleChanges={handleChanges} />
-
-    
+     <TitleRender editing={edit}setTitle={setTitle} title2={newTitleText} handleChanges={handleChanges} />
   );
 };
 const mapStateToProps = ({ titleState }) => {
