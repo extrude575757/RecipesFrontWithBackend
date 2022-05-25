@@ -1,31 +1,32 @@
 import React from "react";
 import TitlePass2 from "../../common/TitlePass2";
-// import TitlePass from './TitlePass';
+import TitlePass1jsx from "../../common/TitlePass1jsx";
+import TitlePass from './TitlePass';
 import { connect } from "react-redux";
-// import TitleRender  from "./TitleRender";
+import {Title}  from "../title";
 import { toggleEditing, setTitle } from "../../../actions/titleActions";
 
 const TitlePass1 =({...props})=>{
+  const {editing} = props;
 
 return(
     <div>
     <label for='category'>
           Categoryaaa
         </label>
-    {editing === true ? (
-      <h1>
-        {props.title2}{" "}
-        <i
-          className="far fa-edit"
-          onClick={() => {
-            // dispatch({ type: "TOGGLE_EDITING" })
-            // debugger;
-            props.toggleEditing();
-          }}
-        />
-      </h1>
+    {editing !== undefined && props.title2 !== undefined&& editing === false ? (
+      // <h1>
+      //   {props.title2}{" "}
+      //   <i
+      //     className="far fa-edit"
+      //     onClick={() => {
+      //       props.toggleEditing();
+      //     }}
+      //   />
+      // </h1>
+      <TitlePass1jsx />
     ) : (
-      <Title title2={title2} setTitle={setTitle}/>
+      <TitlePass2  />
     )}
   </div>
 )

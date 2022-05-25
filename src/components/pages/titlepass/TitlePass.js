@@ -16,7 +16,7 @@ const TitlePass =(props)=>{
 
 
     return(
-        <TitlePass1  setTitle={setTitle} title2={props.title2} handleChanges={props.handleChanges} />
+        <TitlePass1  />
     )
 }
 

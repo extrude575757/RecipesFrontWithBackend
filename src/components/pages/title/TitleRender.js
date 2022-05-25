@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 // import {TitlePass} from "../titlepass";
 import {TitlePass2} from "../../common"
-import { TitlePass1 } from "../../common";
+import { TitlePass1jsx } from "../../common";
+import { TitlePass } from "../titlepass";
 import { AppComp } from "../../common";
 import { toggleEditing, setTitle } from "../../../actions/titleActions";
 import { Title } from "./Title";
@@ -15,7 +16,7 @@ const TitleRender = ({...props}) =>{
       <label for='category'>
             Category
           </label>
-       { <TitlePass1 handleChanges={handleChanges}title2={title2} setTitle={setTitle} editing={props.editing} />
+       { <TitlePass1jsx  />
   }
         </div>
     )
@@ -27,7 +28,7 @@ const TitleRender = ({...props}) =>{
       <label for='category'>
             Category
           </label>
-      <TitlePass2 title2={props.title2} handleChanges={props.handleChanges} setTitle={props.setTitle}/>
+      <TitlePass2 />
   
       </div>
     )
@@ -36,9 +37,9 @@ const TitleRender = ({...props}) =>{
 
   return(
    <>
-    {editing !== undefined && editing === false ? (
+    {editing !== undefined && editing !== true ? (
              <h1>
-             {title2}{editing}
+             {props.title2}{editing}
              <i
                className="far fa-edit"
               onClick={()=>{
@@ -47,8 +48,8 @@ const TitleRender = ({...props}) =>{
              />
            </h1>
 
-    ) : editing && (
-      <TitlePass2 title2={props.title2} handleChanges={props.handleChanges} setTitle={props.setTitle} />
+    ) : editing !== undefined && editing  === false && (
+      <TitlePass2  />
     
 
 

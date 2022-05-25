@@ -7,7 +7,10 @@ import { AppComp } from "../../common";
 
 // import { initialState, titleReducer } from "../reducers/titleReducer";
 
-const Title = (props ) => {
+const Title = ({...props} ) => {
+
+
+  const {editing,title2} = props;
   const [newTitleText, setNewTitleText] = useState('');
   // const [state, dispatch] = useReducer(titleReducer, initialState);
   // console.log(state);
@@ -18,13 +21,14 @@ const Title = (props ) => {
     const nt = newTitleText+e.target.value;
     console.log(nt)
     if(newTitleText !== ''){
-      setNewTitleText( e.target.value);
+
+      setNewTitleText( {[e.target.name]:e.target.value});
 
     }
   };
     useEffect(()=>{
         if(edit !== undefined && props !== undefined ||  
-          props.editing === undefined && props !== undefined){
+          props.editing === undefined && props !== undefined){ 
           if (props.editing === undefined && edit !== undefined&& props.title2 !== undefined && newTitleText !== undefined){
             console.log(newTitleText + props.title2, edit);
             if(props.title2.length !== newTitleText.length && props.title2.length > newTitleText.length){
