@@ -5,7 +5,9 @@ import {  Link, } from 'react-router-dom';
 const Heading = () =>{
     {
         const logout = () => {
-            localStorage.removeItem('token')
+            if(localStorage !== undefined) {
+                localStorage.removeItem('token')
+            }
           };
         return(
     

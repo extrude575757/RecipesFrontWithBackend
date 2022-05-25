@@ -8,27 +8,39 @@ import { toggleEditing, setTitle } from "../../../actions/titleActions";
 
 
 const TitleRender = ({...props}) =>{
-    const {editing,title2,setTitle} = props;
-  
-  return(
-   <>
-    {editing ? (
-      <div>
+    const {editing,title2,setTitle,handleChanges} = props;
+  const title11 = (e) =>{
+    return(
+      props.editing && <div>{editing}
       <label for='category'>
             Category
           </label>
-        <TitlePass1 handleChanges={props.handleChanges}title2={title2} setTitle={setTitle} editing={props.editing} />
-
+        <TitlePass1 handleChanges={handleChanges}title2={title2} setTitle={setTitle} editing={props.editing} />
+  
         </div>
+    )
+  }
 
-    ) : (
+  const title12 = () =>{
+    return (
       <div>
       <label for='category'>
             Category
           </label>
       <TitlePass2 title2={props.title2} handleChanges={props.handleChanges} setTitle={setTitle}/>
-
+  
       </div>
+    )
+  }
+
+
+  return(
+   <>
+    {editing === true ? (
+      title11(editing)
+
+    ) : (
+      title12(editing)
     )}
 
   </>

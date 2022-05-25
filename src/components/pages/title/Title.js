@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import TitleRender  from "./TitleRender";
+import TitlePass from "../titlepass"
 import { toggleEditing, setTitle } from "../../../actions/titleActions";
 import { AppComp } from "../../common";
 
@@ -14,21 +15,28 @@ const Title = ({...props}) => {
   const [edit,setTitle] = useState(false);
 
   const handleChanges = (e) => {
+    const nt = e.target.value;
+    console.log(nt)
     setNewTitleText(e.target.value);
   };
     useEffect(()=>{
-        if(newTitleText !== undefined){
-          console.log(newTitleText );
-          console.log(edit);
-          setNewTitleText(true);
-        }else if(props.edit){
-            // (edit ? setNewTitleText(newTitleText) : setNewTitleText(''))
-          setNewTitleText(true);
+        if(edit !== undefined || props.editing === undefined){
+
+
+          if (props.editing === undefined && edit !== undefined&& props.title2 !== undefined){
+            console.log(newTitleText + props.title2, edit);
+            props.editing = edit;
+          }
+          if (props.editing === undefined && edit !== undefined&& props.title2 === undefined){
+            handleChanges();
+          }
+          
         }
-    },[{}]);
+    },[{edit,newTitleText}]);
 
   return (
-     <TitleRender setTitle={setTitle} title2={newTitleText} handleChanges={handleChanges} />
+     <TitleRender editing={props.editing}setTitle={setTitle} title2={newTitleText} handleChanges={handleChanges} />
+
     
   );
 };

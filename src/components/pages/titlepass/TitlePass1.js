@@ -10,7 +10,7 @@ const TitlePass1 =({...props})=>{
 return(
     <div>
     <label for='category'>
-          Category
+          Categoryaaa
         </label>
     {editing === true ? (
       <h1>
@@ -25,7 +25,7 @@ return(
         />
       </h1>
     ) : (
-      <TitlePass2 title2={title2} setTitle={setTitle}/>
+      <Title title2={title2} setTitle={setTitle}/>
     )}
   </div>
 )
