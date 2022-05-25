@@ -1,59 +1,35 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
-
+import TitleRender  from "./TitleRender";
 import { toggleEditing, setTitle } from "../../../actions/titleActions";
+import { AppComp } from "../../common";
 
 // import { initialState, titleReducer } from "../reducers/titleReducer";
 
-const Title = (props) => {
+const Title = ({...props}) => {
   const [newTitleText, setNewTitleText] = useState();
   // const [state, dispatch] = useReducer(titleReducer, initialState);
   // console.log(state);
 
+  const [edit,setTitle] = useState(false);
+
   const handleChanges = (e) => {
     setNewTitleText(e.target.value);
   };
+    useEffect(()=>{
+        if(newTitleText !== undefined){
+          console.log(newTitleText );
+          console.log(edit);
+          setNewTitleText(true);
+        }else if(props.edit){
+            // (edit ? setNewTitleText(newTitleText) : setNewTitleText(''))
+          setNewTitleText(true);
+        }
+    },[{}]);
 
   return (
-    <div>
-      <label for='category'>
-            Category
-          </label>
-      {!props.editing ? (
-        <h1>
-          {props.title2}{" "}
-          <i
-            className="far fa-edit"
-            onClick={() => {
-              // dispatch({ type: "TOGGLE_EDITING" })
-              // debugger;
-              props.toggleEditing();
-            }}
-          />
-        </h1>
-      ) : (
-        <div>
-          
-          <input
-            className="title-input"
-            type="text"
-            name="newTitleText"
-            value={newTitleText}
-            onChange={handleChanges}
-          />
-          <button
-            onClick={() => {
-              // setTitle(newTitleText);
-              // setEditing(false);
-              // dispatch({ type: "UPDATE_TITLE", payload: newTitleText })
-              props.setTitle(newTitleText);
-            }}
-          >
-            Update title
-          </button>
-        </div>
-      )}
-    </div>
+     <TitleRender setTitle={setTitle} title2={newTitleText} handleChanges={handleChanges} />
+    
   );
 };
 const mapStateToProps = ({ titleState }) => {
