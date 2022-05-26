@@ -42,14 +42,9 @@ const TitleRender = ({...props}) =>{
   editing !== undefined && editing === false && editing === props.editing ? (
     <TitlePass2 />
 
-) : editing !== undefined && editing  !== false && editing === props.editing || (
+) : editing !== undefined && editing  == true && editing === props.editing &&(
   <TitlePass2jsx />
-
-
-
 )
-
-
 }
   </div>
 )}

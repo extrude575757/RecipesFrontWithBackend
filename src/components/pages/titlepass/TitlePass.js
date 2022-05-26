@@ -20,7 +20,6 @@ const TitlePass =(props)=>{
     )
 }
 
-
 const mapStateToProps = ({ titleState }) => {
     return {
       title2: titleState.title,
@@ -30,7 +29,3 @@ const mapStateToProps = ({ titleState }) => {
   
   
   export default connect(mapStateToProps, { toggleEditing, setTitle })(TitlePass);
-  
- 
-
-

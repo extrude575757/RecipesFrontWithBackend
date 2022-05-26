@@ -9,7 +9,7 @@ import {Title}  from "../title";
 import { toggleEditing, setTitle } from "../../../actions/titleActions";
 
 const TitlePass1 =({...props})=>{
-  const {editing,title2,toggleEditing} = props;
+  const {editing,title2} = props;
 
 return(
     <div>

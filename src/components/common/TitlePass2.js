@@ -23,7 +23,7 @@ return(
   //   </button>
   // </div>
 
-  <TitlePass />
+  editing &&  <TitlePass />
 )
 }
 
