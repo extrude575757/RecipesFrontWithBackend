@@ -42,6 +42,9 @@ const Title = ({...props} ) => {
           if (props.editing === undefined && edit !== undefined&& props.title2 === undefined){
             handleChanges();
           }
+          if (props.editing !==editing){
+            setTitle(newTitleText);
+          }
         }
     },[{edit,newTitleText}]);
 

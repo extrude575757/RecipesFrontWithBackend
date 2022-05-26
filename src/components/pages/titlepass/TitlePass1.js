@@ -9,14 +9,15 @@ import {Title}  from "../title";
 import { toggleEditing, setTitle } from "../../../actions/titleActions";
 
 const TitlePass1 =({...props})=>{
-  const {editing,title2} = props;
+  const {editing,title2,toggleEditing,handleChanges} = props;
 
 return(
     <div>
     <label for='category'>
           Category 
         </label>
-    {editing !== undefined && props.title2 !== undefined&& 
+    {editing === props.editing ||
+    editing !== undefined && props.title2 !== undefined&& 
     editing === true && props.editing !== undefined && props.editing === editing ? (
       // <h1>
       //   {props.title2}{" "}
@@ -35,7 +36,7 @@ return(
       type="text"
       name="newTitleText"
       value={title2}
-      onChange={props.handleChanges}
+      onChange={handleChanges}
     />
     <button
       onClick={()=>{ toggleEditing();  setTitle(title2)}}
@@ -46,7 +47,8 @@ return(
     ) : editing !== undefined && props.title2 !== undefined&& editing === false
      && props.editing !== undefined  && props.editing === editing && (
       <TitlePass1jsx  />
-    )}
+    )
+    }
   </div>
 )
 }

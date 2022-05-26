@@ -8,7 +8,7 @@ import { toggleEditing, setTitle } from "../../../actions/titleActions";
 
 
 
-const TitlePass =(props)=>{
+const TitlePass =({...props})=>{
   const {title2,handleChanges} = props;
   useEffect(()=>{
     console.log('Titlepass' );

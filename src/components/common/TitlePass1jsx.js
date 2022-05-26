@@ -11,7 +11,7 @@ const TitlePass1jsx = ({...props})=>{
 
 
     return (
-        !editing  && <h1>
+        !editing  &&( <h1>
         {title2} 
         <i
           className="far fa-edit"
@@ -22,7 +22,7 @@ const TitlePass1jsx = ({...props})=>{
             setTitle(title2);
           }}
         />
-      </h1>
+      </h1>)
       
       // editing &&<TitlePass editing={editing} title2={title2}setTitle={setTitle} />
     )

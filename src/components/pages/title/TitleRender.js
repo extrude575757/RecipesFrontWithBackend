@@ -40,10 +40,10 @@ const TitleRender = ({...props}) =>{
    <div>
     {props.editing === editing||
   editing !== undefined && editing === false && editing === props.editing ? (
-    <TitlePass2 />
+    <TitlePass1jsx />
 
 ) : editing !== undefined && editing  == true && editing === props.editing &&(
-  <TitlePass2jsx />
+  <TitlePass1 />
 )
 }
   </div>

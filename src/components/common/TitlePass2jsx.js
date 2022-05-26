@@ -18,11 +18,11 @@ return(
       onChange={props.handleChanges}
     />
     <button
-      onClick={   setTitle(title2)}
+      onClick={()=>{ toggleEditing();  setTitle(title2)}}
     >
       Update title
     </button>
-  </div>,<Title />
+  </div>
 
 
 )
