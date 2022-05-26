@@ -35,7 +35,7 @@ const Title = ({...props} ) => {
               newTitleText =props.title2
             }
             props.editing = edit;
-            setTitle(newTitleText);
+            setNewTitleText(newTitleText);
           }
           if (props.editing === undefined && edit !== undefined&& props.title2 === undefined){
             handleChanges();
@@ -44,7 +44,7 @@ const Title = ({...props} ) => {
     },[{edit,newTitleText}]);
 
   return (
-     <TitleRender editing={edit}setTitle={setTitle} title2={newTitleText} handleChanges={handleChanges} />
+     <TitleRender  />
   );
 };
 const mapStateToProps = ({ titleState }) => {

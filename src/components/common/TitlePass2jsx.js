@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 // import TitleRender  from "./TitleRender";
 import { toggleEditing, setTitle } from "../../actions/titleActions";
 
-const TitlePass2 = ( {...props}) =>{
+const TitlePass2jsx = ( {...props}) =>{
     const {editing,title2,setTitle} = props;
 
 return(
-    <div>
+    editing &&  <div>
         
     <input
       className="title-input"
@@ -22,6 +22,8 @@ return(
       Update title
     </button>
   </div>
+
+
 )
 }
 
@@ -34,6 +36,6 @@ const mapStateToProps = ({ titleState }) => {
   };
   
   
-  export default connect(mapStateToProps, { toggleEditing, setTitle })(TitlePass2);
+  export default connect(mapStateToProps, { toggleEditing, setTitle })(TitlePass2jsx);
   
  

@@ -1,6 +1,7 @@
 import React from "react";
-import TitlePass2 from "../../common/TitlePass2";
+// import titlepass2 from "../../common/titlepass2";
 import TitlePass1jsx from "../../common/TitlePass1jsx";
+import TitlePass2jsx from "../../common/TitlePass2jsx";
 import TitlePass from './TitlePass';
 import { connect } from "react-redux";
 import {Title}  from "../title";
@@ -12,9 +13,10 @@ const TitlePass1 =({...props})=>{
 return(
     <div>
     <label for='category'>
-          Categoryaaa
+          Category
         </label>
-    {editing !== undefined && props.title2 !== undefined&& editing === false ? (
+    {editing !== undefined && props.title2 !== undefined&& 
+    editing === true && props.editing !== undefined && props.editing === editing ? (
       // <h1>
       //   {props.title2}{" "}
       //   <i
@@ -24,9 +26,10 @@ return(
       //     }}
       //   />
       // </h1>
-      <TitlePass1jsx />
-    ) : (
-      <TitlePass2  />
+      <TitlePass2jsx />
+    ) : editing !== undefined && props.title2 !== undefined&& editing === false
+     && props.editing !== undefined  && props.editing === editing && (
+      <TitlePass1jsx  />
     )}
   </div>
 )

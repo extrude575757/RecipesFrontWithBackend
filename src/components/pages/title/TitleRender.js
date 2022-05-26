@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 // import {TitlePass} from "../titlepass";
 import {TitlePass2} from "../../common"
+import { TitlePass2jsx } from "../../common";
 import { TitlePass1jsx } from "../../common";
 import { TitlePass } from "../titlepass";
 import { AppComp } from "../../common";
@@ -10,7 +11,7 @@ import { Title } from "./Title";
 
 const TitleRender = ({...props}) =>{
     const {editing,title2,setTitle,handleChanges,toggleEditing} = props;
-  const title11 = (e) =>{
+  const title11 = () =>{
     return(
       props.editing && <div>
       <label for='category'>
@@ -28,7 +29,7 @@ const TitleRender = ({...props}) =>{
       <label for='category'>
             Category
           </label>
-      <TitlePass2 />
+      <TitlePass1jsx />
   
       </div>
     )
@@ -37,19 +38,11 @@ const TitleRender = ({...props}) =>{
 
   return(
    <>
-    {editing !== undefined && editing !== true ? (
-             <h1>
-             {props.title2}{editing}
-             <i
-               className="far fa-edit"
-              onClick={()=>{
-                 toggleEditing()
-               }}
-             />
-           </h1>
+    {editing !== undefined && editing !== true && editing === props.editing ? (
+        <TitlePass2 />
 
-    ) : editing !== undefined && editing  === false && (
-      <TitlePass2  />
+    ) : editing !== undefined && editing  === false && editing === props.editing && (
+      <TitlePass2jsx />
     
 
 

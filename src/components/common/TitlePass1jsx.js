@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { connect } from "react-redux";
-// import TitleRender  from "./TitleRender";
+import Title  from "../pages/title";
+import TitlePass2jsx from './TitlePass2jsx';
 import { toggleEditing, setTitle } from "../../actions/titleActions";
 import {TitlePass} from "../pages/titlepass"
 const TitlePass1jsx = ({...props})=>{
@@ -10,9 +11,8 @@ const TitlePass1jsx = ({...props})=>{
 
 
     return (
-        <h1>
-        {title2}
-        {editing}
+        !editing  && <h1>
+        {title2} 
         <i
           className="far fa-edit"
           onClick={() => {
@@ -22,6 +22,7 @@ const TitlePass1jsx = ({...props})=>{
           }}
         />
       </h1>
+      
       // editing &&<TitlePass editing={editing} title2={title2}setTitle={setTitle} />
     )
 }
