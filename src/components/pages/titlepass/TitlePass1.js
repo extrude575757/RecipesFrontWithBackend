@@ -1,19 +1,20 @@
 import React from "react";
 // import titlepass2 from "../../common/titlepass2";
-import TitlePass1jsx from "../../common/TitlePass1jsx";
-import TitlePass2jsx from "../../common/TitlePass2jsx";
+import {TitlePass1jsx} from "../../common/";
+import {TitlePass2jsx} from "../../common/";
+import {TPEE2} from '../../common/'
 import TitlePass from './TitlePass';
 import { connect } from "react-redux";
 import {Title}  from "../title";
 import { toggleEditing, setTitle } from "../../../actions/titleActions";
 
 const TitlePass1 =({...props})=>{
-  const {editing} = props;
+  const {editing,title2,toggleEditing} = props;
 
 return(
     <div>
     <label for='category'>
-          Category
+          Category 
         </label>
     {editing !== undefined && props.title2 !== undefined&& 
     editing === true && props.editing !== undefined && props.editing === editing ? (
@@ -26,7 +27,22 @@ return(
       //     }}
       //   />
       // </h1>
-      <TitlePass2jsx />
+      // <TitlePass2jsx />,
+      // < TPEE2 />
+<div>
+      <input
+      className="title-input"
+      type="text"
+      name="newTitleText"
+      value={title2}
+      onChange={props.handleChanges}
+    />
+    <button
+      onClick={()=>{ toggleEditing();  setTitle(title2)}}
+    >
+      Update title
+    </button>
+  </div>
     ) : editing !== undefined && props.title2 !== undefined&& editing === false
      && props.editing !== undefined  && props.editing === editing && (
       <TitlePass1jsx  />

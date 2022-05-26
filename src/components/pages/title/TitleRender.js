@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {TitlePass2} from "../../common"
 import { TitlePass2jsx } from "../../common";
 import { TitlePass1jsx } from "../../common";
-import { TitlePass } from "../titlepass";
+import TitlePass1  from "../titlepass/TitlePass1";
 import { AppComp } from "../../common";
 import { toggleEditing, setTitle } from "../../../actions/titleActions";
 import { Title } from "./Title";
@@ -37,19 +37,21 @@ const TitleRender = ({...props}) =>{
 
 
   return(
-   <>
-    {editing !== undefined && editing !== true && editing === props.editing ? (
-        <TitlePass2 />
+   <div>
+    {props.editing === editing||
+  editing !== undefined && editing === false && editing === props.editing ? (
+    <TitlePass2 />
 
-    ) : editing !== undefined && editing  === false && editing === props.editing && (
-      <TitlePass2jsx />
-    
+) : editing !== undefined && editing  !== false && editing === props.editing || (
+  <TitlePass2jsx />
 
 
-  )
 
-  }
-  </>
+)
+
+
+}
+  </div>
 )}
 const mapStateToProps = ({ titleState }) => {
     return {

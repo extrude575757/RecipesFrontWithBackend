@@ -18,12 +18,14 @@ const Title = ({...props} ) => {
   const [edit,setTitle] = useState(false);
 
   const handleChanges = (e) => {
-    const nt = newTitleText+e.target.value;
+    
     console.log(nt)
-    if(newTitleText !== ''){
+    if(newTitleText !== undefined ){
+      const nt = newTitleText+e.target.value;
+      setNewTitleText( {...e,[e.target.name]:e.target.value});
 
-      setNewTitleText( {[e.target.name]:e.target.value});
-
+    }else if(newTitleText === undefined){
+      setNewTitleText( {...e,[e.target.name]:e.target.value});
     }
   };
     useEffect(()=>{

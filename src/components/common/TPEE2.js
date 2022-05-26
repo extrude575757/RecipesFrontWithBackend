@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 // import TitleRender  from "./TitleRender";
-import Title from '../pages/title';
+import {Title} from '../pages/title';
 import { toggleEditing, setTitle } from "../../actions/titleActions";
 import {TitlePass} from "../pages/titlepass";
 const TPEE2 = ( {...props}) =>{
@@ -24,7 +24,7 @@ return(
   //   </button>
   // </div>
 
-  <Title />
+  !editing &&  <Title />
 )
 }
 
