@@ -32,7 +32,7 @@ return(
     />
     <button
       onClick={()=>{
-        setTitle(title2);
+        // setTitle(title2);
         // setEdit(false);
         toggleEditing();
         
