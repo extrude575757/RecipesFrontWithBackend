@@ -30,7 +30,7 @@ return(
       // <TitlePass2jsx />,
       // < TPEE2 />
 <div>
-      <input
+      {/* <input
       className="title-input"
       type="text"
       name="newTitleText"
@@ -45,7 +45,11 @@ return(
       }}
     >
       Update title
-    </button>
+    </button> */
+    
+
+    }
+        <TitlePass2jsx/>
   </div>
     ) : editing !== undefined && props.title2 !== undefined&& editing === false
      && props.editing !== undefined  && props.editing === editing && (

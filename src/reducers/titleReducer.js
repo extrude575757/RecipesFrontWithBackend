@@ -12,7 +12,7 @@ export const titleReducer = (state = initialState, action) => {
       return {
         ...state,
         title: action.payload,
-        editing: state.editing
+        editing:  true
       };
     // NEW CASE HERE
     case TOGGLE_EDITING:

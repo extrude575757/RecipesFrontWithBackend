@@ -23,10 +23,10 @@ const Title = (props ) => {
     if(newTitleText !== undefined ){
       const nt = newTitleText+e.target.value;
       console.log('fff'+nt);
-      setNewTitleText( {[e.target.name]:e.target.value});
+      setNewTitleText( e.target.value);
 
     }else if(newTitleText === undefined){
-      setNewTitleText( {[e.target.name]:e.target.value});
+      setNewTitleText( e.target.value);
     }
   };
     useEffect(()=>{
@@ -42,13 +42,13 @@ const Title = (props ) => {
             setEdit(edit)
           }
           if (props.editing === undefined && edit !== undefined&& props.title2 === undefined){
-            handleChanges();
+            <TitleRender handleChanges={handleChanges}  />
           }
         }
     },[{edit,newTitleText}]);
 
   return (
-     <TitleRender  />
+     <TitleRender handleChanges={handleChanges}  />
   );
 };
 const mapStateToProps = ({ titleState }) => {

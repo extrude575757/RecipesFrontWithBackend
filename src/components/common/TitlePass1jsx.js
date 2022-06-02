@@ -18,9 +18,10 @@ const TitlePass1jsx = ({...props})=>{
           onClick={() => {
             // dispatch({ type: "TOGGLE_EDITING" })
             // debugger;
-            props.toggleEditing();
             // setEdit(true);
             setTitle(title2)
+            toggleEditing();
+
           }}
         />
       </h1>

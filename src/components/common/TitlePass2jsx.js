@@ -5,7 +5,20 @@ import  {Title }from '../pages/title';
 import { toggleEditing, setTitle } from "../../actions/titleActions";
 
 const TitlePass2jsx = ( {...props}) =>{
-    const {editing,title2,setTitle,setNewTitle} = props;
+    const {editing,title2,setTitle} = props;
+
+    const handleChanges = (e) => {
+    
+
+      if(title2 !== undefined ){
+        const nt = title2+e.target.value;
+        console.log('fff'+nt);
+        setTitle( e.target.value);
+  
+      }else if(title2 === undefined){
+        setTitle( e.target.value);
+      }
+    };
 
 return(
     editing &&  <div>
@@ -15,19 +28,21 @@ return(
       type="text"
       name="newTitleText"
       value={title2}
-      onChange={props.handleChanges}
+      onChange={handleChanges}
     />
     <button
       onClick={()=>{
-        setTitle(setNewTitle);
-        setEdit(false);
+        setTitle(title2);
+        // setEdit(false);
         toggleEditing();
         
       }}
     >
       Update title
     </button>
-  </div>&&<Title />
+  </div>
+  
+  // &&<Title />
 
 
 )
