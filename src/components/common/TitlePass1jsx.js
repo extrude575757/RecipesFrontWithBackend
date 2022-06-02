@@ -6,7 +6,7 @@ import TitlePass2jsx from './TitlePass2jsx';
 import { toggleEditing, setTitle } from "../../actions/titleActions";
 import {TitlePass} from "../pages/titlepass"
 const TitlePass1jsx = ({...props})=>{
-    const {editing,title2,setTitle} = props;
+    const {editing,title2,setEdit,setTitle} = props;
 
 
 
@@ -19,6 +19,8 @@ const TitlePass1jsx = ({...props})=>{
             // dispatch({ type: "TOGGLE_EDITING" })
             // debugger;
             props.toggleEditing();
+            // setEdit(true);
+            setTitle(title2)
           }}
         />
       </h1>

@@ -9,10 +9,16 @@ import { toggleEditing, setTitle } from "../../../actions/titleActions";
 
 
 const TitlePass =(props)=>{
-  const {title2,handleChanges} = props;
+  const {title2,handleChanges,newTitleText} = props;
+  const [newTitle, setNewTitle] = useState('');
   useEffect(()=>{
-    console.log('Titlepass' );
-},[{}]);
+    if(newTitleText !== undefined || newTitle !== undefined){
+      console.log('Titlepass' +newTitleText +' '+newTitle);
+    }else{
+      setNewTitle(title2);
+    }
+   
+},[{title2}]);
 
 
     return(

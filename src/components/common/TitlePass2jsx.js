@@ -5,7 +5,7 @@ import  {Title }from '../pages/title';
 import { toggleEditing, setTitle } from "../../actions/titleActions";
 
 const TitlePass2jsx = ( {...props}) =>{
-    const {editing,title2,setTitle} = props;
+    const {editing,title2,setTitle,setNewTitle} = props;
 
 return(
     editing &&  <div>
@@ -18,11 +18,16 @@ return(
       onChange={props.handleChanges}
     />
     <button
-      onClick={   setTitle(title2)}
+      onClick={()=>{
+        setTitle(setNewTitle);
+        setEdit(false);
+        toggleEditing();
+        
+      }}
     >
       Update title
     </button>
-  </div>,<Title />
+  </div>&&<Title />
 
 
 )

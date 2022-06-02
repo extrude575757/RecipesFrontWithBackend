@@ -9,7 +9,7 @@ import {Title}  from "../title";
 import { toggleEditing, setTitle } from "../../../actions/titleActions";
 
 const TitlePass1 =({...props})=>{
-  const {editing,title2,toggleEditing} = props;
+  const {editing,title2,setTitle,setEdit,toggleEditing} = props;
 
 return(
     <div>
@@ -38,7 +38,11 @@ return(
       onChange={props.handleChanges}
     />
     <button
-      onClick={()=>{ toggleEditing();  setTitle(title2)}}
+      onClick={()=>{ toggleEditing(); 
+      
+        setTitle(title2)
+        // setEdit(editing);
+      }}
     >
       Update title
     </button>
