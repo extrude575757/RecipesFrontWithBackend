@@ -1,8 +1,7 @@
 import { ADD_NEW_CREDS, EDIT_CREDS,GET_CREDS_FAIL } from "../actions/credActions";
 
 const cred = {
-    creds: [
-            {   
+   
                 credentials: {
 
                 username: '',
@@ -10,8 +9,7 @@ const cred = {
                 password: '',
                 role:1
             }
-        }
-  ]
+        
 };
 
 export const credReducer = (state = cred, action) => {
@@ -21,8 +19,8 @@ export const credReducer = (state = cred, action) => {
     case ADD_NEW_CREDS:
       return {
         
-          ...state,
-        creds: [
+      
+        cred: [
           ...state.credentials,
           
           {
@@ -30,11 +28,12 @@ export const credReducer = (state = cred, action) => {
             username: action.payload.username, 
             department: action.payload.department,
             password: action.payload.password,
-            role: action.payload.role 
-          }
-        ],
+            role: action.payload.role ,
         isFetching:true,
         error:''
+      }
+          
+        ]
       };
 
       case EDIT_CREDS:
@@ -48,11 +47,11 @@ export const credReducer = (state = cred, action) => {
                 username: action.payload.username, 
                 department: action.payload.department,
                 password: action.payload.password,
-                role: action.payload.role 
-              }
-            ],
+                role: action.payload.role,
             isFetching:true,
-            error:''
+            error:'' 
+              }
+            ]
           };
 
 

@@ -1,8 +1,10 @@
 import React  from "react";
+import { connect } from "react-redux";
+import {addNewCred,credSignup } from '../../actions/credActions'
+import axiosWithAuth from "../../utils/axiosWithAuth";
+const CredComp =(props) =>{
 
-const CredComp =() =>{
-
-
+  const {creds,handleChange} = props;
     const login = e => {
         e.preventDefault();
         axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", credentials)
@@ -18,41 +20,41 @@ const CredComp =() =>{
 
     return (
         <div>Register
-        <form onSubmit={login}>
-          <label for='username'>
+        <form onSubmit={credSignup}>
+          <label htmlFor='username'>
             Username
           </label>
           <input
             type="text"
             name="username"
-            value={credentials.username}
+            value={creds.username}
             onChange={handleChange}
           />
-          <label for='department'>
+          <label htmlFor='department'>
               Department
           </label>
           <input 
             type="text"
             name="department"
-            value={credentials.department}
+            value={creds.department}
             onChange={handleChange}
           />
-          <label for='password'>
+          <label htmlFor='password'>
             Password
           </label>
           <input
             type="password"
             name="password"
-            value={credentials.password}
+            value={creds.password}
             onChange={handleChange}
           />
-          <label for='role'>
+          <label htmlFor='role'>
               Role
           </label>
           <input 
             type="text"
             name="role"
-            value={credentials.role}
+            value={creds.role}
             onChange={handleChange}
           />
           <button>Register</button>
@@ -64,4 +66,13 @@ const CredComp =() =>{
 }
 
 
-export default (CredComp);
+const mapStateToProps = (state) => {
+  return {
+    creds: state.credReducer.credentials
+  };
+};
+
+
+export default connect(mapStateToProps, { addNewCred,credSignup })(CredComp);
+
+ 
