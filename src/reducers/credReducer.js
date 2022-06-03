@@ -3,18 +3,19 @@ import { ADD_NEW_CREDS, EDIT_CREDS,GET_CREDS_FAIL } from "../actions/credActions
 const cred = {
    
                 credentials: {
-
+                id:0,
                 username: '',
                 department: 'No Dep',
                 password: '',
-                role:1
+                role:1,
+                isFetching:false,
+                error:''
             }
         
 };
 
 export const credReducer = (state = cred, action) => {
   
-  console.log(`NAL: credsReducer:`, action);
   switch (action.type) {
     case ADD_NEW_CREDS:
       return {

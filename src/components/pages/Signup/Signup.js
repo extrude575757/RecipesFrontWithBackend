@@ -23,6 +23,19 @@ const  handleChange = e => {
   };
 
 
+  const login = e => {
+    e.preventDefault();
+    axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", credentials)
+      .then(res => {
+        console.log('bk: Login.js: login: res: ', res)
+        localStorage.setItem('token', res.config.data)
+        props.history.push('/protected')
+      })
+      .catch(err => {
+        console.error(err.response)
+      })
+  };
+
 
 
 
@@ -43,15 +56,15 @@ const  handleChange = e => {
             addNewCred(credentials);
         }
       }else{
-        <SignupR handleChange={handleChange} />
+        <SignupR handleChange={handleChange} login={login}/>
       }
 
-    },[{credentials,creds}]);
+    },[{credentials}]);
 
 
     
         return (
-         <SignupR handleChange={handleChange} />
+         <SignupR handleChange={handleChange} login={login} />
         );
       }
   
