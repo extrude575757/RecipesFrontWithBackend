@@ -17,10 +17,8 @@ import Heading from "./components/common/Heading"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from './components/pages/login/Login.js';
-import Register from './components/pages/register/Register.js'
+import {Signup} from './components/pages/Signup'
 import PrivateRoute from './components/pages/auth/PrivateRoute';
-
-
 
 // function AppComp() {
 //   return (
@@ -32,8 +30,6 @@ import PrivateRoute from './components/pages/auth/PrivateRoute';
 //     </div>
 //   );
 // }
-
-
 function App() {
   return (
     <Router>
@@ -42,7 +38,7 @@ function App() {
         <Switch>
           <PrivateRoute exact path="/protected" component={AppComp}/>
           <Route path="/login" component={Login}/>
-          <Route path="/register" component={Register}/>
+          <Route path="/register" component={Signup}/>
         </Switch>
       </div>
     </Router>
