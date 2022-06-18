@@ -15,22 +15,8 @@ export const credSignup = (cred)=>{
     return (dispatch)=> {
 
 
-
-        // console.log('addSignup ' +creds.username);
-        // axios.post("https://movie-kdb.herokuapp.com/api/movie/", movie)
-        // .then(resp =>{
-        //     console.log('nal resp movieActino 34 addmovie ',resp.data);
-        //     dispatch(postAddMovie(movie))
-        // })
-        // .catch(er =>{
-        //     dispatch(getMoviesFail(err));
-        //     console.log(er);
-        // })
-
-
-
         e.preventDefault();
-        axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", credentials)
+        axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", cred)
           .then(res => {
             console.log('bk: Login.js: login: res: ', res)
             localStorage.setItem('token', res.config.data)

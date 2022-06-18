@@ -18,24 +18,12 @@ export const credReducer = (state = cred, action) => {
   
   switch (action.type) {
     case ADD_NEW_CREDS:
-      return {
+      return ({
         
-      
+        ...state,
         cred: [
-          ...state.credentials,
-          
-          {
-            id: action.payload.id,
-            username: action.payload.username, 
-            department: action.payload.department,
-            password: action.payload.password,
-            role: action.payload.role ,
-        isFetching:true,
-        error:''
-      }
-          
-        ]
-      };
+          ...state.credentials, action.payload]
+      });
 
       case EDIT_CREDS:
           return{

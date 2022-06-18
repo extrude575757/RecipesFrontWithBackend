@@ -2,26 +2,34 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import SignupR  from "./SignupR";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
-import {addNewCred } from '../../../actions/credActions'; 
+import {addNewCred,credSignup } from '../../../actions/credActions'; 
 const Signup = (props ) => {
-  const {creds} = props;
-  const [ credentials, setNewCredentials] = useState(    {
-      credentials:    {
-        username: '',
-        department: 'NoDep',
-        password: '',
-        role:1
-      }
+  const {credentials} = props;
+  const [ credd, setNewCredd] = useState(    {
+
+
+      id:0,
+      username: '',
+      department: 'No Dep',
+      password: '',
+      role:1,
+      isFetching:false,
+      error:''
+  
+      
   });
 const  handleChange = e => {
-    setNewCredentials({
-     
-        ...credentials,
+    setNewCredd({
+        ...credd,
         [e.target.name]: e.target.value
-      
     });
   };
-
+  const  handleValue = e => {
+    setNewCredd({
+        ...credd,
+        [e.target.name]: e.target.value
+    });
+  }
 
   const login = e => {
     e.preventDefault();
@@ -41,42 +49,48 @@ const  handleChange = e => {
 
     useEffect(()=>{
 
-      if(credentials !== undefined && props.creds !== undefined){
-        if(props.creds.length < credentials.length){
-          console.log('creds'+creds);
-            props.creds = {
-              ...state.credentials,
+      if(credd !== undefined && credentials !== undefined){
+        if(props.credentials.length < credd.length){
+          console.log('creds'+credd+ ' ' + credentials);
+            credd = {
+              ...credentials,
               [state.target.name]: state.target.value}
               addNewCred(credentials);
           
-        }else if(props.creds.length > credentials.length){
+        }else if(props.credentials.length > credd.length){
+          console.log('credsin'+credentials);
           credentials = {
-            ...creds,
-            [creds.target.name]: creds.target.value}
+            ...credd,
+            [credd.target.name]: credd.target.value}
             addNewCred(credentials);
         }
       }else{
-        <SignupR handleChange={handleChange} login={login}/>
+        credentials = {
+          ...credd,
+          [credd.target.name]: credd.target.value}
+          //addNewCred(credentials);
+        console.log('credsin'+credentials);
+    
       }
 
-    },[{credentials}]);
+    },[{credd}]);
 
 
     
         return (
-         <SignupR handleChange={handleChange} login={login} />
+         <SignupR />
         );
       }
   
 
 const mapStateToProps = (state) => {
   return {
-    creds: state.credReducer.credentials
+    credentials: state.credReducer.credentials
   };
 };
 
 
-export default connect(mapStateToProps, { addNewCred  })(Signup);
+export default connect(mapStateToProps, { addNewCred,credSignup  })(Signup);
 
 // const hocThatWillConnectTitleToReduxStore = connect(mapStateToProps, {});
 // const componentThatHasTitleConnectedToReduxStore = hocThatWillConnectTitleToReduxStore(
