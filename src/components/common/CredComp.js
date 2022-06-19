@@ -2,9 +2,10 @@ import React, {useState,useEffect}  from "react";
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../actions/credActions'
 import axiosWithAuth from "../../utils/axiosWithAuth";
-const CredComp =({...props}) =>{
+import { Signup } from "../pages/Signup";
+const CredComp =(props) =>{
 
-  const {credentials} = props;
+  const {credentials,login} = props;
   const {username,department,password,role} = credentials;
     // const login = e => {
     //     e.preventDefault();
@@ -18,18 +19,45 @@ const CredComp =({...props}) =>{
     //         console.error(err.response)
     //       })
     //   };
+    const [ credd, setNewCredd] = useState(    {
 
 
+    ...props.credd
+      
+  });
+
+
+  useEffect(()=>{
+
+    if(credd === undefined && credentials !== undefined){
+      credd = {
+          ...credentials,
+          [credentials.target.name]: credentials.target.value}
+          addNewCred(credd);
+        console.log('credsin'+credentials+props.credd);  
+    } else if(credentials === undefined && credd !== undefined){
+      credentials = {
+        ...credd,
+        [credd.target.name]: credd.target.value}
+        addNewCred(credd);
+      console.log('credsin'+credentials +props.credd);  
+    } else if(credentials === undefined && credd === undefined){
+      <Signup />
+    } else if(credentials !== undefined && credd !== undefined){
+      addNewCred(credd);
+    }
+
+  },[{credd,credentials}]);
     return (
         <div>Register
-        <form onSubmit={props.login}>
+        <form onSubmit={login}>
           <label htmlFor='username'>
             Username
           </label>
           <input
             type="text"
             name="username"
-            value={props.handleChange}
+            value={props.username}
             onChange={props.handleChange}
           />
           <label htmlFor='department'>
@@ -38,7 +66,7 @@ const CredComp =({...props}) =>{
           <input 
             type="text"
             name="department"
-            value={ props.handleChange}
+            value={ props.department}
             onChange={props.handleChange}
           />
           <label htmlFor='password'>
@@ -47,7 +75,7 @@ const CredComp =({...props}) =>{
           <input
             type="password"
             name="password"
-            value={props.handleChange}
+            value={props.password}
             onChange={props.handleChange}
           />
           <label htmlFor='role'>
@@ -56,7 +84,7 @@ const CredComp =({...props}) =>{
           <input 
             type="text"
             name="role"
-            value={props.handleChange}
+            value={props.role}
             onChange={props.handleChange}
           />
           <button>Register</button>

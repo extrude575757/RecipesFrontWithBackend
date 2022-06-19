@@ -20,8 +20,7 @@ export const credReducer = (state = cred, action) => {
     case ADD_NEW_CREDS:
       return ({
         
-        ...state,
-        cred: [
+        credentials: [
           ...state.credentials, action.payload]
       });
 

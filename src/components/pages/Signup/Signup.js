@@ -23,16 +23,19 @@ const  handleChange = e => {
         ...credd,
         [e.target.name]: e.target.value
     });
+    console.log('hand'+credd.username)
+    addNewCred(credd);
   };
   const  handleValue = e => {
-    setNewCredd({
-        ...credd,
-        [e.target.name]: e.target.value
-    });
+    
+    console.log('right')
+    addNewCred(credd);
   }
 
   const login = e => {
+
     e.preventDefault();
+    handleValue(credd);
     axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", credentials)
       .then(res => {
         console.log('bk: Login.js: login: res: ', res)
@@ -47,33 +50,29 @@ const  handleChange = e => {
 
 
 
-    useEffect(()=>{
+  useEffect(()=>{
 
-      if(credd !== undefined && credentials !== undefined){
-        if(props.credentials.length < credd.length){
-          console.log('creds'+credd+ ' ' + credentials);
-            credd = {
-              ...credentials,
-              [state.target.name]: state.target.value}
-              addNewCred(credentials);
-          
-        }else if(props.credentials.length > credd.length){
-          console.log('credsin'+credentials);
-          credentials = {
-            ...credd,
-            [credd.target.name]: credd.target.value}
-            addNewCred(credentials);
-        }
-      }else{
-        credentials = {
-          ...credd,
-          [credd.target.name]: credd.target.value}
-          //addNewCred(credentials);
-        console.log('credsin'+credentials);
-    
-      }
+    if(credd === undefined && credentials !== undefined){
+      credd = {
+          ...credentials,
+          [credentials.target.name]: credentials.target.value}
+          // addNewCred(credd);
+        console.log('credsin'+credentials.username);  
+    } else if(credentials === undefined && credd !== undefined){
+      // credentials = {
+      //   ...credd,
+      //   [credd.target.name]: credd.target.value}
+        addNewCred(credd);
+      console.log('credsin'+credentials);  
+    } else if(credentials === undefined && credd === undefined){
+      <Signup />
+    } else if(credentials !== undefined && credd !== undefined){
+      // addNewCred(credd);
+      <SignupR />
+      console.log('credsin'+credentials.username);  
+    }
 
-    },[{credd}]);
+  },[{credd,credentials}]);
 
 
     

@@ -4,10 +4,19 @@ export const GET_CREDS_FAIL = "GET_CREDS_FAIL";
 // import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
 export const addNewCred = (cred)=>{
-    return {
-        type: ADD_NEW_CREDS,
-        payload: cred
-
+    try{
+        if(cred !== undefined ){
+            console.log('addnew'+cred.department)
+        return ({
+            type: ADD_NEW_CREDS,
+            payload: cred
+    
+        })
+        }
+    }
+    catch(e){
+        console.log(e);
+        dispatch(signupFail(err));
     }
 }
 
@@ -15,8 +24,8 @@ export const credSignup = (cred)=>{
     return (dispatch)=> {
 
 
-        e.preventDefault();
-        axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", cred)
+       // e.preventDefault();
+        axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register/", cred)
           .then(res => {
             console.log('bk: Login.js: login: res: ', res)
             localStorage.setItem('token', res.config.data)
@@ -32,11 +41,11 @@ export const credSignup = (cred)=>{
 
 
 export const editCred = (cred)=>{
-    return {
+    return( {
         type: EDIT_CREDS,
         payload: cred
 
-    }
+    })
 }
 
 export const postAddSignup = (cred) =>{
