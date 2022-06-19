@@ -19,46 +19,65 @@ const CredComp =(props) =>{
     //         console.error(err.response)
     //       })
     //   };
-    const [ credd, setNewCredd] = useState(    {
+    const [ credd, setNewCredd] = useState({
 
-
-    ...props.credd
+      id:0,
+      username: username,
+      department: department,
+      password: password,
+      role:1,
+      isFetching:false,
+      error:''
       
   });
 
+  const handleInputChange=(e)=> {
+    const target = e.target;
+    console.log('hdlIval '+ credd.username);
+    // console.log('crdr '+ credd.role);
+    const value =  target.value;
+    const name = target.name;
+          setNewCredd({
+            [name]: value
+           });
+     
+  
+       console.log('newname '+ credd.username + credd.department+ '   ' + props.credentials.username);
+  };
 
-  useEffect(()=>{
 
-    if(credd === undefined && credentials !== undefined){
-      credd = {
-          ...credentials,
-          [credentials.target.name]: credentials.target.value}
-          addNewCred(credd);
-        console.log('credsin'+credentials+props.credd);  
-    } else if(credentials === undefined && credd !== undefined){
-      credentials = {
-        ...credd,
-        [credd.target.name]: credd.target.value}
-        addNewCred(credd);
-      console.log('credsin'+credentials +props.credd);  
-    } else if(credentials === undefined && credd === undefined){
-      <Signup />
-    } else if(credentials !== undefined && credd !== undefined){
-      addNewCred(credd);
-    }
+  // useEffect(()=>{
 
-  },[{credd,credentials}]);
+  //   if(credd === undefined && credentials !== undefined){
+  //     credd = {
+  //         ...credentials,
+  //         [credentials.target.name]: credentials.target.value}
+  //         addNewCred(credd);
+  //       console.log('credsin1'+credd.role);  
+  //   } else if(credentials === undefined && credd !== undefined){
+  //     credentials = {
+  //       ...credd,
+  //       [credd.target.name]: credd.target.value}
+  //       addNewCred(credd);
+  //     console.log('credsin1 '+credentials +props.credd);  
+  //   } else if(credentials === undefined && credd === undefined){
+  //     <Signup />
+  //   } else if(credentials !== undefined && credd !== undefined){
+  //     addNewCred(credd);
+  //   }
+
+  // },[credd]);
     return (
         <div>Register
-        <form onSubmit={login}>
+        <form onSubmit={credSignup}>
           <label htmlFor='username'>
             Username
           </label>
           <input
             type="text"
             name="username"
-            value={props.username}
-            onChange={props.handleChange}
+            value={credd.username}
+            onChange={handleInputChange}
           />
           <label htmlFor='department'>
               Department
@@ -66,8 +85,8 @@ const CredComp =(props) =>{
           <input 
             type="text"
             name="department"
-            value={ props.department}
-            onChange={props.handleChange}
+            value={credd.department}
+            onChange={handleInputChange}
           />
           <label htmlFor='password'>
             Password
@@ -75,8 +94,8 @@ const CredComp =(props) =>{
           <input
             type="password"
             name="password"
-            value={props.password}
-            onChange={props.handleChange}
+            value={credd.password}
+            onChange={handleInputChange}
           />
           <label htmlFor='role'>
               Role
@@ -84,8 +103,8 @@ const CredComp =(props) =>{
           <input 
             type="text"
             name="role"
-            value={props.role}
-            onChange={props.handleChange}
+            value={credd.role}
+            onChange={handleInputChange}
           />
           <button>Register</button>
         </form>
@@ -98,7 +117,7 @@ const CredComp =(props) =>{
 
 const mapStateToProps = (state) => {
   return {
-    credentials: state.credReducer.credentials
+    credentials: state.credReducer.credentials[0]
   };
 };
 

@@ -5,7 +5,7 @@ import axiosWithAuth from '../../../utils/axiosWithAuth';
 import {addNewCred,credSignup } from '../../../actions/credActions'; 
 const Signup = (props ) => {
   const {credentials} = props;
-  const [ credd, setNewCredd] = useState(    {
+  const [ credd, setNewCredd] = useState({
 
 
       id:0,
@@ -23,7 +23,7 @@ const  handleChange = e => {
         ...credd,
         [e.target.name]: e.target.value
     });
-    console.log('hand'+credd.username)
+    console.log('hand'+credd.department)
     addNewCred(credd);
   };
   const  handleValue = e => {
@@ -36,6 +36,7 @@ const  handleChange = e => {
 
     e.preventDefault();
     handleValue(credd);
+    console.log(department)
     axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", credentials)
       .then(res => {
         console.log('bk: Login.js: login: res: ', res)
@@ -57,19 +58,19 @@ const  handleChange = e => {
           ...credentials,
           [credentials.target.name]: credentials.target.value}
           // addNewCred(credd);
-        console.log('credsin'+credentials.username);  
+        console.log('credsn'+credentials.username);  
     } else if(credentials === undefined && credd !== undefined){
       // credentials = {
       //   ...credd,
       //   [credd.target.name]: credd.target.value}
         addNewCred(credd);
-      console.log('credsin'+credentials);  
+      console.log('credsi'+credentials);  
     } else if(credentials === undefined && credd === undefined){
       <Signup />
     } else if(credentials !== undefined && credd !== undefined){
       // addNewCred(credd);
       <SignupR />
-      console.log('credsin'+credentials.username);  
+      console.log('crein'+credentials.username);  
     }
 
   },[{credd,credentials}]);
@@ -84,7 +85,7 @@ const  handleChange = e => {
 
 const mapStateToProps = (state) => {
   return {
-    credentials: state.credReducer.credentials
+    credentials: state.credReducer.credentials[0]
   };
 };
 
