@@ -22,10 +22,14 @@ export const addNewCred = (cred)=>{
 
 export const credSignup = (cred)=>{
     return (dispatch)=> {
-
-
+        const credd ={ credentials: {
+            username: 'Ithink',
+            department: 'No Dep',
+            password: 'Doitagain',
+            role:2
+          }}
        // e.preventDefault();
-        axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register/", cred)
+        axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register/", credd)
           .then(res => {
             console.log('bk: Login.js: login: res: ', res)
             localStorage.setItem('token', res.config.data)

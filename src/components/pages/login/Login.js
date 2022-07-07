@@ -42,7 +42,7 @@ class Login extends React.Component {
     return (
       <div>LOGIN
         <form onSubmit={this.login}>
-          <label for='username'>
+          <label htmlFor='username'>
             Username
           </label>
           <input
@@ -51,7 +51,7 @@ class Login extends React.Component {
             value={this.state.credentials.username}
             onChange={this.handleChange}
           />
-          <label for='password'>
+          <label htmlFor='password'>
             Password
           </label>
           <input

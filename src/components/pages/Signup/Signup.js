@@ -6,21 +6,19 @@ import {addNewCred,credSignup } from '../../../actions/credActions';
 const Signup = (props ) => {
   const {credentials} = props;
   const [ credd, setNewCredd] = useState({
-
-
+    creds:{
       id:0,
-      username: '',
-      department: 'No Dep',
-      password: '',
-      role:1,
-      isFetching:false,
-      error:''
-  
-      
+    username: '',
+    department: 'No Dep',
+    password: '',
+    role:1,
+    isFetching:false,
+    error:''
+    }      
   });
 const  handleChange = e => {
     setNewCredd({
-        ...credd,
+        ...credd.creds,
         [e.target.name]: e.target.value
     });
     console.log('hand'+credd.department)
@@ -85,7 +83,7 @@ const  handleChange = e => {
 
 const mapStateToProps = (state) => {
   return {
-    credentials: state.credReducer.credentials[0]
+    credentials: state.credReducer.credentials
   };
 };
 
