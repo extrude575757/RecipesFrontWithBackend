@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
-import SignupR  from "./SignupR";
+import Submitr  from "./Submitr";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
 import {credSignup,addNewCred } from '../../../actions/credActions'; 
-const Signup = ({...props} ) => {
+const Signup = ({...props}) => {
   const {credentials} = props;
   const [ credd, setNewCredd] = useState({
     credentials:{
@@ -51,7 +51,7 @@ const Signup = ({...props} ) => {
     const value =  target.value;
     const name = target.name;
           setNewCredd({
-            ...credd.credentials,
+            ...credd,
             [name]: value
            });
      
@@ -80,7 +80,7 @@ const Signup = ({...props} ) => {
 
   useEffect(()=>{
     if(credd === undefined){
-      console.log('props signup container ',props);
+      console.log('props signup container ',credd);
     }else{
       console.log('props signup container2 ',props);
       if(credd.credentials.username !== props.credentials.username){
@@ -107,12 +107,12 @@ const Signup = ({...props} ) => {
     //   console.log('crein'+props.credentials.username);  
     // }
 
-  },[{credd}]);
+  },[{}]);
 
 
     
         return (
-          <SignupR  /> 
+          <Submitr  /> 
         );
       }
   

@@ -6,7 +6,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 export const addNewCred = (cred)=>{
     try{
         if(cred != undefined || cred !=  '' || cred != null ){
-            console.log('addnew',cred.username)
+            console.log('addnew',cred.credentials.username)
         return ({
             type: ADD_NEW_CREDS,
             payload: cred.credentials
@@ -29,7 +29,7 @@ export const credSignup = (cred)=>{
         //     role:1
         //   }}
        // e.preventDefault();
-        axios().post("https://backrecipes.herokuapp.com/api/auth/register/",cred.credentials)
+       axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register/",cred.credentials)
           .then(res => {
             console.log('nal: credsignup.js: login: res: ', res)
             // localStorage.setItem('token', res.config.data, cred.credentials.username)

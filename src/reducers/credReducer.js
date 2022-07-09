@@ -18,7 +18,6 @@ export const credReducer = (state = cred, action) => {
   switch (action.type) {
     case ADD_NEW_CREDS:
       return({
-        ...state,
         credentials: [
           ...state.credentials, action.payload
         ]
@@ -33,8 +32,8 @@ export const credReducer = (state = cred, action) => {
               { 
                 id: action.payload.id,
                 username: action.payload.username, 
-                department: action.payload.department,
                 password: action.payload.password,
+                department: action.payload.department,
                 role: action.payload.role,
             isFetching:true,
             error:'' 

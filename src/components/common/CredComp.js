@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {addNewCred,credSignup } from '../../actions/credActions'
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import { Signup} from "../pages/signup";
-import SubmitReg from '../common/SubmitReg';
+import {Submit} from '../pages/submit';
 const CredComp =(props) =>{
   const {credentials,handleInputChange,handleSubmit} = props;
   const {username,password,department,role} = credentials;
@@ -26,7 +26,7 @@ const CredComp =(props) =>{
       username: username,
       password: password,
       department: department,
-      role:1},
+      role:role},
       isFetching:false,
       error:''
 
@@ -36,29 +36,41 @@ const CredComp =(props) =>{
 
 
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    if(credd === undefined && credentials !== undefined){
-      credd = {
-          ...credentials,
-          [credentials.target.name]: credentials.target.value}
-          addNewCred(credd);
-        console.log('credsin1'+credd.role);  
-    } else if(credentials === undefined && credd !== undefined){
-      credentials = {
-        ...credd,
-        [credd.target.name]: credd.target.value}
-        addNewCred(credd);
-      console.log('credsin1 '+credentials +props.credd);  
-    } else if(credentials === undefined && credd === undefined){
-      <Signup />
-    } else if(credentials !== undefined && credd !== undefined){
-      addNewCred(credd);
-    }
+  //   if(credd === undefined && credentials !== undefined){
+  //     credd = {
+  //         ...credentials,
+  //         [credentials.target.name]: credentials.target.value}
+  //         addNewCred(credd);
+  //       console.log('credsin1'+credd.role);  
+  //   } else if(credentials === undefined && credd !== undefined){
+  //     credentials = {
+  //       ...credd,
+  //       [credd.target.name]: credd.target.value}
+  //       addNewCred(credd);
+  //     console.log('credsin1 '+credentials +props.credd);  
+  //   } else if(credentials === undefined && credd === undefined){
+  //     <Signup />
+  //   } else if(credentials !== undefined && credd !== undefined){
+  //     addNewCred(credd);
+  //   }
 
-  },[credd]);
+  // },[credd]);
+  // useEffect(()=>{
+  //   if(handleSubmit === undefined){
+  //     console.log('handleSubmit is undefined')
+  //   }else{
+  //     <Submit />
+  //   }
+  // })
     return (
-         <SubmitReg /> 
+ 
+
+<Submit /> 
+
+
+   
     )
 
 

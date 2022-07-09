@@ -1,8 +1,9 @@
 import React from "react";
 import CredComp from "../../common/CredComp";
 import { connect } from "react-redux";
+import SubmitReg from "../../common/SubmitReg"
 import {credSignup} from '../../../actions/credActions'; 
-const SignupR = (props)=>{
+const Submitr = (props)=>{
 
 
 // const {handleInputChange,handleSubmit} = props;
@@ -10,7 +11,7 @@ const {handleSubmit,handleInputChange} =props;
 
 
 return (
- < CredComp />
+ < SubmitReg />
 )
 
 }
@@ -25,4 +26,4 @@ const mapStateToProps = (state) => {
   
 
 
-export default connect(mapStateToProps, {})(SignupR);
+export default connect(mapStateToProps, {})(Submitr);
