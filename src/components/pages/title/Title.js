@@ -39,7 +39,7 @@ const Title = (props ) => {
             }
             props.editing = edit;
             setTitle(newTitleText);
-            setEdit(edit)
+            setEdit(!edit)
           }
           if (props.editing === undefined && edit !== undefined&& props.title2 === undefined){
             <TitleRender handleChanges={handleChanges}  />

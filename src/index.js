@@ -14,7 +14,7 @@ import "./styles.css";
 // import TodoIndex from "./editForm/TodoIndex";
 import Heading from "./components/common/Heading"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import  { default as App } from './App'; 
+import  { default as App } from './components/common/App'; 
 
 
 

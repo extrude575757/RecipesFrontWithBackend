@@ -1,12 +1,12 @@
 import React, {useState,useEffect}  from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {addNewCred,credSignup } from '../../actions/credActions'
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import { Signup } from "../pages/Signup";
+import { Signup} from "../pages/signup";
 const CredComp =(props) =>{
-
-  const {credentials,login} = props;
-  const {username,department,password,role} = credentials;
+  const {credentials,handleInputChange,handleSubmit} = props;
+  const {username,password,department,role} = credentials;
     // const login = e => {
     //     e.preventDefault();
     //     axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", credentials)
@@ -21,63 +21,58 @@ const CredComp =(props) =>{
     //   };
     const [ credd, setNewCredd] = useState({
 
-      id:0,
+      credentials:{id:0,
       username: username,
-      department: department,
       password: password,
-      role:1,
+      department: department,
+      role:1},
       isFetching:false,
       error:''
+
       
   });
 
-  const handleInputChange=(e)=> {
-    const target = e.target;
-    console.log('hdlIval '+ credd.username);
-    // console.log('crdr '+ credd.role);
-    const value =  target.value;
-    const name = target.name;
-          setNewCredd({
-            [name]: value
-           });
-     
-  
-       console.log('newname '+ credd.username + credd.department+ '   ' + props.credentials.username);
-  };
 
 
-  // useEffect(()=>{
 
-  //   if(credd === undefined && credentials !== undefined){
-  //     credd = {
-  //         ...credentials,
-  //         [credentials.target.name]: credentials.target.value}
-  //         addNewCred(credd);
-  //       console.log('credsin1'+credd.role);  
-  //   } else if(credentials === undefined && credd !== undefined){
-  //     credentials = {
-  //       ...credd,
-  //       [credd.target.name]: credd.target.value}
-  //       addNewCred(credd);
-  //     console.log('credsin1 '+credentials +props.credd);  
-  //   } else if(credentials === undefined && credd === undefined){
-  //     <Signup />
-  //   } else if(credentials !== undefined && credd !== undefined){
-  //     addNewCred(credd);
-  //   }
+  useEffect(()=>{
 
-  // },[credd]);
+    if(credd === undefined && credentials !== undefined){
+      credd = {
+          ...credentials,
+          [credentials.target.name]: credentials.target.value}
+          addNewCred(credd);
+        console.log('credsin1'+credd.role);  
+    } else if(credentials === undefined && credd !== undefined){
+      credentials = {
+        ...credd,
+        [credd.target.name]: credd.target.value}
+        addNewCred(credd);
+      console.log('credsin1 '+credentials +props.credd);  
+    } else if(credentials === undefined && credd === undefined){
+      <Signup />
+    } else if(credentials !== undefined && credd !== undefined){
+      addNewCred(credd);
+    }
+
+  },[credd]);
     return (
-        <div>Register
-        <form onSubmit={credSignup}>
+        props.handleSubmit !== undefined ? <div>Register
+        <form onSubmit={(e) =>{
+          if(props.handleSubmit(e) === undefined || props.handleSubmit(e) === null){
+            props.handleSubmit(e);
+          }else{
+            props.handleSubmit(e)
+          }
+        }}>
           <label htmlFor='username'>
             Username
           </label>
           <input
             type="text"
             name="username"
-            value={credd.username}
-            onChange={handleInputChange}
+            value={credd.username || username || '' || undefined}
+            onChange={props.handleInputChange}
           />
           <label htmlFor='department'>
               Department
@@ -85,8 +80,8 @@ const CredComp =(props) =>{
           <input 
             type="text"
             name="department"
-            value={credd.department}
-            onChange={handleInputChange}
+            value={credd.department || department || ''}
+            onChange={props.handleInputChange}
           />
           <label htmlFor='password'>
             Password
@@ -94,8 +89,8 @@ const CredComp =(props) =>{
           <input
             type="password"
             name="password"
-            value={credd.password}
-            onChange={handleInputChange}
+            value={credd.password || password || ''}
+            onChange={props.handleInputChange}
           />
           <label htmlFor='role'>
               Role
@@ -103,12 +98,12 @@ const CredComp =(props) =>{
           <input 
             type="text"
             name="role"
-            value={credd.role}
-            onChange={handleInputChange}
+            value={credd.role ||  role ||''}
+            onChange={props.handleInputChange || undefined}
           />
-          <button>Register</button>
+          <Link to={`/login/`}><button type="submit">Register</button></Link>
         </form>
-      </div>
+      </div> : <Signup />
     )
 
 
@@ -122,6 +117,6 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { addNewCred,credSignup })(CredComp);
+export default connect(mapStateToProps, {handleSubmit,handleInputChange })(CredComp);
 
  

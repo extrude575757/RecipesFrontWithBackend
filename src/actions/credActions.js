@@ -1,17 +1,17 @@
 export const ADD_NEW_CREDS = "ADD_NEW_CREDS"  ;
 export const  EDIT_CREDS   = "EDIT_CREDS";
 export const GET_CREDS_FAIL = "GET_CREDS_FAIL";
-// import axios from 'axios';
+import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
 export const addNewCred = (cred)=>{
     try{
-        if(cred !== undefined ){
-            console.log('addnew'+cred.department)
+        if(cred != undefined || cred !=  '' || cred != null ){
+            console.log('addnew',cred.username)
         return ({
             type: ADD_NEW_CREDS,
-            payload: cred
+            payload: cred.credentials
     
-        })
+        });
         }
     }
     catch(e){
@@ -22,19 +22,20 @@ export const addNewCred = (cred)=>{
 
 export const credSignup = (cred)=>{
     return (dispatch)=> {
-        const credd ={ credentials: {
-            username: 'Ithink',
-            department: 'No Dep',
-            password: 'Doitagain',
-            role:2
-          }}
+        // const credd ={ credentials: {
+        //     username: 'Ithink',
+        //     department: 'No Dep',
+        //     password: 'Doitagain',
+        //     role:1
+        //   }}
        // e.preventDefault();
-        axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register/", credd)
+        axios().post("https://backrecipes.herokuapp.com/api/auth/register/",cred.credentials)
           .then(res => {
-            console.log('bk: Login.js: login: res: ', res)
-            localStorage.setItem('token', res.config.data)
-            props.history.push('/protected')
-            dispatch(postAddSignup(cred));
+            console.log('nal: credsignup.js: login: res: ', res)
+            // localStorage.setItem('token', res.config.data, cred.credentials.username)
+            
+            dispatch(postAddSignup(res.data.credentials));
+            // props.history.push('/login');
           })
           .catch(err => {
             console.error(err.response);

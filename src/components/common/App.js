@@ -2,11 +2,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import  { default as App } from './App'; 
-import AppComp from "./components/common/AppComp";
-import Login from './components/pages/login/Login.js';
-import {Signup} from './components/pages/Signup';
-import Heading from './components/common/Heading';
-import PrivateRoute from './components/pages/auth/PrivateRoute';
+import AppComp from "./AppComp";
+import Login from '../pages/login/Login.js';
+import {Signup} from '../pages/signup';
+import Heading from './Heading';
+import PrivateRoute from '../pages/auth/PrivateRoute';
 export const  App= () => {
     return (
       <Router>
