@@ -25,4 +25,4 @@ const mapStateToProps = (state) => {
   
 
 
-export default connect(mapStateToProps, { handleSubmit , handleInputChange})(SignupR);
+export default connect(mapStateToProps, {})(SignupR);

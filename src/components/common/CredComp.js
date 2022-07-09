@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {addNewCred,credSignup } from '../../actions/credActions'
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import { Signup} from "../pages/signup";
+import SubmitReg from '../common/SubmitReg';
 const CredComp =(props) =>{
   const {credentials,handleInputChange,handleSubmit} = props;
   const {username,password,department,role} = credentials;
@@ -57,53 +58,7 @@ const CredComp =(props) =>{
 
   },[credd]);
     return (
-        props.handleSubmit !== undefined ? <div>Register
-        <form onSubmit={(e) =>{
-          if(props.handleSubmit(e) === undefined || props.handleSubmit(e) === null){
-            props.handleSubmit(e);
-          }else{
-            props.handleSubmit(e)
-          }
-        }}>
-          <label htmlFor='username'>
-            Username
-          </label>
-          <input
-            type="text"
-            name="username"
-            value={credd.username || username || '' || undefined}
-            onChange={props.handleInputChange}
-          />
-          <label htmlFor='department'>
-              Department
-          </label>
-          <input 
-            type="text"
-            name="department"
-            value={credd.department || department || ''}
-            onChange={props.handleInputChange}
-          />
-          <label htmlFor='password'>
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            value={credd.password || password || ''}
-            onChange={props.handleInputChange}
-          />
-          <label htmlFor='role'>
-              Role
-          </label>
-          <input 
-            type="text"
-            name="role"
-            value={credd.role ||  role ||''}
-            onChange={props.handleInputChange || undefined}
-          />
-          <Link to={`/login/`}><button type="submit">Register</button></Link>
-        </form>
-      </div> : <Signup />
+         <SubmitReg /> 
     )
 
 
@@ -117,6 +72,6 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, {handleSubmit,handleInputChange })(CredComp);
+export default connect(mapStateToProps, { })(CredComp);
 
  

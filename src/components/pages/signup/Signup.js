@@ -70,7 +70,7 @@ const Signup = ({...props} ) => {
         props.history.push('/protected')
       })
       .catch(err => {
-        console.error(err.response)
+        console.error(err)
       })
   };
 
@@ -115,12 +115,13 @@ const Signup = ({...props} ) => {
 
 const mapStateToProps = (state) => {
   return {
-    credentials: state.credReducer.credentials
+    credentials: state.credReducer.credentials,
+    handleSubmit: state.handleSubmit
   };
 };
 
 
-export default connect(mapStateToProps, { handleInputChange,handleSubmit  })(Signup);
+export default connect(mapStateToProps, { })(Signup);
 
 // const hocThatWillConnectTitleToReduxStore = connect(mapStateToProps, {});
 // const componentThatHasTitleConnectedToReduxStore = hocThatWillConnectTitleToReduxStore(
