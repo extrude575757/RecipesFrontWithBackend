@@ -80,9 +80,10 @@ const Signup = ({...props} ) => {
 
   useEffect(()=>{
     if(credd === undefined){
-      console.log('props signup container ',props);
+      console.log('props signup Signup ',props);
+      credd.credentials.username = props.credentials.username 
     }else{
-      console.log('props signup container2 ',props);
+      console.log('props signup Signupr ',props);
       if(credd.credentials.username !== props.credentials.username){
         props.credentials.username = credd.credentials.username
       }
