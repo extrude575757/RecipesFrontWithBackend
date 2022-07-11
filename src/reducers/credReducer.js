@@ -1,4 +1,4 @@
-import { ADD_NEW_CREDS, ADD_CREDS,GET_CREDS_FAIL } from "../actions/credActions";
+import { ADD_CRED, ADD_NEW_CREDS, ADD_CREDS,GET_CREDS_FAIL } from "../actions/credActions";
 
 const cred = {
    
@@ -16,6 +16,12 @@ const cred = {
 export const credReducer = (state = cred, action) => {
   
   switch (action.type) {
+
+    case ADD_CRED:
+      return{
+        ...state,
+        credentials: action.payload
+      }
     case ADD_NEW_CREDS:
       return({
         ...state,

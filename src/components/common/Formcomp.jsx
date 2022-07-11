@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from "react-redux";
+import {addNewCred,credSignup } from '../../actions/credActions'
 
 const Formcomp = ({props}) =>{
 
@@ -14,21 +16,24 @@ const Formcomp = ({props}) =>{
     }
 }
 
-    const formName =(f,e)=>{
+    const formName =(f)=>{
         if(username !== undefined){
             console.log(f);
             props.handleInputChange(e);
         }
     }
-
+    const onchange = (e)=>{
+        if(props?.credentials !== undefined){
+            console.log(props.credentials[0])
+        props.handleInputChange(e);
+        }
+    }
     return (
         <form onSubmit={(e) =>{
-            if(submitf(e) === undefined || submitf(e) === null){
+            if(props.credentials === undefined || props.credentials === null){
               
-              e.preventDefault();
               props.handleSubmit(e);
             }else{
-              e.preventDefault();
               submitf(e)
             }
           }}>
@@ -36,13 +41,14 @@ const Formcomp = ({props}) =>{
               Username
             </label>
             <input
+            
               type="text"
               name="username"
-              value={(e) =>{
-               props.credentials.department
-              }}
+              value={
+               props?.credentials?.username
+              }
               onChange={(e) =>{
-                props.handleInputChange(e);
+                props?.handleInputChange(e)
               }}
             />
             <label htmlFor='password'>
@@ -51,11 +57,9 @@ const Formcomp = ({props}) =>{
             <input
               type="password"
               name="password"
-              value={(e) =>{
-                props.handleInputChange(e);
-              }}
+              value={ props?.credentials?.password}
               onChange={(e) =>{
-                props.handleInputChange(e);
+                props?.handleInputChange(e);
               }}
             />
             <label htmlFor='department'>
@@ -64,11 +68,9 @@ const Formcomp = ({props}) =>{
             <input 
               type="text"
               name="department"
-              value={(e) =>{
-                props.handleInputChange(e);
-              }}
+              value={ props?.credentials?.department}
               onChange={(e) =>{
-                props.handleInputChange(e);
+                props?.handleInputChange(e);
               }}
             />
             <label htmlFor='role'>
@@ -77,17 +79,26 @@ const Formcomp = ({props}) =>{
             <input 
               type="text"
               name="role"
-              value={(e) =>{
-                props.handleInputChange(e);
-              }}
+              value={ props?.credentials?.role}
               onChange={(e) =>{
-                props.handleInputChange(e);
+                onchange(e);
               }}
             />
-           <button type="submit">Register</button>
+           <button type="Submit">Register</button>
           </form>
     );
 }
 
-export default Formcomp
 
+const mapStateToProps = (state) => {
+    return {
+      credentials: state.credReducer.credentials,
+    credSignup: state.credReducer.credSignup,
+    handleInputChange: state.handleInputChange,
+    handleSubmit: state.handleSubmit
+    };
+  };
+  
+
+
+export default connect(mapStateToProps, { credSignup})(Formcomp);

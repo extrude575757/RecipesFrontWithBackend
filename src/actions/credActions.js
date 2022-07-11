@@ -1,12 +1,13 @@
 export const ADD_NEW_CREDS = "ADD_NEW_CREDS"  ;
 export const  ADD_CREDS   = "ADD_CREDS";
 export const GET_CREDS_FAIL = "GET_CREDS_FAIL";
+export const ADD_CRED = "ADD_CRED";
 import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
 export const addNewCred = (cred)=>{
     try{
         if(cred != undefined || cred !=  '' || cred != null ){
-            console.log('addnew',cred.username)
+            console.log('addnew',cred.credentials.username)
         return ({
             type: ADD_NEW_CREDS,
             payload: cred.credentials
@@ -29,13 +30,13 @@ export const credSignup = (cred)=>{
         //     role:1
         //   }}
        // e.preventDefault();
-        axios().post("https://backrecipes.herokuapp.com/api/auth/register/",cred.credentials)
+        axios().post("/auth/register/",cred.credentials)
           .then(res => {
-            console.log('nal: credsignup.js: login: res: ', res)
-            // localStorage.setItem('token', res.config.data, cred.credentials.username)
+            console.log('nal: credsignup.js: login: res: ', res, req)
+            localStorage.setItem('token', req.config.data, cred.credentials.username)
             
-            dispatch(postAddSignup(res.data.credentials));
-            // props.history.push('/login');
+            dispatch(postAddSignup(req.data.credentials));
+            props.history.push('/login');
           })
           .catch(err => {
             console.error(err.response);
@@ -44,6 +45,14 @@ export const credSignup = (cred)=>{
       };
 }
 
+export const addcred = (cred)=>{
+    return (
+        {
+            type: ADD_CRED,
+            payload: cred
+        }
+    )
+}
 
 export const addCred = (cred)=>{
     return( {

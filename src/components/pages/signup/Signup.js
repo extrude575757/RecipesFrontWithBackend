@@ -20,51 +20,26 @@ const Signup = (props) => {
 
 
 
-
-
-    // const login = e => {
-    //     e.preventDefault();
-    //     axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", credentials)
-    //       .then(res => {
-    //         console.log('bk: Login.js: login: res: ', res)
-    //         localStorage.setItem('token', res.config.data)
-    //         props.history.push('/protected')
-    //       })
-    //       .catch(err => {
-    //         console.error(err.response)
-    //       })
-    //   };
-  //   const [ credd, setNewCredd] = useState({
-
-  //     credentials:{id:0,
-  //     username: username,
-  //     password: password,
-  //     department: department,
-  //     role:1},
-  //     isFetching:false,
-  //     error:''
-
-      
-  // });
-
-
-
-
   useEffect(()=>{
 
     if(credd === undefined && credentials !== undefined){
+
+
+      console.log('credsineffc'+credd.role);  
       credd = {
           ...credentials,
           [credentials.target.name]: credentials.target.value}
-          addNewCred(credd);
-        console.log('credsineffc'+credd.role);  
+          // addNewCred(credd);
     } else if(credentials === undefined && credd !== undefined){
+
+
+      console.log('credsin1 '+credentials +props.credd); 
       credentials = {
         ...credd,
         [credd.target.name]: credd.target.value}
-        addNewCred(credd);
-      console.log('credsin1 '+credentials +props.credd);  
-    } else if(credentials === undefined && credd === undefined){
+        addNewCred(credd); 
+    } else if(credentials !== undefined && credd === undefined){
+      setNewCredd(credentials);
       <Signup />
     } 
     // else if(credentials !== undefined && credd !== undefined)
@@ -177,7 +152,10 @@ const Signup = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    credentials: state.credReducer.credentials
+    handleInputChange: state.handleInputChange,
+    credentials: state.credReducer.credentials,
+    credSignup: state.credReducer.credSignup,
+    handleSubmit: state.handleSubmit
   };
 };
 
