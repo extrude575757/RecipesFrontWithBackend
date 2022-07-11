@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import SignupR  from "./SignupR";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
 import {credSignup,addNewCred } from '../../../actions/credActions'; 
-const Signup = ({...props} ) => {
+const Signup = (props) => {
   const {credentials} = props;
   const [ credd, setNewCredd] = useState({
     credentials:[{
         id:0,
-      username: '',
-      password: '',
+      username: ' ',
+      password: ' ',
       department: 'Nah Deps',
       role:1
     } ]     ,
@@ -177,8 +177,7 @@ const Signup = ({...props} ) => {
 
 const mapStateToProps = (state) => {
   return {
-    credentials: state.credReducer.credentials,
-    credSignup: state.credReducer.credSignup
+    credentials: state.credReducer.credentials
   };
 };
 

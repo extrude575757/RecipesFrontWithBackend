@@ -11,11 +11,12 @@ const submitf = (e) =>{
   handleSubmit(e);
 }
 const inputChange = (e)=>{
+  console.log(credd);
   handleInputChange(e);
 }
 return (<div>
 
-< CredComp  inputChange={inputChange}/>
+< CredComp />
 </div>
 )
 
@@ -23,12 +24,9 @@ return (<div>
 
 
 
-const mapStateToProps = ({state}) => {
+const mapStateToProps = (state) => {
     return {
-      credentials: state.credReducer.credentials,
-      credSignup: state.credReducer.credSignup,
-      inputChange: state.handleInputChange(state),
-      submitf: state.handleSubmit(state)
+      credentials: state.credReducer.credentials
     };
   };
   

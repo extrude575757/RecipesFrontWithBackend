@@ -4,13 +4,13 @@ const cred = {
    
                 credentials: [{
                 id:0,
-                username: '', 
-                password: '',
+                username: ' ', 
+                password: ' ',
                 department: 'No Dep',
                 role:1
             }],
             isFetching:false,
-            error:''
+            error:' '
 };
 
 export const credReducer = (state = cred, action) => {

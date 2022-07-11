@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Formcomp = () =>{
+const Formcomp = ({props}) =>{
 
     const submitf =(e)=>{
         try{
@@ -14,6 +14,12 @@ const Formcomp = () =>{
     }
 }
 
+    const formName =(f,e)=>{
+        if(username !== undefined){
+            console.log(f);
+            props.handleInputChange(e);
+        }
+    }
 
     return (
         <form onSubmit={(e) =>{
@@ -32,8 +38,12 @@ const Formcomp = () =>{
             <input
               type="text"
               name="username"
-              value={username  || '' || undefined}
-              onChange={inputChange}
+              value={(e) =>{
+               props.credentials.department
+              }}
+              onChange={(e) =>{
+                props.handleInputChange(e);
+              }}
             />
             <label htmlFor='password'>
               Password
@@ -41,8 +51,12 @@ const Formcomp = () =>{
             <input
               type="password"
               name="password"
-              value={ password || '' || undefined}
-              onChange={inputChange}
+              value={(e) =>{
+                props.handleInputChange(e);
+              }}
+              onChange={(e) =>{
+                props.handleInputChange(e);
+              }}
             />
             <label htmlFor='department'>
                 Department
@@ -50,8 +64,12 @@ const Formcomp = () =>{
             <input 
               type="text"
               name="department"
-              value={department || '' || undefined}
-              onChange={inputChange}
+              value={(e) =>{
+                props.handleInputChange(e);
+              }}
+              onChange={(e) =>{
+                props.handleInputChange(e);
+              }}
             />
             <label htmlFor='role'>
                 Role
@@ -59,10 +77,14 @@ const Formcomp = () =>{
             <input 
               type="text"
               name="role"
-              value={ role ||'' || undefined}
-              onChange={inputChange|| undefined}
+              value={(e) =>{
+                props.handleInputChange(e);
+              }}
+              onChange={(e) =>{
+                props.handleInputChange(e);
+              }}
             />
-            <Link to={`/login/`}><button type="submit">Register</button></Link>
+           <button type="submit">Register</button>
           </form>
     );
 }
