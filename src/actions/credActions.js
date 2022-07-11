@@ -1,5 +1,5 @@
 export const ADD_NEW_CREDS = "ADD_NEW_CREDS"  ;
-export const  EDIT_CREDS   = "EDIT_CREDS";
+export const  ADD_CREDS   = "ADD_CREDS";
 export const GET_CREDS_FAIL = "GET_CREDS_FAIL";
 import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -45,9 +45,9 @@ export const credSignup = (cred)=>{
 }
 
 
-export const editCred = (cred)=>{
+export const addCred = (cred)=>{
     return( {
-        type: EDIT_CREDS,
+        type: ADD_CREDS,
         payload: cred
 
     })

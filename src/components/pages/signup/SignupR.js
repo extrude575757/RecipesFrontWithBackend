@@ -5,24 +5,33 @@ import {credSignup} from '../../../actions/credActions';
 const SignupR = ({...props})=>{
 
 
-// const {handleInputChange,handleSubmit} = props;
-const {handleSubmit,handleInputChange} =props;
+const {handleInputChange,handleSubmit,credd} = props;
 
+const submitf = (e) =>{
+  handleSubmit(e);
+}
+const inputChange = (e)=>{
+  handleInputChange(e);
+}
+return (<div>
 
-return (
- < CredComp handleSubmit={handleSubmit}handleInputChange={handleInputChange} />
+< CredComp  inputChange={inputChange}/>
+</div>
 )
 
 }
 
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({state}) => {
     return {
-      credentials: state.credReducer.credentials
+      credentials: state.credReducer.credentials,
+      credSignup: state.credReducer.credSignup,
+      inputChange: state.handleInputChange(state),
+      submitf: state.handleSubmit(state)
     };
   };
   
 
 
-export default connect(mapStateToProps, { handleSubmit , handleInputChange})(SignupR);
+export default connect(mapStateToProps, { credSignup})(SignupR);

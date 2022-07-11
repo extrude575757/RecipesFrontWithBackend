@@ -1,14 +1,14 @@
-import { ADD_NEW_CREDS, EDIT_CREDS,GET_CREDS_FAIL } from "../actions/credActions";
+import { ADD_NEW_CREDS, ADD_CREDS,GET_CREDS_FAIL } from "../actions/credActions";
 
 const cred = {
    
-                credentials: {
+                credentials: [{
                 id:0,
                 username: '', 
                 password: '',
                 department: 'No Dep',
                 role:1
-            },
+            }],
             isFetching:false,
             error:''
 };
@@ -24,7 +24,7 @@ export const credReducer = (state = cred, action) => {
         ]
       });
 
-      case EDIT_CREDS:
+      case ADD_CREDS:
           return{
             ...state,
             credentials: [

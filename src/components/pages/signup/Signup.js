@@ -2,24 +2,86 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import SignupR  from "./SignupR";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
-import {credSignup } from '../../../actions/credActions'; 
+import {credSignup,addNewCred } from '../../../actions/credActions'; 
 const Signup = ({...props} ) => {
   const {credentials} = props;
   const [ credd, setNewCredd] = useState({
-    credentials:{
+    credentials:[{
         id:0,
       username: '',
       password: '',
       department: 'Nah Deps',
       role:1
-    }      ,
+    } ]     ,
     isFetching:false,
     error:''
-  } || undefined);
+  });
 
 
 
-  const {username,department,password,role} = credentials || undefined;
+
+
+
+    // const login = e => {
+    //     e.preventDefault();
+    //     axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", credentials)
+    //       .then(res => {
+    //         console.log('bk: Login.js: login: res: ', res)
+    //         localStorage.setItem('token', res.config.data)
+    //         props.history.push('/protected')
+    //       })
+    //       .catch(err => {
+    //         console.error(err.response)
+    //       })
+    //   };
+  //   const [ credd, setNewCredd] = useState({
+
+  //     credentials:{id:0,
+  //     username: username,
+  //     password: password,
+  //     department: department,
+  //     role:1},
+  //     isFetching:false,
+  //     error:''
+
+      
+  // });
+
+
+
+
+  useEffect(()=>{
+
+    if(credd === undefined && credentials !== undefined){
+      credd = {
+          ...credentials,
+          [credentials.target.name]: credentials.target.value}
+          addNewCred(credd);
+        console.log('credsineffc'+credd.role);  
+    } else if(credentials === undefined && credd !== undefined){
+      credentials = {
+        ...credd,
+        [credd.target.name]: credd.target.value}
+        addNewCred(credd);
+      console.log('credsin1 '+credentials +props.credd);  
+    } else if(credentials === undefined && credd === undefined){
+      <Signup />
+    } 
+    // else if(credentials !== undefined && credd !== undefined)
+    else{
+      addNewCred(credd);
+    }
+
+  },[{credd},credentials]);
+
+
+
+
+
+
+
+
+  const {username,department,password,role} = credentials ;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,50 +139,51 @@ const Signup = ({...props} ) => {
 
 
 
-  useEffect(()=>{
-    if(credd === undefined){
-      console.log('props signup container ',props);
-    }else{
-      console.log('props signup container2 ',props);
-    }
-    // if(credd === undefined && credentials !== undefined){
-    //   credd = {
-    //       ...credentials,
-    //       [credentials.target.name]: credentials.target.value}
-    //       // addNewCred(credd);
-    //     console.log('credsn'+credentials.username);  
-    // } else if(credentials === undefined && credd !== undefined){
-    //   // credentials = {
-    //   //   ...credd,
-    //   //   [credd.target.name]: credd.target.value}
-    //     addNewCred(credd);
-    //   console.log('credsi'+credentials);  
-    // } else if(credentials === undefined && credd === undefined){
-    //   <Signup />
-    // } else if(credentials !== undefined && credd !== undefined){
-    //   addNewCred(credd);
-    //   <SignupR />
-    //   console.log('crein'+props.credentials.username);  
-    // }
+  // useEffect(()=>{
+  //   if(credd === undefined){
+  //     console.log('props signup container ',props);
+  //   }else{
+  //     console.log('props signup container2 ',props);
+  //   }
+  //   // if(credd === undefined && credentials !== undefined){
+  //   //   credd = {
+  //   //       ...credentials,
+  //   //       [credentials.target.name]: credentials.target.value}
+  //   //       // addNewCred(credd);
+  //   //     console.log('credsn'+credentials.username);  
+  //   // } else if(credentials === undefined && credd !== undefined){
+  //   //   // credentials = {
+  //   //   //   ...credd,
+  //   //   //   [credd.target.name]: credd.target.value}
+  //   //     addNewCred(credd);
+  //   //   console.log('credsi'+credentials);  
+  //   // } else if(credentials === undefined && credd === undefined){
+  //   //   <Signup />
+  //   // } else if(credentials !== undefined && credd !== undefined){
+  //   //   addNewCred(credd);
+  //   //   <SignupR />
+  //   //   console.log('crein'+props.credentials.username);  
+  //   // }
 
-  },[{}]);
+  // },[{}]);
 
 
     
         return (
-          <SignupR handleSubmit={handleSubmit} handleInputChange={handleInputChange} /> 
+          <SignupR  /> 
         );
       }
   
 
 const mapStateToProps = (state) => {
   return {
-    credentials: state.credReducer.credentials
+    credentials: state.credReducer.credentials,
+    credSignup: state.credReducer.credSignup
   };
 };
 
 
-export default connect(mapStateToProps, { handleInputChange,handleSubmit  })(Signup);
+export default connect(mapStateToProps, { credSignup,addNewCred  })(Signup);
 
 // const hocThatWillConnectTitleToReduxStore = connect(mapStateToProps, {});
 // const componentThatHasTitleConnectedToReduxStore = hocThatWillConnectTitleToReduxStore(
