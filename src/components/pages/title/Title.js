@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import TitleRender  from "./TitleRender";
 import TitlePass from "../titlepass"
-import { toggleEditing, setTitle } from "../../../actions/titleActions";
+import { toggleEditing, setTitle } from "../../../state/actions/titleActions";
 import { AppComp } from "../../common";
 
 // import { initialState, titleReducer } from "../reducers/titleReducer";

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory  } from 'react-router-dom';
 import CardRen from './CardRen';
-import { addNewRecipe, editRecipe  } from "../../../actions/recipeActions";
+import { addNewRecipe, editRecipe  } from "../../../state/actions/recipeActions";
 
 const Cardcon = ( { ...props }) =>{
     const {recipe} = props;

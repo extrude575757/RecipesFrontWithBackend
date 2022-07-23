@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import SignupR  from "./SignupR";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
-import {credSignup,addNewCred } from '../../../actions/credActions'; 
+import {credSignup,addNewCred } from '../../../state/actions/credActions'; 
 const Signup = (props) => {
   const {credentials} = props;
   const [ credd, setNewCredd] = useState({

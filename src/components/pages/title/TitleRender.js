@@ -6,7 +6,7 @@ import { TitlePass2jsx } from "../../common";
 import { TitlePass1jsx } from "../../common";
 import TitlePass1  from "../titlepass/TitlePass1";
 import { AppComp } from "../../common";
-import { toggleEditing, setTitle } from "../../../actions/titleActions";
+import { toggleEditing, setTitle } from "../../../state/actions/titleActions";
 import { Title } from "./Title";
 
 const TitleRender = ({...props}) =>{

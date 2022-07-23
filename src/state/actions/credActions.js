@@ -3,7 +3,7 @@ export const  ADD_CREDS   = "ADD_CREDS";
 export const GET_CREDS_FAIL = "GET_CREDS_FAIL";
 export const ADD_CRED = "ADD_CRED";
 import axios from 'axios';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import axiosWithAuth from '../../utils/axiosWithAuth';
 export const addNewCred = (cred)=>{
     try{
         if(cred != undefined || cred !=  '' || cred != null ){

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 // import TitleRender  from "./TitleRender";
-import { toggleEditing, setTitle } from "../../actions/titleActions";
+import { toggleEditing, setTitle } from "../../state/actions/titleActions";
 import {TitlePass} from "../pages/titlepass";
 const TitlePass2 = ( {...props}) =>{
     const {editing,title2,setTitle} = props;

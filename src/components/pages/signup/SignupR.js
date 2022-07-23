@@ -1,7 +1,7 @@
 import React from "react";
 import CredComp from "../../common/CredComp";
 import { connect } from "react-redux";
-import {credSignup} from '../../../actions/credActions'; 
+import {credSignup} from '../../../state/actions/credActions'; 
 const SignupR = ({...props})=>{
 
 

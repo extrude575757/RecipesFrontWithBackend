@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addNewRecipe, editRecipe  } from "../../../actions/recipeActions";
+import { addNewRecipe, editRecipe  } from "../../../state/actions/recipeActions";
 import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';

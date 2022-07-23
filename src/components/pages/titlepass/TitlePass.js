@@ -4,7 +4,7 @@ import TitlePass1 from './TitlePass1';
 import { connect } from "react-redux";
 import {Title} from "../title";
 // import TitleRender  from "./TitleRender";
-import { toggleEditing, setTitle } from "../../../actions/titleActions";
+import { toggleEditing, setTitle } from "../../../state/actions/titleActions";
 
 
 

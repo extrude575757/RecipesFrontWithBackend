@@ -7,7 +7,7 @@ import Title from "./components/pages/title/Title";
 import List from "./components/pages/list/List";
 // import { titleReducer } from "./reducers/titleReducer";
 // import { recipesReducer } from "./reducers/recipesReducer";
-import rootReducer from "./reducers";
+import rootReducer from "./state/reducers";
 import Nav from "./components/pages/navbar/Nav"
 import CardAdd from "./components/pages/add/CardAdd";
 import "./styles.css";

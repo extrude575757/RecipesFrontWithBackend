@@ -1,7 +1,7 @@
 import React, {useState,useEffect}  from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {addNewCred,credSignup } from '../../actions/credActions'
+import {addNewCred,credSignup } from '../../state/actions/credActions'
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import { Signup} from "../pages/signup";
 import Formcomp from "./Formcomp"

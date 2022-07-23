@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addNewRecipe, editRecipe  } from "../../../actions/recipeActions";
+import { addNewRecipe, editRecipe  } from "../../../state/actions/recipeActions";
 
 class CardAdd extends React.Component {
   constructor(props){

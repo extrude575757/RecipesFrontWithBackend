@@ -6,7 +6,7 @@ import {TPEE2} from '../../common/'
 import TitlePass from './TitlePass';
 import { connect } from "react-redux";
 import {Title}  from "../title";
-import { toggleEditing, setTitle } from "../../../actions/titleActions";
+import { toggleEditing, setTitle } from "../../../state/actions/titleActions";
 
 const TitlePass1 =({...props})=>{
   const {editing,title2,setTitle,setEdit,toggleEditing} = props;

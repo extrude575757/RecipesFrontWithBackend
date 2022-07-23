@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import {addNewCred,credSignup } from '../../actions/credActions'
+import {addNewCred,credSignup } from '../../state/actions/credActions'
 
 const Formcomp = ({props}) =>{
 

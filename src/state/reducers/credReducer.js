@@ -27,7 +27,9 @@ export const credReducer = (state = cred, action) => {
         ...state,
         credentials: [
           ...state.credentials, action.payload
-        ]
+        ],
+        isFetching:true,
+        error:'' 
       });
 
       case ADD_CREDS:
@@ -41,11 +43,12 @@ export const credReducer = (state = cred, action) => {
                 username: action.payload.username, 
                 department: action.payload.department,
                 password: action.payload.password,
-                role: action.payload.role,
+                role: action.payload.role
+          
+              }
+            ],
             isFetching:true,
             error:'' 
-              }
-            ]
           };
 
 
