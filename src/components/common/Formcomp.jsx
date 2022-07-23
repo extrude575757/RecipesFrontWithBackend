@@ -28,64 +28,74 @@ const Formcomp = ({props}) =>{
         props.handleInputChange(e);
         }
     }
-    return (
+
+    const formsubs = ()=>{
+      return(
+        <div>
+        
         <form onSubmit={(e) =>{
-            if(props.credentials === undefined || props.credentials === null){
-              
-              props.handleSubmit(e);
-            }else{
-              submitf(e)
-            }
-          }}>
-            <label htmlFor='username'>
-              Username
-            </label>
-            <input
+          if(props.credentials === undefined || props.credentials === null){
             
-              type="text"
-              name="username"
-              value={
-               props?.credentials?.username
-              }
-              onChange={(e) =>{
-                props?.handleInputChange(e)
-              }}
-            />
-            <label htmlFor='password'>
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={ props?.credentials?.password}
-              onChange={(e) =>{
-                props?.handleInputChange(e);
-              }}
-            />
-            <label htmlFor='department'>
-                Department
-            </label>
-            <input 
-              type="text"
-              name="department"
-              value={ props?.credentials?.department}
-              onChange={(e) =>{
-                props?.handleInputChange(e);
-              }}
-            />
-            <label htmlFor='role'>
-                Role
-            </label>
-            <input 
-              type="text"
-              name="role"
-              value={ props?.credentials?.role}
-              onChange={(e) =>{
-                onchange(e);
-              }}
-            />
-           <button type="Submit">Register</button>
-          </form>
+            props.handleSubmit(e);
+          }else{
+            submitf(e)
+          }
+        }}>
+          <label htmlFor='username'>
+            Username
+          </label>
+          <input
+          
+            type="text"
+            name="username"
+            value={
+             props?.credentials?.username
+            }
+            onChange={(e) =>{
+              props?.handleInputChange(e)
+            }}
+          />
+          <label htmlFor='password'>
+            Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={ props?.credentials?.password}
+            onChange={(e) =>{
+              props?.handleInputChange(e);
+            }}
+          />
+          <label htmlFor='department'>
+              Department
+          </label>
+          <input 
+            type="text"
+            name="department"
+            value={ props?.credentials?.department}
+            onChange={(e) =>{
+              props?.handleInputChange(e);
+            }}
+          />
+          <label htmlFor='role'>
+              Role
+          </label>
+          <input 
+            type="text"
+            name="role"
+            value={ props?.credentials?.role}
+            onChange={(e) =>{
+              onchange(e);
+            }}
+          />
+         <button type="Submit">Register</button>
+        </form>
+        </div>
+      );
+    }
+
+    return (
+      formsubs()
     );
 }
 

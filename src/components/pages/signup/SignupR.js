@@ -1,5 +1,5 @@
 import React from "react";
-import CredComp from "../../common/CredComp";
+import CredComp from "./CredComp";
 import { connect } from "react-redux";
 import {credSignup} from '../../../state/actions/credActions'; 
 const SignupR = ({...props})=>{
@@ -16,7 +16,7 @@ const inputChange = (e)=>{
 }
 return (<div>
 
-< CredComp />
+<CredComp />
 </div>
 )
 
