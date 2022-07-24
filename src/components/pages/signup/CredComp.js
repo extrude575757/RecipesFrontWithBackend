@@ -25,7 +25,7 @@ const CredComp =(props) =>{
 
 const mapStateToProps = (state) => {
   return {
-    credentials: state.credReducer.credentials,
+    credentials: state.credReducer.credentials[0],
     credSignup: state.credReducer.credSignup
   };
 };

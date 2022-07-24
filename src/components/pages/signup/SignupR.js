@@ -14,10 +14,9 @@ const inputChange = (e)=>{
   console.log(credd);
   handleInputChange(e);
 }
-return (<div>
+return (
 
 <CredComp />
-</div>
 )
 
 }
@@ -26,10 +25,10 @@ return (<div>
 
 const mapStateToProps = (state) => {
     return {
-      credentials: state.credReducer.credentials
+      credentials: state.credReducer.credentials[0]
     };
   };
   
 
 
-export default connect(mapStateToProps, { credSignup})(SignupR);
+export default connect(mapStateToProps, { })(SignupR);

@@ -2,9 +2,16 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import SignupR  from "./SignupR";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
-import {credSignup,addNewCred } from '../../../state/actions/credActions'; 
-const Signup = (props) => {
-  const {credentials} = props;
+import {credSignup,addNewCred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
+const Signup = ({...props}) => {
+
+
+
+
+  const {cred} = {...props};
+
+  const {credentials} = {...cred};
+  // const {id,username,department,password,role} = cred.credentials[0] ;
   const [ credd, setNewCredd] = useState({
     credentials:[{
         id:0,
@@ -18,45 +25,51 @@ const Signup = (props) => {
   });
 
 
-
+const credsif = () =>{
+  try{
+    if(credentials !== undefined && props !== undefined && credd.credentials !== undefined){
+      console.log('credsin1 '+credentials +credd.credentials + props); 
+      
+        addNewCred(credentials); 
+    }
+  }catch(e){
+    console.log(e);
+  }
+}
 
   useEffect(()=>{
 
-    if(credd === undefined && credentials !== undefined){
+    if(credd !== undefined ){
 
-
-      console.log('credsineffc'+credd.role);  
-      credd = {
-          ...credentials,
-          [credentials.target.name]: credentials.target.value}
-          // addNewCred(credd);
-    } else if(credentials === undefined && credd !== undefined){
-
-
-      console.log('credsin1 '+credentials +props.credd); 
-      credentials = {
-        ...credd,
-        [credd.target.name]: credd.target.value}
-        addNewCred(credd); 
-    } else if(credentials !== undefined && credd === undefined){
-      setNewCredd(credentials);
-      <Signup />
+      
+      credsif({...credd.credentials[0]});
+    } else if(credd === undefined){
+     credentials = {...credd};
+   
     } 
     // else if(credentials !== undefined && credd !== undefined)
     else{
-      addNewCred(credd);
+      setNewCredd({
+        credentials:[{
+            id:0,
+          username: ' ',
+          password: ' ',
+          department: 'Nah Deps',
+          role:1
+        } ]     ,
+        isFetching:false,
+        error:''
+      })
+
     }
 
-  },[{credd},credentials]);
+  },[credd]);
 
 
 
 
 
 
-
-
-  const {username,department,password,role} = credentials ;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -145,18 +158,19 @@ const Signup = (props) => {
 
     
         return (
-          <SignupR  /> 
+          !props.isFetching && <SignupR  /> 
         );
       }
   
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = ({...state}) => {
+  return( {
     handleInputChange: state.handleInputChange,
+    cred: state.credReducer.cred,
     credentials: state.credReducer.credentials,
     credSignup: state.credReducer.credSignup,
     handleSubmit: state.handleSubmit
-  };
+  });
 };
 
 
