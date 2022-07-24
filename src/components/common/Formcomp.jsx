@@ -30,7 +30,7 @@ const Formcomp = ({props}) =>{
     }
 
     const formsubs = ()=>{
-      return(
+      return
         <div>
         
         <form onSubmit={(e) =>{
@@ -91,7 +91,7 @@ const Formcomp = ({props}) =>{
          <button type="Submit">Register</button>
         </form>
         </div>
-      );
+      
     }
 
     return (

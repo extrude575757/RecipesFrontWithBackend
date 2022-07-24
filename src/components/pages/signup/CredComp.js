@@ -5,29 +5,99 @@ import {addNewCred,credSignup } from '../../../state/actions/credActions'
 import axiosWithAuth from "../../../utils/axiosWithAuth";
 import { Signup} from ".";
 import Formcomp from "../../common/Formcomp"
-const CredComp =(props) =>{
-  const {credentials,inputChange,submitf,isFetching} = props;
-  const {username,password,department,role} = credentials;
+const CredComp =({...props}) =>{
+  const {cred,handleInputChange,submitf,isFetching} = {...props};
+  const {credentials} = {...cred};
+  // const {id,username,password,department,role} = cred?.credentials; 
+  let onsubit = (e) =>{
+
+      if(typeof props?.credentials === undefined || props.credentials === null){
+          
+        props.handleSubmit(e);
+      }else{
+        submitf(e)
+      }
+    
+  }
+
+  const formsubs = ()=>{
+    return(
+      <div>
+      
+      <form onSubmit={(e) =>{
+        onsubit(e)
+      }}>
+        <label htmlFor='username'>
+          Username
+        </label>
+        <input
+        
+          type="text"
+          name="username"
+          value={
+           credentials?.username
+          }
+          onChange={
+            handleInputChange
+          }
+        />
+        <label htmlFor='password'>
+          Password
+        </label>
+        <input
+          type="password"
+          name="password"
+          value={ props?.credentials?.password}
+          onChange={
+            handleInputChange
+          }
+        />
+        <label htmlFor='department'>
+            Department
+        </label>
+        <input 
+          type="text"
+          name="department"
+          value={ props?.credentials?.department}
+          onChange={
+            handleInputChange
+          }
+        />
+        <label htmlFor='role'>
+            Role
+        </label>
+        <input 
+          type="text"
+          name="role"
+          value={ props?.credentials?.role}
+          onChange={handleInputChange
+          }
+        />
+       <button type="Submit">Register</button>
+      </form>
+      </div>)
+    
+  }
 
     return (
 
-      !isFetching && isFetching !== undefined &&
-       <Formcomp 
-       username={username} 
-       password={password} department={department}
-       role={role}
-       />
+
+      (typeof props?.credentials === undefined)
+  ? null 
+  : 
+      formsubs()
     )
 
 
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    credentials: state.credReducer.credentials[0],
+const mapStateToProps = ({...state}) => {
+  return ({
+    handleInputChange: state?.inputChange,
+    credentials: state?.credReducer?.cred?.credentials[0],
     credSignup: state.credReducer.credSignup
-  };
+  });
 };
 
 

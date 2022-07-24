@@ -39,31 +39,35 @@ const credsif = () =>{
 
   useEffect(()=>{
 
-    if(credd !== undefined ){
+    try{
+      if(typeof credd !== undefined ){
 
       
-      credsif({...credd.credentials[0]});
-    } else if(credd === undefined){
-     credentials = {...credd};
-   
-    } 
-    // else if(credentials !== undefined && credd !== undefined)
-    else{
-      setNewCredd({
-        credentials:[{
-            id:0,
-          username: ' ',
-          password: ' ',
-          department: 'Nah Deps',
-          role:1
-        } ]     ,
-        isFetching:false,
-        error:''
-      })
-
+        credsif({...credd.credentials[0]});
+      } else if(typeof credentials === undefined && credd !== undefined){
+       credentials = {...credd};
+     
+      } 
+      // else if(credentials !== undefined && credd !== undefined)
+      else{
+        setNewCredd({
+          credentials:[{
+              id:0,
+            username: ' ',
+            password: ' ',
+            department: 'Nah Deps',
+            role:1
+          } ]     ,
+          isFetching:false,
+          error:''
+        })
+  
+      }
+    }catch(e){
+      console.log(e);
     }
 
-  },[credd]);
+  },[{credd}]);
 
 
 
@@ -84,7 +88,7 @@ const credsif = () =>{
         ...credd.credentials,
         [e.target.name]: e.target.value
     });
-    console.log('hand'+credd.department)
+    console.log('hand'+credd)
     addNewCred(credd);
   };
   const  handleValue = e => {
@@ -95,7 +99,7 @@ const credsif = () =>{
 
   const handleInputChange=(e)=> {
     const target = e.target;
-    console.log('hdlIval '+ credd.username);
+    console.log('hdlIval '+ props?.credentials);
     // console.log('crdr '+ credd.role);
     const value =  target.value;
     const name = target.name;
@@ -105,7 +109,7 @@ const credsif = () =>{
            });
      
   
-       console.log('newname '+ credd.username + credd.department+ '   ' + props.credentials.username);
+       console.log('newname '+ credd.credentials[0].username + credd.credentials[0].department+ '   ' + props.credentials);
   };
 
   const login = e => {
@@ -158,18 +162,19 @@ const credsif = () =>{
 
     
         return (
-          !props.isFetching && <SignupR  /> 
+          (typeof props?.credentials === undefined &&
+          props?.cred?.isFetching) ? Signup() : <SignupR handleInputChange={handleInputChange}   /> 
         );
       }
   
 
 const mapStateToProps = ({...state}) => {
   return( {
-    handleInputChange: state.handleInputChange,
-    cred: state.credReducer.cred,
-    credentials: state.credReducer.credentials,
-    credSignup: state.credReducer.credSignup,
-    handleSubmit: state.handleSubmit
+    handleInputChange: state?.handleInputChange,
+    cred: state?.credReducer?.cred,
+    credentials: state?.credReducer?.cred?.credentials,
+    credSignup: state?.credReducer?.credSignup,
+    handleSubmit: state?.handleSubmit
   });
 };
 
