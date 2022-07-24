@@ -4,11 +4,11 @@ export const GET_CREDS_FAIL = "GET_CREDS_FAIL";
 export const ADD_CRED = "ADD_CRED";
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
-export const addNewCred = ({cred})=>{
+export const addNewCred = (cred)=>{
     try{
         if(cred !== undefined || cred !==  {} || cred !== null ){
             console.log('addnew',cred)
-        return ({
+        dispatch ({
             type: ADD_NEW_CREDS,
             payload: cred
     

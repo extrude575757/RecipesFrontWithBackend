@@ -1,5 +1,5 @@
 import React from "react";
-import CredComp from "./CredComp";
+import CredComp from "../../common/CredComp";
 import { connect } from "react-redux";
 import Signup from "./Signup";
 import {credSignup} from '../../../state/actions/credActions'; 

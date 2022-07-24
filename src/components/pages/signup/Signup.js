@@ -2,8 +2,8 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import SignupR  from "./SignupR";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
-import {credSignup,addNewCred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
-const Signup = ({...props}) => {
+import {credSignup,addNewCred,addcred,addCred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
+const Signup = (props) => {
 
 
 
@@ -27,13 +27,15 @@ const Signup = ({...props}) => {
 
 const credsif = () =>{
   try{
-    if(credentials !== undefined && props !== undefined && credd.credentials !== undefined){
-      console.log('credsin1 '+credentials +credd.credentials + props); 
+    if(typeof credentials !== undefined && props !== undefined && credd.credentials !== undefined){
+      // console.log('credsin1 '+credentials +credd.credentials + props.cred.credentials); 
       
-        addNewCred(credentials); 
+        credSignup(credd.credentials[0]); 
     }
   }catch(e){
-    console.log(e);
+    if(typeof e !== undefined ){
+      console.log(e);
+    }
   }
 }
 
@@ -43,9 +45,9 @@ const credsif = () =>{
       if(typeof credd !== undefined ){
 
       
-        credsif({...credd.credentials[0]});
+        credsif(credd.credentials[0]);
       } else if(typeof credentials === undefined && credd !== undefined){
-       credentials = {...credd};
+       props.cred = {...credd};
      
       } 
       // else if(credentials !== undefined && credd !== undefined)
