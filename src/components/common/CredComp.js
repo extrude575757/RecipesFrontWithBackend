@@ -100,13 +100,14 @@ role:1
 
 const changeit = (e) =>{
   if(!isSubmitted){
-    console.log(e.target.value)
+    console.log([ {[e.target.name]: e.target.value}])
+    let c  = e.target.name;
     setRegcred( () => [{
-      id: e.value ,
-    username: e.value ,
-    password:  e.value ,
-    department:  e.value ,
-    role: e.value 
+      id: e.target.value ,
+    username: e.target.value ,
+    password:  e.target.value ,
+    department:  e.target.value ,
+    role: e.target.value 
   } ] )
   }
 }
@@ -145,13 +146,13 @@ const onFinish = (e) =>{
     <div className="card-center">
       <Form form={form}
         initialValues={{
-          credentials:[{
+          credentials:{
               id:9,
-            username: 'sdf ',
+            "username": 'sdf ',
             password: 'sfjjj',
             department: 'Nah Deps',
             role:1
-          } ]    
+          } 
         }}
 
         name="submit"
@@ -168,19 +169,18 @@ const onFinish = (e) =>{
           }
         }}
       >
-      <Form.Item 
-        name="username"
-        label="username"
-        // value={props.credentials.username}
+      <Form.Item name="username"
+        label="Username"
+        value={credentials?.username}
         >
-        <Input type="text"  />
+        <Input  type="text"  />
         </Form.Item>
         <Button
         htmlType="submit"
         className="save-btn"
         disabled={isSubmitted}
       >
-        { credentials !== undefined ? credentials.username : ' ff'   }
+        { credentials === undefined ? null : credentials?.username   }
       </Button>
       </Form>
     

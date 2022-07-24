@@ -101,12 +101,12 @@ const Formcomp = ({props}) =>{
 
 
 const mapStateToProps = (state) => {
-    return {
-      credentials: state.credReducer.credentials.credentials[0],
+    return( {
+      credentials: state.credReducer.cred.credentials[0],
     credSignup: state.credReducer.credSignup,
     handleInputChange: state.handleInputChange,
     handleSubmit: state.handleSubmit
-    };
+    });
   };
   
 
