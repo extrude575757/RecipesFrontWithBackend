@@ -1,7 +1,7 @@
 import React, {useState,useEffect}  from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {addNewCred,credSignup } from '../../../state/actions/credActions'
+import {creds } from '../../../state/actions'
 import axiosWithAuth from "../../../utils/axiosWithAuth";
 import { Signup} from ".";
 import Formcomp from "../../common/Formcomp"
@@ -96,7 +96,7 @@ const mapStateToProps = ({...state}) => {
   return ({
     handleInputChange: state?.inputChange,
     credentials: state?.credReducer?.cred?.credentials[0],
-    credSignup: state.credReducer.credSignup
+    credSignup: state.creds.ADD_NEW_CREDS
   });
 };
 

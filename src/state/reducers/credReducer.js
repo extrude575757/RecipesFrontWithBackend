@@ -1,4 +1,4 @@
-import { ADD_CRED, ADD_NEW_CREDS, ADD_CREDS,GET_CREDS_FAIL } from "../actions/credActions";
+import { creds } from "../actions";
 
 const cred = {
    
@@ -17,12 +17,12 @@ export const credReducer = (state = cred, action) => {
   console.log(`NAL: credentials: action: `,cred.credentials[0], action);
   switch (action.type) {
 
-    case ADD_CRED:
+    case creds.ADD_CRED:
       return{
         ...state,
         credentials: action.payload
       }
-    case ADD_NEW_CREDS:
+    case creds.ADD_NEW_CREDS:
       return({
         ...state,
         credentials: [
@@ -32,7 +32,7 @@ export const credReducer = (state = cred, action) => {
         error:'' 
       });
 
-      case ADD_CREDS:
+      case creds.ADD_CREDS:
           return{
             ...state,
             credentials: [
@@ -52,7 +52,7 @@ export const credReducer = (state = cred, action) => {
           };
 
 
-      case GET_CREDS_FAIL:
+      case creds.GET_CREDS_FAIL:
           return({
             ...state,
             isFetching: false,

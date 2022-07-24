@@ -1,5 +1,5 @@
 export const ADD_NEW_CREDS = "ADD_NEW_CREDS"  ;
-export const  ADD_CREDS   = "ADD_CREDS";
+
 export const GET_CREDS_FAIL = "GET_CREDS_FAIL";
 export const ADD_CRED = "ADD_CRED";
 import axios from 'axios';
@@ -25,49 +25,54 @@ export const addNewCred = ({cred})=>{
 
 export const credSignup = (cred)=>{
     return (dispatch)=> {
-        // const credd ={ credentials: {
+       try{
+         // const credd ={ credentials: {
         //     username: 'Ithink',
         //     department: 'No Dep',
         //     password: 'Doitagain',
         //     role:1
         //   }}
        // e.preventDefault();
-        axios().post("/auth/register/",cred.credentials)
-          .then(res => {
-            console.log('nal: credsignup.js: login: res: ', res, req)
-            localStorage.setItem('token', req.config.data, cred.credentials.username)
-            
-            dispatch(postAddSignup(req.data.credentials));
-            props.history.push('/login');
-          })
-          .catch(err => {
-            console.error(err.response);
-            dispatch(signupFail(err));
-          })
+       axios().post("/auth/register/",cred.credentials)
+       .then(res => {
+         console.log('nal: credsignup.js: login: res: ', res, req)
+         localStorage.setItem('token', req.config.data, cred.credentials.username)
+         
+         dispatch(postAddSignup(req.data.credentials));
+         props.history.push('/login');
+       })
+       .catch(err => {
+         console.error(err.response);
+         dispatch(signupFail(err));
+       })
+       }
+       catch(e){
+        console.log(e);
+       }
       };
 }
 
-export const addcred = (cred)=>{
-    return (
+export const addcred = (cred) = dispatch =>{
+    dispatch (
         {
             type: ADD_CRED,
-            payload: cred
+            payload: cred.credentials
         }
     )
 }
-
-export const addCred = ({cred})=>{
-    return( {
+export const  ADD_CREDS   = "ADD_CREDS";
+export const addCred = (cred) = dispatch=>{
+    dispatch( {
         type: ADD_CREDS,
         payload: cred
 
     })
 }
 
-export const postAddSignup = (cred) =>{
-    return({type: ADD_NEW_CREDS, payload:cred});
+export const postAddSignup =(cred) = dispatch=>{
+    dispatch({type: ADD_NEW_CREDS, payload:cred});
 }
 
-export const signupFail = (error)=> {
-    return({type: GET_CREDS_FAIL, payload: error});
+export const signupFail = (error) = dispatch => {
+    dispatch({type: GET_CREDS_FAIL, payload: error});
   }
