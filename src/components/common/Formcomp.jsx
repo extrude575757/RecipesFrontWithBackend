@@ -1,14 +1,29 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 
-const Formcomp = ({props}) =>{
+const Formcomp = props =>{
+
+  const [value,setValue] = useState({
+    id:10,
+    username: 'formdiz', 
+    password: 'padnma',
+    department: 'No Dep',
+    role:1
+})
 
     const submitf =(e)=>{
         try{
-            if(e !== undefined){
+          e.preventDefault();
+            if(value !== undefined){
                 props.handleSubmit(e);
-            }
+            }else
+              if(props.credentials === undefined || props.credentials === null){
+            
+                props.handleSubmit(e);
+              }else{
+                formSubs(e)
+              }
         }
     
     catch(e){
@@ -23,24 +38,43 @@ const Formcomp = ({props}) =>{
         }
     }
     const onchange = (e)=>{
-        if(props?.credentials !== undefined){
-            console.log(props.credentials[0])
-        props.handleInputChange(e);
-        }
+      
+          setValue({...value, [e.target.name]: e.target.value});
+            console.log('on'+value.username)
+        
     }
 
+
+    useEffect(()=>{
+
+      try{
+        if(typeof value === undefined ){
+  
+        
+          setValue({
+            id:10,
+            username: 'formdiz', 
+            password: 'padnma',
+            department: 'No Dep',
+            role:1
+        });
+      }
+        // else if(credentials !== undefined && credd !== undefined)
+        else{
+          <Formcomp />;
+    
+        }
+      }catch(e){
+        console.log(e);
+      }
+  
+    }, [value]);
+  
     const formsubs = ()=>{
-      return
+      
         <div>
         
-        <form onSubmit={(e) =>{
-          if(props.credentials === undefined || props.credentials === null){
-            
-            props.handleSubmit(e);
-          }else{
-            submitf(e)
-          }
-        }}>
+        <form onSubmit={e =>submitf(e)}>
           <label htmlFor='username'>
             Username
           </label>
@@ -49,10 +83,10 @@ const Formcomp = ({props}) =>{
             type="text"
             name="username"
             value={
-             props?.credentials?.username
+             value.username
             }
             onChange={(e) =>{
-              props?.handleInputChange(e)
+              onChange(e)
             }}
           />
           <label htmlFor='password'>
@@ -61,9 +95,9 @@ const Formcomp = ({props}) =>{
           <input
             type="password"
             name="password"
-            value={ props?.credentials?.password}
+            value={ value.password}
             onChange={(e) =>{
-              props?.handleInputChange(e);
+              onChange(e)
             }}
           />
           <label htmlFor='department'>
@@ -72,9 +106,9 @@ const Formcomp = ({props}) =>{
           <input 
             type="text"
             name="department"
-            value={ props?.credentials?.department}
+            value={ value.department}
             onChange={(e) =>{
-              props?.handleInputChange(e);
+              onChange(e)
             }}
           />
           <label htmlFor='role'>
@@ -83,7 +117,7 @@ const Formcomp = ({props}) =>{
           <input 
             type="text"
             name="role"
-            value={ props?.credentials?.role}
+            value={value.role}
             onChange={(e) =>{
               onchange(e);
             }}
@@ -95,14 +129,65 @@ const Formcomp = ({props}) =>{
     }
 
     return (
-      formsubs()
+      <>
+        
+        <form onSubmit={e =>submitf(e)}>
+          <label htmlFor='username'>
+            Username
+          </label>
+          <input 
+            type="text"
+            name="username"
+            value={
+             value?.username
+            }
+            onChange={e =>
+              onchange(e)
+            }
+          />
+          <label htmlFor='password'>
+            Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={ value?.password}
+            onChange={(e) =>{
+              onchange(e)
+            }}
+          />
+          <label htmlFor='department'>
+              Department
+          </label>
+          <input 
+            type="text"
+            name="department"
+            value={ value?.department}
+            onChange={(e) =>{
+              onchange(e)
+            }}
+          />
+          <label htmlFor='role'>
+              Role
+          </label>
+          <input 
+            type="text"
+            name="role"
+            value={value?.role}
+            onChange={(e) =>{
+              onchange(e);
+            }}
+          />
+         <button type="Submit">Register</button>
+        </form>
+        </>
     );
 }
 
 
 const mapStateToProps = (state) => {
     return {
-      credentials: state.credReducer.credentials.credentials[0],
+      credentials: state.credReducer.credentials.credentials,
     credSignup: state.credReducer.credSignup,
     handleInputChange: state.handleInputChange,
     handleSubmit: state.handleSubmit
