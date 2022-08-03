@@ -2,7 +2,8 @@ import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 
-const Formcomp = props =>{
+const Formcomp = ({...props}) =>{
+  const {handleSubmit} = props;
 
   const [value,setValue] = useState({
     id:10,
@@ -14,13 +15,14 @@ const Formcomp = props =>{
 
     const submitf =(e)=>{
         try{
+          console.log(props)
           e.preventDefault();
-            if(value !== undefined){
-                props.handleSubmit(e);
+            if(value !== undefined && props.handleSubmit() !== undefined ){
+                handleSubmit(e);
             }else
               if(props.credentials === undefined || props.credentials === null){
             
-                props.handleSubmit(e);
+                handleSubmit(e);
               }else{
                 formSubs(e)
               }
@@ -40,6 +42,7 @@ const Formcomp = props =>{
     const onchange = (e)=>{
       
           setValue({...value, [e.target.name]: e.target.value});
+          props.credentials = value
             console.log('on'+value.username)
         
     }
@@ -178,7 +181,7 @@ const Formcomp = props =>{
               onchange(e);
             }}
           />
-         <button type="Submit">Register</button>
+         <button type="submit">Register</button>
         </form>
         </>
     );
@@ -186,12 +189,12 @@ const Formcomp = props =>{
 
 
 const mapStateToProps = (state) => {
-    return {
+    return( {
       credentials: state.credReducer.credentials.credentials,
     credSignup: state.credReducer.credSignup,
     handleInputChange: state.handleInputChange,
     handleSubmit: state.handleSubmit
-    };
+    });
   };
   
 
