@@ -2,8 +2,8 @@ import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 
-const Formcomp = ({...props}) =>{
-  const {handleSubmit} = props;
+const Formcomp = (...props) =>{
+  const {handleSubmit} = {...props};
 
   const [value,setValue] = useState({
     id:10,
@@ -193,8 +193,8 @@ const mapStateToProps = (state) => {
       credentials: state.credReducer.credentials.credentials,
     credSignup: state.credReducer.credSignup,
     handleInputChange: state.handleInputChange,
-    handleSubmit: state.handleSubmit
-    });
+    // handleSubmit: state.handleSubmit
+    },{handleSubmit:state.handleSubmit});
   };
   
 

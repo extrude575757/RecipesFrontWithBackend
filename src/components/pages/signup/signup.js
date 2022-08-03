@@ -7,11 +7,17 @@ import Formcomp from "../../common/Formcomp";
 const signup = ({...props})=>{
 
 
-const {handleInputChange,handleSubmit,credd} = {...props};
+const {handleInputChange,credd} = {...props};
 
-const submitf = (e) =>{
-  handleSubmit(e);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.credSignup(credd);
+    console.log(props,'submit state'+credd) ;
+    push('/login/');
 }
+
+
+
 const inputChange = (e)=>{
   try{
     if(typeof credd?.credentials[0] !== undefined){
@@ -26,7 +32,7 @@ const inputChange = (e)=>{
   }
 }
 return (
-    <SignupR handleInputChange={handleInputChange}/>  
+    <SignupR handleSubmit={handleSubmit} handleInputChange={handleInputChange}/>  
 
 )
 
@@ -37,7 +43,8 @@ return (
 const mapStateToProps = ({...state}) => {
     return {
       credentials: state?.credReducer?.cred?.credentials,
-      handleInputChange: state?.handleInputChange
+      handleInputChange: state?.handleInputChange,
+      handleSubmit:state.handleSubmit
     };
   };
   
