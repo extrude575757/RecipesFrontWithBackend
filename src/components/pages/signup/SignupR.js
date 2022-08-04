@@ -76,11 +76,13 @@ const credsif = () =>{
 
 
 
-
   const handleSubmit = (e) => {
-    props.handleSubmit(e);
+    e.preventDefault();
+    props.credSignup(credd);
+    console.log(props,'submit state'+credd) ;
+    push('/login/');
+}
 
-  }
   const  handleChange = e => {
     setNewCredd({
         ...credd.credentials,

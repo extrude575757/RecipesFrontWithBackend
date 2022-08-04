@@ -1,6 +1,8 @@
 export const ADD_NEW_CREDS = "ADD_NEW_CREDS"  ;
 export const  ADD_CREDS   = "ADD_CREDS";
 export const GET_CREDS_FAIL = "GET_CREDS_FAIL";
+export const GET_CREDS_START ="GET_CREDS_START";
+export const GET_CREDS_SUCCESS = "GET_CREDS_SUCCESS"; 
 export const ADD_CRED = "ADD_CRED";
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
@@ -32,12 +34,13 @@ export const credSignup = (cred)=>{
         //     role:1
         //   }}
        // e.preventDefault();
-        axios().post("/auth/register/",cred.credentials)
+       console.log("credsignup",cred)
+        axios().post("https://backrecipes.herokuapp.com/api/auth/register/",cred)
           .then(res => {
             console.log('nal: credsignup.js: login: res: ', res, req)
-            localStorage.setItem('token', req.config.data, cred.credentials.username)
+            localStorage.setItem('token', req.config.data, cred.username)
             
-            dispatch(postAddSignup(req.data.credentials));
+            dispatch(postAddSignup(cred));
             props.history.push('/login');
           })
           .catch(err => {
@@ -62,6 +65,14 @@ export const addCred = ({cred})=>{
         payload: cred
 
     })
+}
+
+export const getCredsSuccess = (creds)=> {
+    return({type: GET_CREDS_SUCCESS, payload: creds});
+  } 
+  
+export const getCredStart = () =>{
+    return({type:GET_CREDS_START})
 }
 
 export const postAddSignup = (cred) =>{

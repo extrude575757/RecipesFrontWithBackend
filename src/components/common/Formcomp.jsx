@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 
 const Formcomp = (...props) =>{
-  const {handleSubmit} = {...props};
+  const {handleSubmit,credSignup} = {...props};
 
   const [value,setValue] = useState({
-    id:10,
+    id:Date.now(),
     username: 'formdiz', 
     password: 'padnma',
     department: 'No Dep',
@@ -15,15 +15,18 @@ const Formcomp = (...props) =>{
 
     const submitf =(e)=>{
         try{
-          console.log(props)
+          console.log(props.credentials)
           e.preventDefault();
             if(value !== undefined && props.handleSubmit() !== undefined ){
-                handleSubmit(e);
+                // handleSubmit(e);
+                credSignup(value);
             }else
               if(props.credentials === undefined || props.credentials === null){
             
-                handleSubmit(e);
+                props.credentials = value
+                credSignup(value);
               }else{
+                console.log('wentformsubs')
                 formSubs(e)
               }
         }
@@ -42,8 +45,9 @@ const Formcomp = (...props) =>{
     const onchange = (e)=>{
       
           setValue({...value, [e.target.name]: e.target.value});
-          props.credentials = value
-            console.log('on'+value.username)
+          props.credentials = {...value, [e.target.name]: e.target.value}
+            console.log('on'+props.isFetching)
+            console.log('on'+props.credentials.username)
         
     }
 
@@ -51,20 +55,24 @@ const Formcomp = (...props) =>{
     useEffect(()=>{
 
       try{
-        if(typeof value === undefined ){
+        if(typeof value === undefined  ){
   
         
           setValue({
             id:10,
-            username: 'formdiz', 
-            password: 'padnma',
-            department: 'No Dep',
+            username: 'fas', 
+            password: 'dd',
+            department: 'No dDep',
             role:1
         });
+      }else if( typeof isFetching === undefined){
+        console.log(isFetching)
+        isFetching = false
       }
         // else if(credentials !== undefined && credd !== undefined)
         else{
-          <Formcomp />;
+          // <Formcomp />;
+          formsubs();
     
         }
       }catch(e){
@@ -77,7 +85,7 @@ const Formcomp = (...props) =>{
       
         <div>
         
-        <form onSubmit={e =>submitf(e)}>
+        <form onSubmit={(e) =>submitf(e)}>
           <label htmlFor='username'>
             Username
           </label>
@@ -134,7 +142,7 @@ const Formcomp = (...props) =>{
     return (
       <>
         
-        <form onSubmit={e =>submitf(e)}>
+        <form onSubmit={(e) =>submitf(e)}>
           <label htmlFor='username'>
             Username
           </label>
@@ -190,7 +198,8 @@ const Formcomp = (...props) =>{
 
 const mapStateToProps = (state) => {
     return( {
-      credentials: state.credReducer.credentials.credentials,
+      credentials: state.credReducer.credentials[0],
+      isFetching: state.credReducer.isFetching,
     credSignup: state.credReducer.credSignup,
     handleInputChange: state.handleInputChange,
     // handleSubmit: state.handleSubmit

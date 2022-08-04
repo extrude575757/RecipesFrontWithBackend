@@ -1,6 +1,6 @@
-import { ADD_CRED, ADD_NEW_CREDS, ADD_CREDS,GET_CREDS_FAIL } from "../actions/credActions";
+import { ADD_CRED, ADD_NEW_CREDS, ADD_CREDS,GET_CREDS_FAIL,GET_CREDS_START,GET_CREDS_SUCCESS } from "../actions/credActions";
 
-const cred = {
+const initcred = {
    
                 credentials: [{
                 id:10,
@@ -12,26 +12,12 @@ const cred = {
             isFetching:false,
             error:' '
 };
-
-export const credReducer = (state = cred, action) => {
-  console.log(`NAL: credentials: action: `,cred.credentials[0], action);
+const credReducer = (state = initcred, action) => {
+  console.log(`NAL: credentials: action: `,initcred.credentials[0], action);
   switch (action.type) {
 
-    case ADD_CRED:
-      return{
-        ...state,
-        credentials: action.payload
-      }
-    case ADD_NEW_CREDS:
-      return({
-        ...state,
-        credentials: [
-          ...state.credentials, action.payload
-        ],
-        isFetching:true,
-        error:'' 
-      });
-
+    
+   
       case ADD_CREDS:
           return{
             ...state,
@@ -50,7 +36,23 @@ export const credReducer = (state = cred, action) => {
             isFetching:true,
             error:'' 
           };
+      
 
+      case ADD_CRED:
+          return({
+              ...state,
+              credentials: action.payload
+            })
+
+      case ADD_NEW_CREDS:
+          return({
+            ...state,
+              credentials: [
+                  ...state.credentials, action.payload],
+              isFetching:true,
+              error:'' 
+            });
+        
 
       case GET_CREDS_FAIL:
           return({
@@ -58,7 +60,25 @@ export const credReducer = (state = cred, action) => {
             isFetching: false,
             error:action.payload
           })
+
+      case GET_CREDS_SUCCESS:
+        return ({
+          ...state,
+          credentials: [...state.credentials, action.payload],
+          isFetching:false,
+          error: 'None known of'
+        })
+
+
+      case GET_CREDS_START:
+        return ({
+          ...state,
+          credentials: [{}],
+          isFetching: true,
+          error: 'we creds start'
+        })
     default:
       return state;
   }
 };
+export default credReducer
