@@ -15,11 +15,11 @@ const {handleInputChange,credd} = {...props};
     // credSignup(credd.credentials[0]);
     // console.log(props,'submit state'+credd) ;
     // push('/login/');
-console.log('handling submit')
+console.log('handling submit',n)
 isFetching = true;
       if(isFetching){
        e.preventDefault();
-       credSignup(credentials);
+       credSignup(credentials[0]);
        console.log(props,'submit state'+credd) ;
        push('/login/');
        isFetching = false;

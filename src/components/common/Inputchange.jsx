@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
-import Inputchange  from './Inputchange';
-const Formcomp = ({...props}) =>{
-  const {handleSubmit,credentials,isFetching} = {...props}
+
+const Inputchange = ({...props}) =>{
+  const {handleSubmit,credentials} = {...props}
   const {username, id, password, department, role} = {...credentials}
 
   const [value,setValue] = useState({
@@ -175,47 +175,30 @@ const submit =(e)=>{
       
     }
 
+    const {labelFor, ttype, uname, val, isFetching   } = {...props}
+
     return (
-      <>
+      
         
-        (isFetching === false && <div >
-        <Inputchange onchange={onchange} isFetching={false} labelFor={'username'} val={value.username}/>
-        <label htmlFor='password'>
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          value={ value?.password}
-          onChange={(e) =>{
-            onchange(e)
-          }}
-        />
-        <label htmlFor='department'>
-            Department
+        (isFetching === false && 
+        <div>
+        <label htmlFor={labelFor}>
+          {labelFor}!
         </label>
         <input 
           type="text"
-          name="department"
-          value={ value?.department}
-          onChange={(e) =>{
-            onchange(e)
-          }}
+          name="username"
+          value={
+           val.username
+          }
+          onChange={e =>
+            props.onchange(e)
+          }
         />
-        <label htmlFor='role'>
-            Role
-        </label>
-        <input 
-          type="text"
-          name="role"
-          value={value?.role}
-          onChange={(e) =>{
-            onchange(e);
-          }}
-        />
-       <button  onClick={(e) =>submitf(e)} >Register</button>
-      </div>
-      </> 
+        </div>
+        )
+    
+      
     );
 }
 
@@ -234,4 +217,4 @@ const mapStateToProps = ({...state}) => {
   
 
 
-export default connect(mapStateToProps, {addNewCred,credSignup })(Formcomp);
+export default connect(mapStateToProps, {addNewCred,credSignup })(Inputchange);

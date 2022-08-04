@@ -4,6 +4,7 @@ import signup  from "./signup";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
 import Formcomp  from "../../common/Formcomp";
 import {credSignup,addNewCred,addcred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
+import CredComp from "./CredComp";
 
 const SignupR = ({...props}) => {
 
@@ -17,7 +18,7 @@ const SignupR = ({...props}) => {
   const [ credd, setNewCredd] = useState({
     credentials:[{
         id:0,
-      username: ' ',
+      username: username ||' ',
       password: ' ',
       department: 'Nah Deps',
       role:1
@@ -56,7 +57,7 @@ const credsif = () =>{
         setNewCredd({
           credentials:[{
               id:0,
-            username: ' ',
+            username: username | ' ',
             password: ' ',
             department: 'Nah Deps',
             role:1
@@ -83,7 +84,7 @@ const credsif = () =>{
    
     console.log('the'+isFetching)
 
-    props.credentials.username= value.username
+    credentials.username= value.username
     props.submitit(e,value)
    
 }
@@ -180,7 +181,7 @@ const credsif = () =>{
     
         return (
           (typeof credd !== undefined &&
-          isFetching) ? <signup credd={credd} /> : <Formcomp handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
+          isFetching) ? <signup credd={credd} /> : <Formcomp isFetching={isFetching} credentials={credentials}credd={credd}handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
         );
       }
   
@@ -192,7 +193,8 @@ const mapStateToProps = ({...state}) => {
     credentials: state?.credReducer?.cred?.credentials,
     credSignup: state?.credReducer?.credSignup,
     handleSubmit: state?.handleSubmit,
-    isFetching: state.credReducer.isFetching
+    isFetching: state.credReducer.isFetching,
+    submitit: state.submitit
   });
 };
 

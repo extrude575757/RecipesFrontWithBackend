@@ -11,7 +11,7 @@ const CredComp =({...props}) =>{
   // const {id,username,password,department,role} = cred?.credentials; 
   let onsubit = (e) =>{
 
-      if(typeof props?.credentials === undefined || props.credentials === null){
+      if(typeof credentials === undefined || props.credentials === null){
           
         props.handleSubmit(e);
       }else{
@@ -82,7 +82,7 @@ const CredComp =({...props}) =>{
     return (
 
 
-      (typeof props?.credentials === undefined)
+      (typeof credentials === undefined)
   ? null 
   : 
       formsubs()
@@ -95,8 +95,9 @@ const CredComp =({...props}) =>{
 const mapStateToProps = ({...state}) => {
   return ({
     handleInputChange: state?.inputChange,
-    credentials: state?.credReducer?.cred?.credentials[0],
-    credSignup: state.credReducer.credSignup
+    credentials: state?.credReducer?.cred?.credentials,
+    credSignup: state.credReducer.credSignup,
+    handleSubmit: state.handleSubmit
   });
 };
 
