@@ -1,6 +1,6 @@
 import { ADD_CRED, ADD_NEW_CREDS, ADD_CREDS,GET_CREDS_FAIL,GET_CREDS_START,GET_CREDS_SUCCESS } from "../actions/credActions";
 
-const initcred = {
+const cred = {
    
                 credentials: [{
                 id:10,
@@ -12,8 +12,8 @@ const initcred = {
             isFetching:false,
             error:' '
 };
-const credReducer = (state = initcred, action) => {
-  console.log(`NAL: credentials: action: `,initcred.credentials[0], action);
+const credReducer = (state = cred, action) => {
+  console.log(`NAL: credentials: action: `,cred.credentials[0], action);
   switch (action.type) {
 
     

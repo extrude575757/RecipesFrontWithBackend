@@ -3,16 +3,16 @@ import { connect } from "react-redux";
 import signup  from "./signup";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
 import Formcomp  from "../../common/Formcomp";
-import {credSignup,addNewCred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
+import {credSignup,addNewCred,addcred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
 
 const SignupR = ({...props}) => {
 
 
 
 
-  const {cred,isFetching} = {...props};
+  const {credentials,isFetching,error} = {...props};
 
-  const {credentials} = {...cred};
+  const {id,username,password,department,role} = {...credentials};
   // const {id,username,department,password,role} = cred.credentials[0] ;
   const [ credd, setNewCredd] = useState({
     credentials:[{
@@ -32,7 +32,7 @@ const credsif = () =>{
     if(credentials !== undefined && props !== undefined && credd.credentials !== undefined){
       console.log('credsin1 '+credentials +credd.credentials + props); 
       
-        addNewCred(credentials); 
+        addNewCred(credd.credentials); 
     }
   }catch(e){
     console.log(e);
@@ -77,11 +77,15 @@ const credsif = () =>{
 
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.addNewCred(credd);
-    console.log(props,'submit state'+credd) ;
-    push('/login/');
+  const handleSubmit = (e,value) => {
+    isFetching = true;
+
+   
+    console.log('the'+isFetching)
+
+    props.credentials.username= value.username
+    props.submitit(e,value)
+   
 }
 
   const  handleChange = e => {
@@ -111,10 +115,17 @@ const credsif = () =>{
            });
            console.log('hdlIval '+ credd.isFetching);
   console.log(n.username, ' nex', credd.username);
-  
-       console.log('newname '+
+  props.cred = {
+    ...credd,
+    [name]: value
+   }
+       console.log('newname cred'+ props.cred.username, ' oldname credd' +
        credd.username + 
        credd.department+ '   ' + credd.password + ' ',isFetching);
+    }else{
+      console.log('gonetrue')
+      isFetching = true;
+      handleSubmit(e);
     }
   };
 
@@ -168,8 +179,8 @@ const credsif = () =>{
 
     
         return (
-          (typeof credd === undefined &&
-          isFetching) ? <signup /> : <Formcomp handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
+          (typeof credd !== undefined &&
+          isFetching) ? <signup credd={credd} /> : <Formcomp handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
         );
       }
   
@@ -186,7 +197,7 @@ const mapStateToProps = ({...state}) => {
 };
 
 
-export default connect(mapStateToProps, { credSignup,addNewCred  })(SignupR);
+export default connect(mapStateToProps, { credSignup,addNewCred,addcred  })(SignupR);
 
 // const hocThatWillConnectTitleToReduxStore = connect(mapStateToProps, {});
 // const componentThatHasTitleConnectedToReduxStore = hocThatWillConnectTitleToReduxStore(

@@ -2,28 +2,32 @@ import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 
-const Formcomp = (props) =>{
-  const {handleSubmit,credentials,isFetching} = props
+const Formcomp = ({...props}) =>{
+  const {handleSubmit,credentials,isFetching} = {...props}
+  const {username, id, password, department, role} = {...credentials}
 
   const [value,setValue] = useState({
     id:Date.now(),
-    username: 'formdiz', 
+    username:  username || ' f', 
     password: 'padnma',
-    department: 'No Dep',
+    department:  'No Dep',
     role:1
 })
 
     const submitf =(e)=>{
         try{
-          console.log(props.credentials)
+          username = value.username
+          console.log(credentials[0])
           e.preventDefault();
             if(value !== undefined && props.handleSubmit !== undefined ){
                 // handleSubmit(e);
-                credSignup(value);
+                credentials =   {...credentials, [value.target.name]: value.target.value};
+                
+                credSignup({credentials});
             }else
               if(props.credentials === undefined || props.credentials === null){
             
-                props.credentials = value
+                props.credentials = {...value}
                 credSignup(value);
               }else{
                 console.log('wentformsubs')
@@ -37,14 +41,21 @@ const Formcomp = (props) =>{
 }
 
 const submit =(e)=>{
-  try{
-    // console.log(isFetching)
-    props.handleSubmit(e);
-  }
+//   try{
+   
+//     isFetching = true;
+//      console.log(isFetching)
+//      addNewCred(credentials);
+//     props.handleSubmit(e,value);
+//   }
 
-catch(e){
-  console.log(e);
-}
+// catch(e){
+//   console.log(e);
+// }
+ props.credentials[0].username = value.username
+ const newup = {...credentials[0], [value.target.name]: value.target.value};
+ console.log(newup);
+// credSignup({...credentials[0], [value.target.name]: value.target.value})
 }
 
 
@@ -57,11 +68,13 @@ catch(e){
     const onchange = (e)=>{
       
           setValue({...value, [e.target.name]: e.target.value});
-          props.handleInputChange(e,value);
-          // props.credentials = {...value, [e.target.name]: e.target.value}
+       
+
+          props.credentials = {...e, [e.target.name]: e.target.value}
             // console.log('on'+props.isFetching)
             // console.log('on'+props.credentials.username)
             console.log(value)
+            props.handleInputChange(e,value);
         
     }
 
@@ -222,4 +235,4 @@ const mapStateToProps = (state) => {
   
 
 
-export default connect(mapStateToProps, { credSignup})(Formcomp);
+export default connect(mapStateToProps, {addNewCred,credSignup })(Formcomp);
