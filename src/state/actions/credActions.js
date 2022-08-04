@@ -6,18 +6,24 @@ export const GET_CREDS_SUCCESS = "GET_CREDS_SUCCESS";
 export const ADD_CRED = "ADD_CRED";
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
-export const addNewCred = ({cred})=>{
+export const addNewCred = (cred)=>{
     try{
-        if(cred !== undefined || cred !==  {} || cred !== null ){
+        if(typeof cred !== undefined || cred !==  {} || cred !== null ){
             console.log('addnew',cred)
         return ({
             type: ADD_NEW_CREDS,
-            payload: cred
+            payload:{ ...cred ,[cred?.target?.name]: cred?.target?.value}
     
         });
-        }else{
-            dispatch(addCred(cred));
+
+        console.log('addnew',cred)
         }
+        // else{
+        //     return (dispatch) =>{
+        //         dispatch(addCred(cred));
+        //     }
+           
+        // }
     }
     catch(e){
         console.log(e);

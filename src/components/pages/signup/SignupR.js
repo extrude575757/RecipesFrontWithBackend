@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import signup  from "./signup";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
 import Formcomp  from "../../common/Formcomp";
-import {credSignup,addNewCred,addcred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
+import {credSignup,addCred,addNewCred,addcred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
 import CredComp from "./CredComp";
 
 const SignupR = ({...props}) => {
@@ -11,16 +11,16 @@ const SignupR = ({...props}) => {
 
 
 
-  const {credentials,isFetching,error} = {...props};
+  const {credentials,isFetching,error,value} = {...props};
 
-  const {id,username,password,department,role} = {...credentials};
+  const {id,username,password,department,role} = {credentials};
   // const {id,username,department,password,role} = cred.credentials[0] ;
   const [ credd, setNewCredd] = useState({
     credentials:[{
         id:0,
-      username: username ||' ',
-      password: ' ',
-      department: 'Nah Deps',
+      username: value?.username ||' ',
+      password: value?.password    || ' ',
+      department:  value?.department !== undefined && value.department || 'Nah Deps',
       role:1
     } ]     ,
     isFetching:false,
@@ -46,7 +46,7 @@ const credsif = () =>{
       if(typeof credd !== undefined ){
 
       
-        credsif({...credd.credentials[0]});
+        credsif({...credd.credentials});
       } else if(typeof credentials === undefined && credd !== undefined){
        credentials = {...credd};
        console.log(isFetching)
@@ -79,23 +79,29 @@ const credsif = () =>{
 
 
   const handleSubmit = (e,value) => {
-    isFetching = true;
-
-   
-    console.log('the'+isFetching)
-
-    credentials.username= value.username
-    props.submitit(e,value)
+    // isFetching = true;
+    credd.isFetching = true;
+    handleChange({...value});
+    // addNewCred(value);
+    console.log('the'+value.username + value.password)
+    if(credd.isFetching){
+      console.log('hand'+credd.credentials)
+    addNewCred({...value});
+    login(e,value);
+    }
+    // credentials.username= value.username
+    // props.submitit(e,value)
    
 }
 
-  const  handleChange = e => {
-    setNewCredd({
-        ...credd.credentials,
-        [e.target.name]: e.target.value
+  const  handleChange = value => {
+    if(typeof value !== undefined){
+      setNewCredd({
+        ...credd?.credentials,
+        [value?.target?.name]: value?.target?.value
     });
-    console.log('hand'+credd)
-    addNewCred(credd);
+    
+    }
   };
   const  handleValue = e => {
     
@@ -104,18 +110,18 @@ const credsif = () =>{
   }
 
   const handleInputChange=(e,n)=> {
-    if (isFetching === false){
+    if (isFetching === false && typeof n !== undefined){
       const target = e.target;
     
     // console.log('crdr '+ credd.role);
     const value =  target.value;
     const name = target.name;
           setNewCredd({
-            ...credd,
-            [name]: value
+            ...credd.credentials,
+            [n?.target?.name]: n?.target?.value
            });
            console.log('hdlIval '+ credd.isFetching);
-  console.log(n.username, ' nex', credd.username);
+  console.log(n.username, ' nex', n.username);
   props.cred = {
     ...credd,
     [name]: value
@@ -130,12 +136,12 @@ const credsif = () =>{
     }
   };
 
-  const login = e => {
+  const login = (e,v) => {
 
     e.preventDefault();
-    handleValue(credd);
-    console.log(department)
-    axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", credentials)
+    handleValue(v);
+    console.log(v.department)
+    axiosWithAuth().post("https://backrecipes.herokuapp.com/api/auth/register", v)
       .then(res => {
         console.log('bk: Login.js: login: res: ', res)
         localStorage.setItem('token', res.config.data)

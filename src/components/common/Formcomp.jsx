@@ -7,7 +7,7 @@ const Formcomp = ({...props}) =>{
   const {username, id, password, department, role} = {...credentials}
 
   const [value,setValue] = useState({
-    id:Date.now(),
+    id:43,
     username:  username || ' f', 
     password: 'padnma',
     department:  'No Dep',
@@ -16,23 +16,26 @@ const Formcomp = ({...props}) =>{
 
     const submitf =(e)=>{
         try{
-          username = value.username
-          console.log(credentials[0])
-          e.preventDefault();
-            if(value !== undefined && props.handleSubmit !== undefined ){
-                // handleSubmit(e);
-                credentials =   {...credentials, [value.target.name]: value.target.value};
+          // credentials[0]= {...value, [value.target.name]: value.target.value}
+          // e.preventDefault();
+          console.log(value.username)
+        
+          props.handleSubmit(e,value)
+          
+            // if(value !== undefined && props.handleSubmit !== undefined ){
+            //     // handleSubmit(e);
+            //     // credentials[0] =   {...value, [value.target.name]: value.target.value};
                 
-                credSignup({credentials});
-            }else
-              if(props.credentials === undefined || props.credentials === null){
+            //     credSignup({value});
+            // }else
+            //   if(props.credentials === undefined || props.credentials === null){
             
-                props.credentials = {...value}
-                credSignup(value);
-              }else{
-                console.log('wentformsubs')
-                formSubs(e)
-              }
+            //     props.credentials = {...value}
+            //     credSignup(value);
+            //   }else{
+            //     console.log('wentformsubs')
+            //     formSubs(e)
+            //   }
         }
     
     catch(e){
@@ -178,8 +181,8 @@ const submit =(e)=>{
     return (
       <>
         
-        (isFetching === false && <div >
-        <Inputchange onchange={onchange} isFetching={false} labelFor={'username'} val={value.username}/>
+       <div >
+        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'username'} val={value.username}/>
         <label htmlFor='password'>
           Password
         </label>
@@ -223,7 +226,7 @@ const submit =(e)=>{
 const mapStateToProps = ({...state}) => {
     return( {
       cred : state.credReducer.cred,
-      credentials: state?.credReducer?.cred?.credentials,
+      credentials: state?.credReducer?.credentials,
       isFetching: state.credReducer.isFetching,
     credSignup: state.credReducer.credSignup,
     handleInputChange: state.handleInputChange,
