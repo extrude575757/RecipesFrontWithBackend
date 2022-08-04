@@ -10,7 +10,7 @@ const SignupR = ({...props}) => {
 
 
 
-  const {cred} = {...props};
+  const {cred,isFetching} = {...props};
 
   const {credentials} = {...cred};
   // const {id,username,department,password,role} = cred.credentials[0] ;
@@ -48,6 +48,7 @@ const credsif = () =>{
         credsif({...credd.credentials[0]});
       } else if(typeof credentials === undefined && credd !== undefined){
        credentials = {...credd};
+       console.log(isFetching)
      
       } 
       // else if(credentials !== undefined && credd !== undefined)
@@ -78,7 +79,7 @@ const credsif = () =>{
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.credSignup(credd);
+    props.addNewCred(credd);
     console.log(props,'submit state'+credd) ;
     push('/login/');
 }
@@ -97,9 +98,10 @@ const credsif = () =>{
     addNewCred(credd);
   }
 
-  const handleInputChange=(e)=> {
-    const target = e.target;
-    console.log('hdlIval '+ props?.credentials);
+  const handleInputChange=(e,n)=> {
+    if (isFetching === false){
+      const target = e.target;
+    
     // console.log('crdr '+ credd.role);
     const value =  target.value;
     const name = target.name;
@@ -107,9 +109,13 @@ const credsif = () =>{
             ...credd,
             [name]: value
            });
-     
+           console.log('hdlIval '+ credd.isFetching);
+  console.log(n.username, ' nex', credd.username);
   
-       console.log('newname '+ credd.credentials[0].username + credd.credentials[0].department+ '   ' + props.credentials);
+       console.log('newname '+
+       credd.username + 
+       credd.department+ '   ' + credd.password + ' ',isFetching);
+    }
   };
 
   const login = e => {
@@ -162,8 +168,8 @@ const credsif = () =>{
 
     
         return (
-          (typeof props?.credentials === undefined &&
-          props?.cred?.isFetching) ? <signup /> : <Formcomp handleInputChange={handleInputChange}   /> 
+          (typeof credd === undefined &&
+          isFetching) ? <signup /> : <Formcomp handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
         );
       }
   
@@ -174,7 +180,8 @@ const mapStateToProps = ({...state}) => {
     cred: state?.credReducer?.cred,
     credentials: state?.credReducer?.cred?.credentials,
     credSignup: state?.credReducer?.credSignup,
-    handleSubmit: state?.handleSubmit
+    handleSubmit: state?.handleSubmit,
+    isFetching: state.credReducer.isFetching
   });
 };
 

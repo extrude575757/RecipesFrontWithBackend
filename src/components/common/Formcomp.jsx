@@ -2,8 +2,8 @@ import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 
-const Formcomp = (...props) =>{
-  const {handleSubmit,credSignup} = {...props};
+const Formcomp = (props) =>{
+  const {handleSubmit,credentials,isFetching} = props
 
   const [value,setValue] = useState({
     id:Date.now(),
@@ -17,7 +17,7 @@ const Formcomp = (...props) =>{
         try{
           console.log(props.credentials)
           e.preventDefault();
-            if(value !== undefined && props.handleSubmit() !== undefined ){
+            if(value !== undefined && props.handleSubmit !== undefined ){
                 // handleSubmit(e);
                 credSignup(value);
             }else
@@ -36,6 +36,18 @@ const Formcomp = (...props) =>{
     }
 }
 
+const submit =(e)=>{
+  try{
+    // console.log(isFetching)
+    props.handleSubmit(e);
+  }
+
+catch(e){
+  console.log(e);
+}
+}
+
+
     const formName =(f)=>{
         if(username !== undefined){
             console.log(f);
@@ -45,41 +57,43 @@ const Formcomp = (...props) =>{
     const onchange = (e)=>{
       
           setValue({...value, [e.target.name]: e.target.value});
-          props.credentials = {...value, [e.target.name]: e.target.value}
-            console.log('on'+props.isFetching)
-            console.log('on'+props.credentials.username)
+          props.handleInputChange(e,value);
+          // props.credentials = {...value, [e.target.name]: e.target.value}
+            // console.log('on'+props.isFetching)
+            // console.log('on'+props.credentials.username)
+            console.log(value)
         
     }
 
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-      try{
-        if(typeof value === undefined  ){
+    //   try{
+    //     if(typeof value === undefined  ){
   
         
-          setValue({
-            id:10,
-            username: 'fas', 
-            password: 'dd',
-            department: 'No dDep',
-            role:1
-        });
-      }else if( typeof isFetching === undefined){
-        console.log(isFetching)
-        isFetching = false
-      }
-        // else if(credentials !== undefined && credd !== undefined)
-        else{
-          // <Formcomp />;
-          formsubs();
+    //       setValue({
+    //         id:10,
+    //         username: 'fas', 
+    //         password: 'dd',
+    //         department: 'No dDep',
+    //         role:1
+    //     });
+    //   }else if( typeof props.isFetching === undefined){
+    //     console.log(isFetching)
+    //     props.isFetching = false
+    //   }
+    //     // else if(credentials !== undefined && credd !== undefined)
+    //     else{
+    //       // <Formcomp />;
+    //       formsubs();
     
-        }
-      }catch(e){
-        console.log(e);
-      }
+    //     }
+    //   }catch(e){
+    //     console.log(e);
+    //   }
   
-    }, [value]);
+    // }, [value]);
   
     const formsubs = ()=>{
       
@@ -142,7 +156,7 @@ const Formcomp = (...props) =>{
     return (
       <>
         
-        <form onSubmit={(e) =>submitf(e)}>
+        <form onSubmit={(e) =>submit(e)}>
           <label htmlFor='username'>
             Username
           </label>

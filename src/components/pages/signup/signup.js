@@ -32,7 +32,7 @@ const inputChange = (e)=>{
   }
 }
 return (
-    <SignupR handleSubmit={handleSubmit} handleInputChange={handleInputChange}/>  
+    <SignupR handleSubmit={handleSubmit}/>  
 
 )
 
@@ -43,8 +43,7 @@ return (
 const mapStateToProps = ({...state}) => {
     return {
       credentials: state?.credReducer?.cred?.credentials,
-      handleInputChange: state?.handleInputChange,
-      handleSubmit:state.handleSubmit
+      handleSubmit: state.handleSubmit
     };
   };
   
