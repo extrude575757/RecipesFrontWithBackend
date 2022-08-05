@@ -7,7 +7,7 @@ const Formcomp = ({...props}) =>{
   const {username, id, password, department, role} = {...credentials}
 
   const [value,setValue] = useState({
-    id:43,
+    id:46,
     username:  username || ' f', 
     password: 'padnma',
     department:  'No Dep',
@@ -181,43 +181,14 @@ const submit =(e)=>{
     return (
       <>
         
-       <div >
+       <form >
         <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'username'} val={value.username}/>
-        <label htmlFor='password'>
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          value={ value?.password}
-          onChange={(e) =>{
-            onchange(e)
-          }}
-        />
-        <label htmlFor='department'>
-            Department
-        </label>
-        <input 
-          type="text"
-          name="department"
-          value={ value?.department}
-          onChange={(e) =>{
-            onchange(e)
-          }}
-        />
-        <label htmlFor='role'>
-            Role
-        </label>
-        <input 
-          type="text"
-          name="role"
-          value={value?.role}
-          onChange={(e) =>{
-            onchange(e);
-          }}
-        />
+        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'password'} val={value.password}/>
+        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'department'} val={value.department}/>
+        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'role'} val={value.role}/>
+        
        <button  onClick={(e) =>submitf(e)} >Register</button>
-      </div>
+      </form>
       </> 
     );
 }

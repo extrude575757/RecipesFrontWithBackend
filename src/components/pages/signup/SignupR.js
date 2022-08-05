@@ -148,7 +148,7 @@ const credsif = () =>{
         props.history.push('/protected')
       })
       .catch(err => {
-        console.error(err.response)
+        console.error(err)
       })
   };
 

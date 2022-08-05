@@ -14,50 +14,6 @@ const Inputchange = ({...props}) =>{
     role:1
 })
 
-    const submitf =(e)=>{
-        try{
-          username = value.username
-          console.log(credentials[0])
-          e.preventDefault();
-            if(value !== undefined && props.handleSubmit !== undefined ){
-                // handleSubmit(e);
-                credentials =   {...credentials, [value.target.name]: value.target.value};
-                
-                credSignup({credentials});
-            }else
-              if(props.credentials === undefined || props.credentials === null){
-            
-                props.credentials = {...value}
-                credSignup(value);
-              }else{
-                console.log('wentformsubs')
-                formSubs(e)
-              }
-        }
-    
-    catch(e){
-        console.log(e);
-    }
-}
-
-const submit =(e)=>{
-//   try{
-   
-//     isFetching = true;
-//      console.log(isFetching)
-//      addNewCred(credentials);
-//     props.handleSubmit(e,value);
-//   }
-
-// catch(e){
-//   console.log(e);
-// }
-//  credentials[0].username = value.username
-//  const newup = {...value, [value.target.name]: value.target.value};
-//  console.log('new'+newup);
- 
-// credSignup({...credentials[0], [value.target.name]: value.target.value})
-}
 
 
     const formName =(f)=>{
@@ -175,28 +131,94 @@ const submit =(e)=>{
       
     }
 
+    const thenames = ()=> {
+       
+        if(labelFor === 'username'){
+           return(
+            <>
+            <label htmlFor={labelFor}>
+              {labelFor}!
+            </label>
+            <input 
+              type="text"
+              name="username"
+              value={
+               val.username
+              }
+              onChange={e =>
+                props.onchange(e)
+              }
+            />
+            </>
+           )
+        }else if(labelFor === 'password'){
+            return(
+                <>
+                <label htmlFor={labelFor}>
+                {labelFor}
+              </label>
+              <input
+                type="password"
+                name="password"
+                value={ val.password}
+                onChange={e =>
+                  props.onchange(e)
+                }
+              />
+                </>
+            )
+        }
+        else if(labelFor === 'department'){
+            return(
+                <>
+                <label htmlFor='department'>
+                {labelFor}
+              </label>
+              <input
+                type="text"
+                name="department"
+                value={ val.department}
+                onChange={(e) =>{
+                  props.onchange(e)
+                }}
+              />
+                </>
+            )
+        }
+        else if(labelFor === 'role'){
+            return(
+                <>
+                <label htmlFor='role'>
+                {labelFor}
+              </label>
+              <input
+                type="text"
+                name="role"
+                value={ val.role}
+                onChange={(e) =>{
+                  props.onchange(e)
+                }}
+              />
+                </>
+            )
+        }
+        
+
+       
+    }
+
     const {labelFor, ttype, uname, val, isFetching   } = {...props}
 
     return (
       
         
-        (isFetching === false &&
-        <div>
-        <label htmlFor={labelFor}>
-          {labelFor}!
-        </label>
-        <input 
-          type="text"
-          name="username"
-          value={
-           val.username
-          }
-          onChange={e =>
-            props.onchange(e)
-          }
-        />
-        </div>
-        )
+        isFetching === false &&
+        
+          thenames()
+
+
+        
+        
     
       
     );
