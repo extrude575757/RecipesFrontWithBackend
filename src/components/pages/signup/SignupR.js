@@ -153,37 +153,6 @@ const credsif = () =>{
   };
 
 
-
-
-  // useEffect(()=>{
-  //   if(credd === undefined){
-  //     console.log('props signup container ',props);
-  //   }else{
-  //     console.log('props signup container2 ',props);
-  //   }
-  //   // if(credd === undefined && credentials !== undefined){
-  //   //   credd = {
-  //   //       ...credentials,
-  //   //       [credentials.target.name]: credentials.target.value}
-  //   //       // addNewCred(credd);
-  //   //     console.log('credsn'+credentials.username);  
-  //   // } else if(credentials === undefined && credd !== undefined){
-  //   //   // credentials = {
-  //   //   //   ...credd,
-  //   //   //   [credd.target.name]: credd.target.value}
-  //   //     addNewCred(credd);
-  //   //   console.log('credsi'+credentials);  
-  //   // } else if(credentials === undefined && credd === undefined){
-  //   //   <Signup />
-  //   // } else if(credentials !== undefined && credd !== undefined){
-  //   //   addNewCred(credd);
-  //   //   <SignupR />
-  //   //   console.log('crein'+props.credentials.username);  
-  //   // }
-
-  // },[{}]);
-
-
     
         return (
           (typeof credd !== undefined &&
