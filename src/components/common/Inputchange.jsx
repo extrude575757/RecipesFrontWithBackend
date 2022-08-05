@@ -1,19 +1,20 @@
 import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
-
+import PropTypes from 'prop-types';
 const Inputchange = ({...props}) =>{
   const {handleSubmit,credentials} = {...props}
-  const {username, id, password, department, role} = {...credentials}
+//   const {username, id, password, department, role} = {...credentials}
 
-  const [value,setValue] = useState({
-    id:Date.now(),
-    username:  username || ' f', 
-    password: 'padnma',
-    department:  'No Dep',
-    role:1
-})
+//   const [value,setValue] = useState({
+//     id:47,
+//     username:  username || ' f', 
+//     password: 'padnma',
+//     department:  'No Dep',
+//     role:1
+// })
 
+const {labelFor, username,department,password,role, ttype, uname, val, isFetching   } = {...props}
 
 
     const formName =(f)=>{
@@ -22,114 +23,13 @@ const Inputchange = ({...props}) =>{
             props.handleInputChange(e);
         }
     }
-    const onchange = (e)=>{
+    // const onchange = (e)=>{
       
-          setValue({...value, [e.target.name]: e.target.value});
+    //       setValue({...value, [e.target.name]: e.target.value});
        
-//  Uncaught TypeError: Cannot set properties of undefined (setting 'credentials')
-          // credentials = {...e, [e.target.name]: e.target.value}
-            // console.log('on'+props.isFetching)
-            // console.log('on'+props.credentials.username)
-           
-          //  if(typeof credentials === undefined){
-          //   credentials = {...value, [e.target.name]: e.target.value}
-            
-          // }else if(typeof credentials != undefined || typeof credentials !== null){
-          //   console.log(value.username+' ',credentials.username )
-          // }
-            
-            // addNewCred({value})
-            props.handleInputChange(e,value);
+    //         props.handleInputChange(e,value);
         
-    }
-
-
-    // useEffect(()=>{
-
-    //   try{
-    //     if(typeof value === undefined  ){
-  
-        
-    //       setValue({
-    //         id:10,
-    //         username: 'fas', 
-    //         password: 'dd',
-    //         department: 'No dDep',
-    //         role:1
-    //     });
-    //   }else if( typeof props.isFetching === undefined){
-    //     console.log(isFetching)
-    //     props.isFetching = false
-    //   }
-    //     // else if(credentials !== undefined && credd !== undefined)
-    //     else{
-    //       // <Formcomp />;
-    //       formsubs();
-    
-    //     }
-    //   }catch(e){
-    //     console.log(e);
-    //   }
-  
-    // }, [value]);
-  
-    const formsubs = ()=>{
-      
-        <div>
-        
-        <form onSubmit={(e) =>submitf(e)}>
-          <label htmlFor='username'>
-            Username
-          </label>
-          <input
-          
-            type="text"
-            name="username"
-            value={
-             value.username
-            }
-            onChange={(e) =>{
-              onChange(e)
-            }}
-          />
-          <label htmlFor='password'>
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            value={ value.password}
-            onChange={(e) =>{
-              onChange(e)
-            }}
-          />
-          <label htmlFor='department'>
-              Department
-          </label>
-          <input 
-            type="text"
-            name="department"
-            value={ value.department}
-            onChange={(e) =>{
-              onChange(e)
-            }}
-          />
-          <label htmlFor='role'>
-              Role
-          </label>
-          <input 
-            type="text"
-            name="role"
-            value={value.role}
-            onChange={(e) =>{
-              onchange(e);
-            }}
-          />
-         <button type="Submit">Register</button>
-        </form>
-        </div>
-      
-    }
+    // }
 
     const thenames = ()=> {
        
@@ -143,7 +43,7 @@ const Inputchange = ({...props}) =>{
               type="text"
               name="username"
               value={
-               val.username
+               username
               }
               onChange={e =>
                 props.onchange(e)
@@ -160,7 +60,7 @@ const Inputchange = ({...props}) =>{
               <input
                 type="password"
                 name="password"
-                value={ val.password}
+                value={ password}
                 onChange={e =>
                   props.onchange(e)
                 }
@@ -177,7 +77,7 @@ const Inputchange = ({...props}) =>{
               <input
                 type="text"
                 name="department"
-                value={ val.department}
+                value={ department}
                 onChange={(e) =>{
                   props.onchange(e)
                 }}
@@ -194,7 +94,7 @@ const Inputchange = ({...props}) =>{
               <input
                 type="text"
                 name="role"
-                value={ val.role}
+                value={ role}
                 onChange={(e) =>{
                   props.onchange(e)
                 }}
@@ -207,7 +107,6 @@ const Inputchange = ({...props}) =>{
        
     }
 
-    const {labelFor, ttype, uname, val, isFetching   } = {...props}
 
     return (
       
@@ -225,18 +124,15 @@ const Inputchange = ({...props}) =>{
 }
 
 
-const mapStateToProps = ({...state}) => {
-    return( {
-      cred : state.credReducer.cred,
-      credentials: state?.credReducer?.cred?.credentials,
-      isFetching: state.credReducer.isFetching,
-    credSignup: state.credReducer.credSignup,
-    handleInputChange: state.handleInputChange,
-    // handleSubmit: state.handleSubmit
-    handleSubmit:state.handleSubmit
-    },{});
-  };
-  
+export default Inputchange;
 
-
-export default connect(mapStateToProps, {addNewCred,credSignup })(Inputchange);
+Inputchange.propTypes = {
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    department: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    labelFor: PropTypes.string.isRequired,
+    value: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    onchange:PropTypes.func.isRequired
+}

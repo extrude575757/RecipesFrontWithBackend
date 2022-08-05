@@ -73,52 +73,12 @@ const submit =(e)=>{
       
           setValue({...value, [e.target.name]: e.target.value});
        
-//  Uncaught TypeError: Cannot set properties of undefined (setting 'credentials')
-          // credentials = {...e, [e.target.name]: e.target.value}
-            // console.log('on'+props.isFetching)
-            // console.log('on'+props.credentials.username)
-           
-          //  if(typeof credentials === undefined){
-          //   credentials = {...value, [e.target.name]: e.target.value}
-            
-          // }else if(typeof credentials != undefined || typeof credentials !== null){
-          //   console.log(value.username+' ',credentials.username )
-          // }
-            
-            // addNewCred({value})
+
             props.handleInputChange(e,value);
         
     }
 
 
-    // useEffect(()=>{
-
-    //   try{
-    //     if(typeof value === undefined  ){
-  
-        
-    //       setValue({
-    //         id:10,
-    //         username: 'fas', 
-    //         password: 'dd',
-    //         department: 'No dDep',
-    //         role:1
-    //     });
-    //   }else if( typeof props.isFetching === undefined){
-    //     console.log(isFetching)
-    //     props.isFetching = false
-    //   }
-    //     // else if(credentials !== undefined && credd !== undefined)
-    //     else{
-    //       // <Formcomp />;
-    //       formsubs();
-    
-    //     }
-    //   }catch(e){
-    //     console.log(e);
-    //   }
-  
-    // }, [value]);
   
     const formsubs = ()=>{
       
@@ -182,10 +142,10 @@ const submit =(e)=>{
       <>
         
        <form >
-        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'username'} val={value.username}/>
-        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'password'} val={value.password}/>
-        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'department'} val={value.department}/>
-        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'role'} val={value.role}/>
+        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'username'} username={value.username}/>
+        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'password'} password={value.password}/>
+        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'department'} department={value.department}/>
+        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'role'} role={value.role}/>
         
        <button  onClick={(e) =>submitf(e)} >Register</button>
       </form>
@@ -194,18 +154,18 @@ const submit =(e)=>{
 }
 
 
-const mapStateToProps = ({...state}) => {
-    return( {
-      cred : state.credReducer.cred,
-      credentials: state?.credReducer?.credentials,
-      isFetching: state.credReducer.isFetching,
-    credSignup: state.credReducer.credSignup,
-    handleInputChange: state.handleInputChange,
-    // handleSubmit: state.handleSubmit
-    handleSubmit:state.handleSubmit
-    },{});
-  };
-  
 
 
-export default connect(mapStateToProps, {addNewCred,credSignup })(Formcomp);
+export default connect(
+  state => ({
+    value: state.value,
+    cred : state.cred,
+    credentials: state.credentials,
+    isFetching: state.isFetching,
+  credSignup: state.credReducer.credSignup,
+  handleInputChange: state.handleInputChange,
+  // handleSubmit: state.handleSubmit
+  handleSubmit:state.handleSubmit
+  }),
+  {}
+)(Formcomp)

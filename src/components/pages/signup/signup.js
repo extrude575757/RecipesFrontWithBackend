@@ -73,15 +73,16 @@ return (
 
 
 
-const mapStateToProps = ({...state}) => {
-    return {
-      cred : state.credReducer.cred,
-      credentials: state?.credReducer?.cred?.credentials,
-      submitit: state.submitit,
-      isFetching: state.credReducer.isFetching
-    };
-  };
   
 
+  export default connect(
+    state => ({
+      cred : state.cred,
+      credentials: state.credentials,
+      submitit: state.submitit,
+      isFetching: state.isFetching
+    }), 
+    {credSignup,addNewCred,addcred,addCred}
+  )(signup)
 
-export default connect(mapStateToProps, { credSignup,addNewCred,addCred,addcred})(signup);
+

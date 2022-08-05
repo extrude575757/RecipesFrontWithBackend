@@ -161,20 +161,22 @@ const credsif = () =>{
       }
   
 
-const mapStateToProps = ({...state}) => {
-  return( {
-    handleInputChange: state?.handleInputChange,
-    cred: state?.credReducer?.cred,
-    credentials: state?.credReducer?.cred?.credentials,
-    credSignup: state?.credReducer?.credSignup,
-    handleSubmit: state?.handleSubmit,
-    isFetching: state.credReducer.isFetching,
+
+
+
+
+export default connect(
+  state => ({
+    handleInputChange: state.handleInputChange,
+    cred: state.cred,
+    credentials: state.credentials,
+    credSignup: state.credSignup,
+    handleSubmit: state.handleSubmit,
+    isFetching: state.isFetching,
     submitit: state.submitit
-  });
-};
-
-
-export default connect(mapStateToProps, { credSignup,addNewCred,addcred  })(SignupR);
+  }), 
+  {}
+)(SignupR)
 
 // const hocThatWillConnectTitleToReduxStore = connect(mapStateToProps, {});
 // const componentThatHasTitleConnectedToReduxStore = hocThatWillConnectTitleToReduxStore(
