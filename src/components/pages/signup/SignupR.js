@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import Signup  from "./Signup";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
 import Formcomp  from "../../common/Formcomp";
-import {credSignup,addCred,addNewCred,addcred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
+import {credActs } from '../../../state/actions'; 
 import CredComp from "./CredComp";
-
+import PropTypes from 'prop-types';
 const SignupR = ({...props}) => {
 
 const {value} = {...props}
@@ -25,7 +25,7 @@ const {isFetching}= {...cred}
   const [ credd, setNewCredd] = useState({
     credentials:[{
         id:0,
-      username: value?.username ||' ',
+      username: value?.username ||'ffa ',
       password: value?.password    || ' ',
       department:  value?.department !== undefined && value.department || 'Nah Deps',
       role:1
@@ -37,10 +37,16 @@ const {isFetching}= {...cred}
 
 const credsif = () =>{
   try{
-    if(credentials !== undefined && props !== undefined && credd.credentials !== undefined){
-      console.log('credsin1 '+credentials +credd.credentials + props); 
+    if(credentials !== undefined && props !== undefined && credd !== undefined){
+      setNewCredd( {credentials:{username:'tom'}})
+      console.log('credsin1 '+credentials.username ,credd.credentials[0].username); 
       
-        addNewCred(credd.credentials); 
+        // addNewCred(credd.credentials); 
+    }
+    throw{
+      CredComp
+       
+      
     }
   }catch(e){
     console.log(e);
@@ -53,7 +59,7 @@ const credsif = () =>{
       if(typeof credd !== undefined ){
 
         console.log(isFetching)
-        credsif({...credd.credentials});
+        credsif();
       } else if(typeof credentials === undefined && credd !== undefined){
       
        console.log(isFetching)
@@ -166,7 +172,7 @@ const signed = () =>{
 }
     
         return (
-          signed()
+          <CredComp />
         );
       }
   
@@ -179,15 +185,25 @@ export default connect(
   state => ({
     handleInputChange: state.handleInputChange,
     value: state.value,
-    cred: state,
-    credentials: state.credentials,
-    credSignup: state.credSignup,
+    cred: state.credReducer,
+    credentials: state.credReducer.credentials[0],
     handleSubmit: state.handleSubmit,
-    isFetching: state.isFetching,
+    isFetching: state.credReducer.isFetching,
     submitit: state.submitit
   }), 
-  {}
+  {credSignup:credActs.credSignup,
+    addNewCred:credActs.addNewCred,
+    addcred:credActs.addcred,
+    addCred:credActs.addCred}
 )(SignupR)
+
+SignupR.propTypes = {
+  credentials: PropTypes.object,
+  isFetching: PropTypes.bool,
+  
+
+
+}
 
 // const hocThatWillConnectTitleToReduxStore = connect(mapStateToProps, {});
 // const componentThatHasTitleConnectedToReduxStore = hocThatWillConnectTitleToReduxStore(
