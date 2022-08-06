@@ -75,7 +75,7 @@ const credsif = () =>{
       }
    
 
-  },{credd});
+  },[{credd}]);
 
 
 
@@ -191,6 +191,7 @@ export default connect(
 SignupR.propTypes = {
   credentials: PropTypes.object,
   isFetching: PropTypes.bool,
+  handleInputChange: PropTypes.func
   
   
 

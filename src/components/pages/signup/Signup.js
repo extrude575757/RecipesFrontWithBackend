@@ -5,7 +5,7 @@ import SignupR from "./SignupR";
 import {credActs} from '../../../state/actions'; 
 import Formcomp from "../../common/Formcomp";
 import { Link, useHistory } from 'react-router-dom';
-const Signup = ({isFetching , props})=>{
+const Signup = ({isFetching ,props})=>{
   const { push } = useHistory();
 const [fetched,setFetched] = useState(false);
   // const {credd, isFetching,credentials} = {...props};

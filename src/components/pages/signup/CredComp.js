@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 // import Inputchange  from './Inputchange';
 // import Buttonchange from './Buttonchange';
 import Formcomp from '../../common/Formcomp';
-const CredComp = (props) =>{
-  const {handleSubmit,value,credentials,isFetching} = {...props}
+const CredComp = ({handleSubmit,value,credentials,isFetching}) =>{
+  // const {handleSubmit,value,credentials,isFetching} = {...props}
   // const {username, id, password, department, role} = {...credentials}
 
 
@@ -45,7 +45,7 @@ const CredComp = (props) =>{
             props.handleInputChange(e);
         }
     }
-    const onchange = (e)=>{
+    const onChange = (e)=>{
       
           // setValue({...value, [e.target.name]: e.target.value});
        
@@ -118,7 +118,7 @@ const Overboard = () =>{
     return(
       <>
 
-      <Formcomp value={value} isFetching={isFetching} 
+      <Formcomp {...props} value={value} isFetching={isFetching} 
       credentials={credentials} credd={credd} 
       handleSubmit={handleSubmit} 
       handleInputChange={handleInputChange}  />

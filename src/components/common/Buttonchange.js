@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 import Inputchange  from './Inputchange';
 import PropTypes from 'prop-types'
-const Buttonchange = ({...props}) =>{
-  const {handleSubmit,value,credentials,isFetching} = {...props}
-  const {username, id, password, department, role} = {...credentials}
+const Buttonchange = ({handleSubmit,value,credentials,isFetching}) =>{
+//   const {handleSubmit,value,credentials,isFetching} = {...props}
+//   const {username, id, password, department, role} = {...credentials}
 
 //   const [value,setValue] = useState({
 //     id:46,

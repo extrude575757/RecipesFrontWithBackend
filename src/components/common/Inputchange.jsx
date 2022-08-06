@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 import PropTypes from 'prop-types';
-const Inputchange = (props) =>{
+const Inputchange = ({props,handleInputChange,value, onchange,isFetching,labelFor,credentials}) =>{
 //   const {username, id, password, department, role} = {...credentials}
 
 //   const [value,setValue] = useState({
@@ -12,8 +12,8 @@ const Inputchange = (props) =>{
 //     department:  'No Dep',
 //     role:1
 // })
-const {value, onchange,  credentials,isFetching,labelFor } = {...props};
-const { username,department,password,role  } = {credentials}
+// const {value, onchange,  credentials,isFetching,labelFor } = {...props};
+const { username,department,password,role  } = {...credentials}
 
 
     const formName =(f)=>{
@@ -62,7 +62,7 @@ const { username,department,password,role  } = {credentials}
                 name="password"
                 value={ password}
                 onChange={e =>
-                  props.onchange(e)
+                  onchange(e)
                 }
               />
                 </>
@@ -79,7 +79,7 @@ const { username,department,password,role  } = {credentials}
                 name="department"
                 value={ department}
                 onChange={(e) =>{
-                  props.onchange(e)
+                  onchange(e)
                 }}
               />
                 </>
@@ -96,7 +96,7 @@ const { username,department,password,role  } = {credentials}
                 name="role"
                 value={ role}
                 onChange={(e) =>{
-                  props.onchange(e)
+                  onchange(e)
                 }}
               />
                 </>
@@ -129,5 +129,6 @@ Inputchange.propTypes = {
     labelFor: PropTypes.string.isRequired,
     value: PropTypes.object,
     isFetching: PropTypes.bool,
-    onchange: PropTypes.func.isRequired
+    onchange: PropTypes.func.isRequired,
+    handleInputChange: PropTypes.func
 }

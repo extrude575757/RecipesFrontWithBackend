@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 import Inputchange  from './Inputchange';
 import Buttonchange from './Buttonchange';
-const Formcomp = ({credentials,isFetching,value}) =>{
+import PropTypes from 'prop-types';
+
+const Formcomp = ({credentials,handleInputChange,isFetching,value}) =>{
   // const {handleSubmit,value,credentials,isFetching} = {...props}
   // const {username, id, password, department, role} = {...credentials}
 
@@ -49,7 +51,7 @@ const Formcomp = ({credentials,isFetching,value}) =>{
           // setValue({...value, [e.target.name]: e.target.value});
        
 
-            props.handleInputChange(e,value);
+            handleInputChange(e,value);
         
     }
 
@@ -153,3 +155,7 @@ export default connect(
   }),
   {}
 )(Formcomp)
+
+Formcomp.propTypes = {
+  handleInputChange: PropTypes.func
+}
