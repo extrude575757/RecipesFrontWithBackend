@@ -1,107 +1,154 @@
-import React, {useState,useEffect}  from "react";
+import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import {addNewCred,credSignup } from '../../../state/actions/credActions'
-import axiosWithAuth from "../../../utils/axiosWithAuth";
-import { Signup} from ".";
-import Formcomp from "../../common/Formcomp"
-const CredComp =({...props}) =>{
-  const {cred,handleInputChange,submitf,isFetching} = {...props};
-  const {credentials} = {...cred};
-  // const {id,username,password,department,role} = cred?.credentials; 
-  let onsubit = (e) =>{
+// import {credActs } from '../../state/actions/credActions'
+// import Inputchange  from './Inputchange';
+// import Buttonchange from './Buttonchange';
+import Formcomp from '../../common/Formcomp';
+const CredComp = (props) =>{
+  const {handleSubmit,value,credentials,isFetching} = {...props}
+  // const {username, id, password, department, role} = {...credentials}
 
-      if(typeof credentials === undefined || props.credentials === null){
-          
-        props.handleSubmit(e);
-      }else{
-        submitf(e)
-      }
-    
-  }
 
-  const formsubs = ()=>{
-    return(
-      <div>
-      
-      <form onSubmit={(e) =>{
-        onsubit(e)
-      }}>
-        <label htmlFor='username'>
-          Username
-        </label>
-        <input
+
+    const submitf =(e)=>{
+        try{
+          // credentials[0]= {...value, [value.target.name]: value.target.value}
+          // e.preventDefault();
+          console.log(value.username)
         
-          type="text"
-          name="username"
-          value={
-           credentials?.username
-          }
-          onChange={
-            handleInputChange
-          }
-        />
-        <label htmlFor='password'>
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          value={ props?.credentials?.password}
-          onChange={
-            handleInputChange
-          }
-        />
-        <label htmlFor='department'>
-            Department
-        </label>
-        <input 
-          type="text"
-          name="department"
-          value={ props?.credentials?.department}
-          onChange={
-            handleInputChange
-          }
-        />
-        <label htmlFor='role'>
-            Role
-        </label>
-        <input 
-          type="text"
-          name="role"
-          value={ props?.credentials?.role}
-          onChange={handleInputChange
-          }
-        />
-       <button type="Submit">Register</button>
-      </form>
-      </div>)
+          handleSubmit(e,value)
+          
+            // if(value !== undefined && props.handleSubmit !== undefined ){
+            //     // handleSubmit(e);
+            //     // credentials[0] =   {...value, [value.target.name]: value.target.value};
+                
+            //     credSignup({value});
+            // }else
+            //   if(props.credentials === undefined || props.credentials === null){
+            
+            //     props.credentials = {...value}
+            //     credSignup(value);
+            //   }else{
+            //     console.log('wentformsubs')
+            //     formSubs(e)
+            //   }
+        }
     
-  }
+    catch(e){
+        console.log(e);
+    }
+}
 
-    return (
+    const formName =(f)=>{
+        if(username !== undefined){
+            console.log(f);
+            props.handleInputChange(e);
+        }
+    }
+    const onchange = (e)=>{
+      
+          // setValue({...value, [e.target.name]: e.target.value});
+       
+
+            props.handleInputChange(e,value);
+        
+    }
 
 
-      (typeof credentials === undefined)
-  ? null 
-  : 
-      formsubs()
+  
+    const formsubs = ()=>{
+      
+        <div>
+        
+        <form onSubmit={(e) =>submitf(e)}>
+          <label htmlFor='username'>
+            Username
+          </label>
+          <input
+          
+            type="text"
+            name="username"
+            value={
+             value.username
+            }
+            onChange={(e) =>{
+              onChange(e)
+            }}
+          />
+          <label htmlFor='password'>
+            Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={ value.password}
+            onChange={(e) =>{
+              onChange(e)
+            }}
+          />
+          <label htmlFor='department'>
+              Department
+          </label>
+          <input 
+            type="text"
+            name="department"
+            value={ value.department}
+            onChange={(e) =>{
+              onChange(e)
+            }}
+          />
+          <label htmlFor='role'>
+              Role
+          </label>
+          <input 
+            type="text"
+            name="role"
+            value={value.role}
+            onChange={(e) =>{
+              onchange(e);
+            }}
+          />
+         <button type="Submit">Register</button>
+        </form>
+        </div>
+      
+    }
+const overboard = () =>{
+  if(typeof value !== undefined || value !== null ){
+    return(
+      <>
+
+      <Formcomp value={value} isFetching={isFetching} 
+      credentials={credentials} credd={credd} 
+      handleSubmit={handleSubmit} 
+      handleInputChange={handleInputChange}  />
+      
+      </>
     )
-
-
+  }
+}
+    return (
+     
+      
+      isFetching === false && overboard()
+        
+       
+    
+    );
 }
 
 
-const mapStateToProps = ({...state}) => {
-  return ({
-    handleInputChange: state?.inputChange,
-    credentials: state?.credReducer?.cred?.credentials,
-    credSignup: state.credReducer.credSignup,
-    handleSubmit: state.handleSubmit
-  });
-};
 
 
-export default connect(mapStateToProps, { credSignup })(CredComp);
-
- 
+export default connect(
+  state => ({
+    value: state.value,
+    cred : state,
+    credentials: state.credentials,
+    isFetching: state.isFetching,
+  credSignup: state.credReducer.credSignup,
+  handleInputChange: state.handleInputChange,
+  handleSubmit:state.handleSubmit
+  }),
+  {}
+)(CredComp)

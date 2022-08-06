@@ -8,8 +8,8 @@ import CredComp from "./CredComp";
 
 const SignupR = ({...props}) => {
 
-
-  const [value,setValue] = useState({
+const {value} = {...props}
+  const [val,setValue] = useState({
     id:46,
     username: ' f', 
     password: 'padnma',
@@ -18,8 +18,8 @@ const SignupR = ({...props}) => {
 })
 
 
-  const {credentials,isFetching,error} = {...props};
-
+  const {credentials,error,cred} = {...props};
+const {isFetching}= {...cred}
   const {id,username,password,department,role} = {credentials};
   // const {id,username,department,password,role} = cred.credentials[0] ;
   const [ credd, setNewCredd] = useState({
@@ -159,12 +159,14 @@ const credsif = () =>{
       })
   };
 
-
+const signed = () =>{
+  (typeof credd === undefined ||
+    typeof isFetching === undefined) ? <Signup credd={credd} /> : 
+    <CredComp value={value} isFetching={isFetching} credentials={credentials} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
+}
     
         return (
-          (typeof credd === undefined ||
-          typeof isFetching === undefined) ? <Signup credd={credd} /> : 
-          <Formcomp value={value} isFetching={isFetching} credentials={credentials} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
+          signed()
         );
       }
   
@@ -177,7 +179,7 @@ export default connect(
   state => ({
     handleInputChange: state.handleInputChange,
     value: state.value,
-    cred: state.cred,
+    cred: state,
     credentials: state.credentials,
     credSignup: state.credSignup,
     handleSubmit: state.handleSubmit,

@@ -13,7 +13,7 @@ const Inputchange = (props) =>{
 //     role:1
 // })
 const {value, onchange,  credentials,isFetching,labelFor } = {...props};
-const { username,department,password,role  } = {value}
+const { username,department,password,role  } = {credentials}
 
 
     const formName =(f)=>{
@@ -46,7 +46,7 @@ const { username,department,password,role  } = {value}
                username
               }
               onChange={e =>
-                props.onchange(e)
+                onchange(e)
               }
             />
             </>
@@ -101,13 +101,19 @@ const { username,department,password,role  } = {value}
               />
                 </>
             )
+        }else{
+            return(
+                <>
+                errros today
+                </>
+            )
         }
         
     }
 
     return (
        (typeof isFetching !== undefined && typeof value !== undefined && isFetching === false &&
-        thenames())
+        <thenames />)
     );
 }
 
@@ -123,5 +129,5 @@ Inputchange.propTypes = {
     labelFor: PropTypes.string.isRequired,
     value: PropTypes.object,
     isFetching: PropTypes.bool,
-    onchange:PropTypes.func.isRequired
+    onchange: PropTypes.func.isRequired
 }

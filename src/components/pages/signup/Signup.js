@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import CredComp from "./CredComp";
 import { connect } from "react-redux";
 import SignupR from "./SignupR";
-import {credSignup,addNewCred,addcred,addCred} from '../../../state/actions/credActions'; 
+import {credActs} from '../../../state/actions'; 
 import Formcomp from "../../common/Formcomp";
 import { Link, useHistory } from 'react-router-dom';
 const signup = (props)=>{
@@ -76,12 +76,15 @@ return (
 
   export default connect(
     state => ({
-      cred : state.cred,
+      cred : state,
       credentials: state.credentials,
       submitit: state.submitit,
       isFetching: state.isFetching
     }), 
-    {credSignup,addNewCred,addcred,addCred}
+    {credSignup:credActs.credSignup,
+    addNewCred:credActs.addNewCred,
+    addcred:credActs.addcred,
+    addCred:credActs.addCred}
   )(signup)
 
 

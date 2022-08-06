@@ -144,8 +144,8 @@ const overboard = () =>{
 
 export default connect(
   state => ({
-    value: state?.value,
-    cred : state.cred,
+    value: state.value,
+    cred : state,
     credentials: state.credentials,
     isFetching: state.isFetching,
   credSignup: state.credReducer.credSignup,

@@ -1,4 +1,4 @@
-import { ADD_CRED, ADD_NEW_CREDS, ADD_CREDS,GET_CREDS_FAIL,GET_CREDS_START,GET_CREDS_SUCCESS } from "../actions/credActions";
+import { credActs, ADD_CREDS,ADD_CRED,ADD_NEW_CREDS,GET_CREDS_FAIL,GET_CREDS_SUCCESS,GET_CREDS_START } from "../actions/credActions";
 
 const cred = {
    
@@ -12,14 +12,16 @@ const cred = {
             isFetching:false,
             error:' '
 };
-const credReducer = (state = cred, action) => {
-  console.log(`NAL: credentials: action: `,cred.credentials[0], action);
+export const credReducer = (state = cred, action) => {
+  console.log(`NAL: credentials: action: `,cred, action);
   switch (action.type) {
+
+
 
     
    
       case ADD_CREDS:
-          return{
+          return({
             ...state,
             credentials: [
               ...state.credentials,
@@ -35,7 +37,7 @@ const credReducer = (state = cred, action) => {
             ],
             isFetching:true,
             error:'' 
-          };
+          });
       
 
       case ADD_CRED:
