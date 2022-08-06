@@ -30,7 +30,7 @@ const { username,department,password,role  } = {credentials}
         
     // }
 
-    const thenames = ()=> {
+    const Thenames = ()=> {
         
        
         if(labelFor === 'username'){
@@ -113,7 +113,7 @@ const { username,department,password,role  } = {credentials}
 
     return (
        (typeof isFetching !== undefined && typeof value !== undefined && isFetching === false &&
-        <thenames />)
+        <Thenames />)
     );
 }
 

@@ -83,20 +83,20 @@ const sl = ( )=>{
   // isFetching  = false
 return(
   (typeof isFetching !== undefined && isFetching === false) ? 
-<SignupR {...props} isFetching ={isFetching}  />
+<SignupR  isFetching ={isFetching}  />
 : null
 
 )
 }
 return (
- !isFetching  && <Shoot  />
+ !isFetching  && <SignupR  />
 
 )
 
 }
 export default connect(
   state => ({
-    isFetching: state.isFetching
+    isFetching: state.credReducer.isFetching
   }),
   {}
 )(Signup)

@@ -6,7 +6,7 @@ import Formcomp  from "../../common/Formcomp";
 import {credActs } from '../../../state/actions'; 
 import CredComp from "./CredComp";
 import PropTypes from 'prop-types';
-const SignupR = ({credentials,isFetching}) => {
+const SignupR = ({credentials,isFetching,props}) => {
 
 // const {value} = {...props}
   const [val,setValue] = useState({
@@ -38,7 +38,7 @@ const SignupR = ({credentials,isFetching}) => {
 const credsif = () =>{
   
     if(credentials !== undefined && props !== undefined && credd !== undefined){
-      setNewCredd( {credentials:{username:'tom'}})
+      setNewCredd( {credentials:{username:'tom',password:'pas',department:'fun',role:1}})
       console.log('credsin1 '+credentials.username ,credd.credentials.username); 
       
         // addNewCred(credd.credentials); 
@@ -61,13 +61,13 @@ const credsif = () =>{
       // else if(credentials !== undefined && credd !== undefined)
       else{
         setNewCredd({
-          credentials:[{
+          credentials:{
               id:0,
             username: username | ' ',
             password: ' ',
             department: 'Nah Deps',
             role:1
-          } ]     ,
+          }   ,
           isFetching:false,
           error:''
         })
@@ -156,14 +156,14 @@ const credsif = () =>{
       })
   };
 
-const signed = () =>{
+const Signed = () =>{
   (typeof credd === undefined ||
-    typeof isFetching === undefined) ? <CredComp credd={credd} /> : 
+    typeof isFetching === undefined) ? <Signup credd={credd} /> : 
     <CredComp value={val} isFetching={isFetching} credentials={credentials} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
 }
     
         return (
-          signed()
+          <Formcomp />
         );
       }
   

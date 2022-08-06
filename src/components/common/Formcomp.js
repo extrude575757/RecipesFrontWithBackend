@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 import Inputchange  from './Inputchange';
 import Buttonchange from './Buttonchange';
-const Formcomp = (props) =>{
-  const {handleSubmit,value,credentials,isFetching} = {...props}
+const Formcomp = ({credentials,isFetching,value}) =>{
+  // const {handleSubmit,value,credentials,isFetching} = {...props}
   // const {username, id, password, department, role} = {...credentials}
 
 
@@ -112,16 +112,16 @@ const Formcomp = (props) =>{
         </div>
       
     }
-const overboard = () =>{
+const Overboard = () =>{
   if(typeof value !== undefined || value !== null ){
     return(
       <>
       <form >
       
-    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'username'} username={value.username}/>
-    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'password'} password={value.password}/>
-    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'department'} department={value.department}/>
-    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'role'} role={value.role}/>
+    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'username'} username={credentials?.username}/>
+    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'password'} password={credentials?.password}/>
+    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'department'} department={credentials?.department}/>
+    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'role'} role={credentials?.role}/>
     
    <Buttonchange value={value}/>
   </form>
@@ -132,7 +132,7 @@ const overboard = () =>{
     return (
      
       
-         overboard()
+         <Overboard />
         
        
     
@@ -147,8 +147,7 @@ export default connect(
     value: state.value,
     cred : state,
     credentials: state.credentials,
-    isFetching: state.isFetching,
-  credSignup: state.credReducer.credSignup,
+    isFetching: state.credReducer.isFetching,
   handleInputChange: state.handleInputChange,
   handleSubmit:state.handleSubmit
   }),
