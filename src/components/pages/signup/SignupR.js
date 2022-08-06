@@ -158,7 +158,7 @@ const credsif = () =>{
 
 const signed = () =>{
   (typeof credd === undefined ||
-    typeof isFetching === undefined) ? <Signup credd={credd} /> : 
+    typeof isFetching === undefined) ? <CredComp credd={credd} /> : 
     <CredComp value={val} isFetching={isFetching} credentials={credentials} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
 }
     
