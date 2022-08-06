@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
-import signup  from "./signup";
+import Signup  from "./Signup";
 import axiosWithAuth from '../../../utils/axiosWithAuth';
 import Formcomp  from "../../common/Formcomp";
 import {credSignup,addCred,addNewCred,addcred, GET_CREDS_FAIL } from '../../../state/actions/credActions'; 
@@ -9,9 +9,16 @@ import CredComp from "./CredComp";
 const SignupR = ({...props}) => {
 
 
+  const [value,setValue] = useState({
+    id:46,
+    username: ' f', 
+    password: 'padnma',
+    department:  'No Dep',
+    role:1
+})
 
 
-  const {credentials,isFetching,error,value} = {...props};
+  const {credentials,isFetching,error} = {...props};
 
   const {id,username,password,department,role} = {credentials};
   // const {id,username,department,password,role} = cred.credentials[0] ;
@@ -155,8 +162,9 @@ const credsif = () =>{
 
     
         return (
-          (typeof credd !== undefined &&
-          isFetching) ? <signup credd={credd} /> : <Formcomp isFetching={isFetching} credentials={credentials}credd={credd}handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
+          (typeof credd === undefined ||
+          typeof isFetching === undefined) ? <Signup credd={credd} /> : 
+          <Formcomp value={value} isFetching={isFetching} credentials={credentials} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
         );
       }
   
@@ -168,6 +176,7 @@ const credsif = () =>{
 export default connect(
   state => ({
     handleInputChange: state.handleInputChange,
+    value: state.value,
     cred: state.cred,
     credentials: state.credentials,
     credSignup: state.credSignup,

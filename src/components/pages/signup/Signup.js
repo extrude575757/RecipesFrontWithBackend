@@ -8,7 +8,7 @@ import { Link, useHistory } from 'react-router-dom';
 const signup = (props)=>{
   const { push } = useHistory();
 
-const {handleInputChange,credd} = {...props};
+const {handleInputChange,credd, isFetching,credentials} = {...props};
 
   const submitit = (e,n) => {
     // e.preventDefault();
@@ -19,14 +19,13 @@ console.log('handling submit',n)
 isFetching = true;
       if(isFetching){
        e.preventDefault();
-       credSignup(credentials[0]);
+       credSignup(credentials);
        console.log(props,'submit state'+credd) ;
        push('/login/');
        isFetching = false;
         // handleInputChange(e);
       }else{
-       console.log(credd,n,'didnwork')
-
+       console.log(credd,n,'didnwork') 
     console.log(credd)
       }
 
@@ -65,7 +64,7 @@ const inputChange = (e)=>{
   }
 }
 return (
-     <SignupR submitit={submitit}/>  
+     typeof isFetching !== undefined && isFetching === false &&<SignupR credentials={credentials} />  
 
 )
 

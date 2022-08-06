@@ -2,8 +2,7 @@ import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 import PropTypes from 'prop-types';
-const Inputchange = ({...props}) =>{
-  const {handleSubmit,credentials} = {...props}
+const Inputchange = (props) =>{
 //   const {username, id, password, department, role} = {...credentials}
 
 //   const [value,setValue] = useState({
@@ -13,8 +12,8 @@ const Inputchange = ({...props}) =>{
 //     department:  'No Dep',
 //     role:1
 // })
-
-const {labelFor, username,department,password,role, ttype, uname, val, isFetching   } = {...props}
+const {value, onchange,  credentials,isFetching,labelFor } = {...props};
+const { username,department,password,role  } = {value}
 
 
     const formName =(f)=>{
@@ -32,6 +31,7 @@ const {labelFor, username,department,password,role, ttype, uname, val, isFetchin
     // }
 
     const thenames = ()=> {
+        
        
         if(labelFor === 'username'){
            return(
@@ -92,7 +92,7 @@ const {labelFor, username,department,password,role, ttype, uname, val, isFetchin
                 {labelFor}
               </label>
               <input
-                type="text"
+                type="number"
                 name="role"
                 value={ role}
                 onChange={(e) =>{
@@ -103,23 +103,11 @@ const {labelFor, username,department,password,role, ttype, uname, val, isFetchin
             )
         }
         
-
-       
     }
 
-
     return (
-      
-        
-        isFetching === false &&
-        
-          thenames()
-
-
-        
-        
-    
-      
+       (typeof isFetching !== undefined && typeof value !== undefined && isFetching === false &&
+        thenames())
     );
 }
 
@@ -127,12 +115,13 @@ const {labelFor, username,department,password,role, ttype, uname, val, isFetchin
 export default Inputchange;
 
 Inputchange.propTypes = {
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    department: PropTypes.string.isRequired,
-    role: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    username: PropTypes.string,
+    password: PropTypes.string,
+    department: PropTypes.string,
+    role: PropTypes.number,
     labelFor: PropTypes.string.isRequired,
-    value: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool.isRequired,
+    value: PropTypes.object,
+    isFetching: PropTypes.bool,
     onchange:PropTypes.func.isRequired
 }

@@ -2,17 +2,12 @@ import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 import Inputchange  from './Inputchange';
-const Formcomp = ({...props}) =>{
-  const {handleSubmit,credentials,isFetching} = {...props}
-  const {username, id, password, department, role} = {...credentials}
+import Buttonchange from './Buttonchange';
+const Formcomp = (props) =>{
+  const {handleSubmit,value,credentials,isFetching} = {...props}
+  // const {username, id, password, department, role} = {...credentials}
 
-  const [value,setValue] = useState({
-    id:46,
-    username:  username || ' f', 
-    password: 'padnma',
-    department:  'No Dep',
-    role:1
-})
+
 
     const submitf =(e)=>{
         try{
@@ -43,26 +38,6 @@ const Formcomp = ({...props}) =>{
     }
 }
 
-const submit =(e)=>{
-//   try{
-   
-//     isFetching = true;
-//      console.log(isFetching)
-//      addNewCred(credentials);
-//     props.handleSubmit(e,value);
-//   }
-
-// catch(e){
-//   console.log(e);
-// }
-//  credentials[0].username = value.username
-//  const newup = {...value, [value.target.name]: value.target.value};
-//  console.log('new'+newup);
- 
-// credSignup({...credentials[0], [value.target.name]: value.target.value})
-}
-
-
     const formName =(f)=>{
         if(username !== undefined){
             console.log(f);
@@ -71,7 +46,7 @@ const submit =(e)=>{
     }
     const onchange = (e)=>{
       
-          setValue({...value, [e.target.name]: e.target.value});
+          // setValue({...value, [e.target.name]: e.target.value});
        
 
             props.handleInputChange(e,value);
@@ -137,19 +112,30 @@ const submit =(e)=>{
         </div>
       
     }
-
-    return (
+const overboard = () =>{
+  if(typeof value !== undefined || value !== null ){
+    return(
       <>
+      <form >
+      
+    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'username'} username={value.username}/>
+    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'password'} password={value.password}/>
+    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'department'} department={value.department}/>
+    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'role'} role={value.role}/>
+    
+   <Buttonchange value={value}/>
+  </form>
+      </>
+    )
+  }
+}
+    return (
+     
+      
+         overboard()
         
-       <form >
-        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'username'} username={value.username}/>
-        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'password'} password={value.password}/>
-        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'department'} department={value.department}/>
-        <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'role'} role={value.role}/>
-        
-       <button  onClick={(e) =>submitf(e)} >Register</button>
-      </form>
-      </> 
+       
+    
     );
 }
 
@@ -158,13 +144,12 @@ const submit =(e)=>{
 
 export default connect(
   state => ({
-    value: state.value,
+    value: state?.value,
     cred : state.cred,
     credentials: state.credentials,
     isFetching: state.isFetching,
   credSignup: state.credReducer.credSignup,
   handleInputChange: state.handleInputChange,
-  // handleSubmit: state.handleSubmit
   handleSubmit:state.handleSubmit
   }),
   {}
