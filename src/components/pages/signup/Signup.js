@@ -72,18 +72,18 @@ const [fetched,setFetched] = useState(false);
 //   // props.cred.credReducer.credentials[0].username
 //   )
 // }
-const shoot = () =>{
+ let shoot = () =>{
   // isFetching  = false
-  return(
+ 
     <div>{isFetching}
-    no
+    now loading
     </div>
-  )
+  
 }
 return (
      typeof fetched !== undefined && fetched === false ? 
      <SignupR  isFetching={fetched} />
-     : shoot()
+     : <shoot />
 
 )
 

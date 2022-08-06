@@ -146,7 +146,6 @@ export default connect(
     cred : state,
     credentials: state.credentials,
     isFetching: state.isFetching,
-  credSignup: state.credReducer.credSignup,
   handleInputChange: state.handleInputChange,
   handleSubmit:state.handleSubmit
   }),

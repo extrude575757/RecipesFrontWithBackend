@@ -6,9 +6,9 @@ import Formcomp  from "../../common/Formcomp";
 import {credActs } from '../../../state/actions'; 
 import CredComp from "./CredComp";
 import PropTypes from 'prop-types';
-const SignupR = ({...props}) => {
+const SignupR = ({credentials,isFetching}) => {
 
-const {value} = {...props}
+// const {value} = {...props}
   const [val,setValue] = useState({
     id:46,
     username: ' f', 
@@ -18,44 +18,37 @@ const {value} = {...props}
 })
 
 
-  const {credentials,error,cred} = {...props};
-const {isFetching}= {...cred}
-  const {id,username,password,department,role} = {credentials};
+  // const {credentials,error,cred} = {...props};
+// const {isFetching}= {...cred}
+  // const {id,username,password,department,role} = {credentials};
   // const {id,username,department,password,role} = cred.credentials[0] ;
   const [ credd, setNewCredd] = useState({
-    credentials:[{
+    credentials:{
         id:0,
-      username: value?.username ||'ffa ',
-      password: value?.password    || ' ',
-      department:  value?.department !== undefined && value.department || 'Nah Deps',
+      username: credentials.username ||'ffa ',
+      password: credentials.password    || ' ',
+      department:  credentials.department !== undefined && credentials.department || 'Nah Deps',
       role:1
-    } ]     ,
+    }     ,
     isFetching:false,
     error:''
   });
 
 
 const credsif = () =>{
-  try{
+  
     if(credentials !== undefined && props !== undefined && credd !== undefined){
       setNewCredd( {credentials:{username:'tom'}})
-      console.log('credsin1 '+credentials.username ,credd.credentials[0].username); 
+      console.log('credsin1 '+credentials.username ,credd.credentials.username); 
       
         // addNewCred(credd.credentials); 
     }
-    throw{
-      CredComp
-       
-      
-    }
-  }catch(e){
-    console.log(e);
-  }
+
 }
 
   useEffect(()=>{
 
-    try{
+  
       if(typeof credd !== undefined ){
 
         console.log(isFetching)
@@ -80,11 +73,9 @@ const credsif = () =>{
         })
   
       }
-    }catch(e){
-      console.log(e);
-    }
+   
 
-  },[{credd}]);
+  },{credd});
 
 
 
@@ -172,7 +163,7 @@ const signed = () =>{
 }
     
         return (
-          <CredComp />
+          signed()
         );
       }
   
@@ -200,6 +191,7 @@ export default connect(
 SignupR.propTypes = {
   credentials: PropTypes.object,
   isFetching: PropTypes.bool,
+  
   
 
 
