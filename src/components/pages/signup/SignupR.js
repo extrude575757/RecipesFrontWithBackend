@@ -52,10 +52,10 @@ const credsif = () =>{
     try{
       if(typeof credd !== undefined ){
 
-      
+        console.log(isFetching)
         credsif({...credd.credentials});
       } else if(typeof credentials === undefined && credd !== undefined){
-       credentials = {...credd};
+      
        console.log(isFetching)
      
       } 
@@ -162,7 +162,7 @@ const credsif = () =>{
 const signed = () =>{
   (typeof credd === undefined ||
     typeof isFetching === undefined) ? <Signup credd={credd} /> : 
-    <CredComp value={value} isFetching={isFetching} credentials={credentials} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
+    <CredComp value={val} isFetching={isFetching} credentials={credentials} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
 }
     
         return (
