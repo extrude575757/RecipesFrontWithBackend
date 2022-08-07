@@ -123,8 +123,8 @@ const [laname,setLaname] = useState('username')
 //   },[{...val}])
   const logm = (e) =>{
     console.log(e)
-    console.log(credentials.e)
-    return(credentials.e)
+    console.log(credentials[e])
+    return(credentials[e])
   }
 
     const Thenames = ()=> {
