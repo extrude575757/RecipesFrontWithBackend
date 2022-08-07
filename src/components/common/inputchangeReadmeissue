@@ -1,0 +1,63 @@
+Must figure out this complex logging system to continuely render new state and auto mutate credentials
+
+
+
+
+NAL: titleReducer.js: action:  {type: '@@redux/INITu.b.8.b.8.2'}
+titleReducer.js:9 NAL: titleReducer.js: action:  {type: '@@redux/PROBE_UNKNOWN_ACTIONg.h.7.i.6.9'}
+recipesReducer.js:21 NAL: recipesReducer: action:  {type: '@@redux/INITu.b.8.b.8.2'}
+recipesReducer.js:21 NAL: recipesReducer: action:  {type: '@@redux/PROBE_UNKNOWN_ACTIONd.o.b.g.q.0.p'}
+credReducer.js:16 NAL: credentials: action:  {credentials: Array(1), isFetching: false, error: ' '} {type: '@@redux/INITu.b.8.b.8.2'}
+credReducer.js:16 NAL: credentials: action:  {credentials: Array(1), isFetching: false, error: ' '} {type: '@@redux/PROBE_UNKNOWN_ACTIONu.9.v.v.v.v'}
+titleReducer.js:9 NAL: titleReducer.js: action:  {type: '@@redux/INITu.b.8.b.8.2'}
+recipesReducer.js:21 NAL: recipesReducer: action:  {type: '@@redux/INITu.b.8.b.8.2'}
+credReducer.js:16 NAL: credentials: action:  {credentials: Array(1), isFetching: false, error: ' '} {type: '@@redux/INITu.b.8.b.8.2'}
+Inputchange.jsx:148 username {}
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:148 password {}
+Inputchange.jsx:149 passwords
+Inputchange.jsx:148 department {}
+Inputchange.jsx:149 No Dep
+Inputchange.jsx:148 role {}
+Inputchange.jsx:149 1
+CredComp.js:130 credData: man  cc.username: Dizzy  credentials.username: Dizzy
+Inputchange.jsx:78 a Dizzy
+Inputchange.jsx:90 a logg {}  {}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:78 Dizzys Dizzy
+Inputchange.jsx:90 Dizzys logg username a {username: 'a'}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:78 Dizzyd Dizzy
+Inputchange.jsx:90 Dizzyd logg username Dizzys {username: 'Dizzys'}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:78 Dizzyf Dizzy
+Inputchange.jsx:90 Dizzyf logg username Dizzyd {username: 'Dizzyd'}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:78 Dizzyd Dizzy
+Inputchange.jsx:90 Dizzyd logg username Dizzyf {username: 'Dizzyf'}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:78 Dizzys Dizzy
+Inputchange.jsx:90 Dizzys logg username Dizzyd {username: 'Dizzyd'}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:78 Dizzya Dizzy
+Inputchange.jsx:90 Dizzya logg username Dizzys {username: 'Dizzys'}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:78 Dizzys Dizzy
+Inputchange.jsx:90 Dizzys logg username Dizzya {username: 'Dizzya'}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:78 Dizzyd Dizzy
+Inputchange.jsx:90 Dizzyd logg username Dizzys {username: 'Dizzys'}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy
+Inputchange.jsx:78 Dizzya Dizzy
+Inputchange.jsx:90 Dizzya logg username Dizzyd {username: 'Dizzyd'}
+Inputchange.jsx:148 username username
+Inputchange.jsx:149 Dizzy

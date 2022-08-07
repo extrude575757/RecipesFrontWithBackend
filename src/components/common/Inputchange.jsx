@@ -73,34 +73,37 @@ const [laname,setLaname] = useState({})
            }
       }
       const [vaname,setVaname] = useState('')
-  
-      const matchcred = (aname,aval) =>{
+      const [bal,setBal] =useState({});
+      const matchcred = (aname,aval,b) =>{
         console.log(aval,credentials.username)
         if(aval !== credentials.username){
             setLaname(aname)
         setVaname(aval);
 
-        console.log('logg',laname,vaname) 
         // credentials?.map( e =>{
         //     credentials[laname] = vaname;
         // })
        
-            credentials[laname] = vaname;
-        
+            credentials = {...b,[laname]:vaname};
+            setBal({...b})
+
+        console.log(aval,'logg',laname,vaname,bal) 
         }
       }
 
       const onchange = (e)=>{
         
 
-        const aname = e.target.name;
-        const aval = e.target.value;
-        
-          matchcred(aname,aval)
+        const an = e.target.name;
+        const av = e.target.value;
+        const bs = {...{[e.target.name]:av}}
+        matchcred(an,av,bs)
+          
             
         
-            if(typeof(value ) !== Object && typeof(credentials ) !== Object && typeof(aname) == String ||  
-            aname != laname && typeof(handleInputChange) === function(){handleInputChange(e,value)}  ){
+            if(typeof(value ) !== Object && typeof(credentials ) !== Object && typeof(vaname) == String ||  
+            vaname != laname && typeof(handleInputChange) === function(){return(handleInputChange(e,value))}  ){
+                
                 
                 
             
@@ -108,7 +111,7 @@ const [laname,setLaname] = useState({})
                 //     zval(e),
                 cval(e,aname),
                 handleInputChange(e,value)
-                    ,<Formcomp {...props} thename={laname} credentials={{credentials}} handleInputChange={handleInputChange} value={value} />
+                    ,<Formcomp {...props} thename={laname} credentials={{...credentials}} handleInputChange={handleInputChange} value={value} />
                 )
                   
                    
@@ -118,7 +121,7 @@ const [laname,setLaname] = useState({})
         
                 else
            {
-            <Formcomp {...props} thename={labelFor} credentials={credentials} handleInputChange={handleInputChange} value={value}/>
+            <Signup {...props} thename={labelFor} credentials={credentials} handleInputChange={handleInputChange} value={value}/>
            }
       }
 //   useEffect(() =>{
