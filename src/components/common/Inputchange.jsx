@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 import PropTypes from 'prop-types';
-const Inputchange = ({props,handleInputChange,value, onchange,isFetching,labelFor,credentials}) =>{
+const Inputchange = ({handleInputChange,isFetching,labelFor,credentials}) =>{
 //   const {username, id, password, department, role} = {...credentials}
 
 //   const [value,setValue] = useState({
@@ -29,6 +29,39 @@ const { username,department,password,role  } = {...credentials}
     //         props.handleInputChange(e,value);
         
     // }
+
+    const cval = (e) =>{
+        setValue({...value, [e.target.name]: e.target.value});
+         
+      }
+  
+  
+      const { value,setValue} = useState({
+        id:46,
+        username: ' f', 
+        password: 'padnma',
+        department:  'No Dep',
+        role:1
+      });
+      const onchange = (e)=>{
+        
+           cval(e)
+  
+              handleInputChange(e,value);
+          
+      }
+  useEffect = () =>{
+    if(typeof setValue !== func ){
+      setValue({
+        id:46,
+        username: ' f', 
+        password: 'padnma',
+        department:  'No Dep',
+        role:1
+      })
+    }
+  }
+  
 
     const Thenames = ()=> {
         
@@ -129,6 +162,6 @@ Inputchange.propTypes = {
     labelFor: PropTypes.string.isRequired,
     value: PropTypes.object,
     isFetching: PropTypes.bool,
-    onchange: PropTypes.func.isRequired,
+    onchange: PropTypes.func,
     handleInputChange: PropTypes.func
 }

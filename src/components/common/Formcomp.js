@@ -5,7 +5,7 @@ import Inputchange  from './Inputchange';
 import Buttonchange from './Buttonchange';
 import PropTypes from 'prop-types';
 
-const Formcomp = ({credentials,handleInputChange,isFetching,value}) =>{
+const Formcomp = ({credentials,value,handleInputChange,isFetching}) =>{
   // const {handleSubmit,value,credentials,isFetching} = {...props}
   // const {username, id, password, department, role} = {...credentials}
 
@@ -46,86 +46,111 @@ const Formcomp = ({credentials,handleInputChange,isFetching,value}) =>{
             props.handleInputChange(e);
         }
     }
+    const cval = (e) =>{
+      if(typeof setVal !== undefined){
+        setVal( currState =>{
+          return {...currState, [e?.target?.name]: e?.target?.value}});
+       
+      }
+    }
+
+
+    const { val,setVal} = useState({
+      id:46,
+      username: ' f', 
+      password: 'padnma',
+      department:  'No Dep',
+      role:1
+    });
     const onchange = (e)=>{
       
-          // setValue({...value, [e.target.name]: e.target.value});
-       
+         cval(e)
 
             handleInputChange(e,value);
         
     }
-
+useEffect = () =>{
+  if(typeof setVal === undefined ){
+    setVal({
+      id:46,
+      username: ' f', 
+      password: 'padnma',
+      department:  'No Dep',
+      role:1
+    })
+  }
+}
 
   
-    const formsubs = ()=>{
+    // const formsubs = ()=>{
       
-        <div>
+    //     <div>
         
-        <form onSubmit={(e) =>submitf(e)}>
-          <label htmlFor='username'>
-            Username
-          </label>
-          <input
+    //     <form onSubmit={(e) =>submitf(e)}>
+    //       <label htmlFor='username'>
+    //         Username
+    //       </label>
+    //       <input
           
-            type="text"
-            name="username"
-            value={
-             value.username
-            }
-            onChange={(e) =>{
-              onChange(e)
-            }}
-          />
-          <label htmlFor='password'>
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            value={ value.password}
-            onChange={(e) =>{
-              onChange(e)
-            }}
-          />
-          <label htmlFor='department'>
-              Department
-          </label>
-          <input 
-            type="text"
-            name="department"
-            value={ value.department}
-            onChange={(e) =>{
-              onChange(e)
-            }}
-          />
-          <label htmlFor='role'>
-              Role
-          </label>
-          <input 
-            type="text"
-            name="role"
-            value={value.role}
-            onChange={(e) =>{
-              onchange(e);
-            }}
-          />
-         <button type="Submit">Register</button>
-        </form>
-        </div>
+    //         type="text"
+    //         name="username"
+    //         value={
+    //          value.username
+    //         }
+    //         onChange={(e) =>{
+    //           onChange(e)
+    //         }}
+    //       />
+    //       <label htmlFor='password'>
+    //         Password
+    //       </label>
+    //       <input
+    //         type="password"
+    //         name="password"
+    //         value={ value.password}
+    //         onChange={(e) =>{
+    //           onChange(e)
+    //         }}
+    //       />
+    //       <label htmlFor='department'>
+    //           Department
+    //       </label>
+    //       <input 
+    //         type="text"
+    //         name="department"
+    //         value={ value.department}
+    //         onChange={(e) =>{
+    //           onChange(e)
+    //         }}
+    //       />
+    //       <label htmlFor='role'>
+    //           Role
+    //       </label>
+    //       <input 
+    //         type="text"
+    //         name="role"
+    //         value={value.role}
+    //         onChange={(e) =>{
+    //           onchange(e);
+    //         }}
+    //       />
+    //      <button type="Submit">Register</button>
+    //     </form>
+    //     </div>
       
-    }
+    // }
 const Overboard = () =>{
-  if(typeof value !== undefined || value !== null ){
+  if(typeof val !== undefined || val !== null ){
     return(
       <>
       <form >
       
-    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'username'} username={credentials?.username}/>
-    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'password'} password={credentials?.password}/>
-    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'department'} department={credentials?.department}/>
-    <Inputchange onchange={onchange} isFetching={isFetching} labelFor={'role'} role={credentials?.role}/>
+    <Inputchange onchange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={credentials?.username}/>
+    <Inputchange onchange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={credentials?.password}/>
+    <Inputchange onchange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={credentials?.department}/>
+    <Inputchange onchange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={credentials?.role}/>
     
-   <Buttonchange value={value}/>
+   <Buttonchange value={val}/>
   </form>
       </>
     )
@@ -156,6 +181,6 @@ export default connect(
   {}
 )(Formcomp)
 
-Formcomp.propTypes = {
-  handleInputChange: PropTypes.func
-}
+// Formcomp.propTypes = {
+//   setVal: PropTypes.func
+// }
