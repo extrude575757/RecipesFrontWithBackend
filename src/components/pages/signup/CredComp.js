@@ -123,11 +123,12 @@ const CredComp = ({props,handleSubmit,value,handleInputChange,credentials,credd,
       
     // }
 const [credData,setCredData] = useState({
-  id:0,username: ' ',password:'past',department:'depd',role:1
+  id:0,username: 'man',password:'past',department:'depd',role:1
 })
     const isprev = (cc) =>{
       if(typeof(credData) !== undefined, credData.username !== cc.username){
-        console.log('credData ',credData.username ,' cc,credentials ', cc.username,credentials.username);
+        console.log('credData:',credData.username ,' cc.username:', cc.username,
+        ' credentials.username:',credentials.username);
       }
     }
     useEffect(() => {

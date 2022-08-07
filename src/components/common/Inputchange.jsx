@@ -72,7 +72,23 @@ const [laname,setLaname] = useState({})
                )
            }
       }
+      const [vaname,setVaname] = useState('')
   
+      const matchcred = (aname,aval) =>{
+        console.log(aval,credentials.username)
+        if(aval !== credentials.username){
+            setLaname(aname)
+        setVaname(aval);
+
+        console.log('logg',laname,vaname) 
+        // credentials?.map( e =>{
+        //     credentials[laname] = vaname;
+        // })
+       
+            credentials[laname] = vaname;
+        
+        }
+      }
 
       const onchange = (e)=>{
         
@@ -80,7 +96,7 @@ const [laname,setLaname] = useState({})
         const aname = e.target.name;
         const aval = e.target.value;
         
-            console.log(aval,credentials.username)
+          matchcred(aname,aval)
             
         
             if(typeof(value ) !== Object && typeof(credentials ) !== Object && typeof(aname) == String ||  
@@ -126,7 +142,7 @@ const [laname,setLaname] = useState({})
 //   },[{...val}])
   const logm = (e) =>{
     
-    console.log(e, thename)
+    console.log(e,laname)
     console.log(credentials[e])
     return(credentials[e])
   }
