@@ -6,8 +6,9 @@ import Formcomp  from "../../common/Formcomp";
 import {credActs } from '../../../state/actions'; 
 import CredComp from "./CredComp";
 import PropTypes from 'prop-types';
-const SignupR = ({credentials,isFetching,props}) => {
-
+// import { postNewAvatar } from "../../../../../../ScribleStadium/scribble-stadium-fe/src/api";
+const SignupR = ({credentials,isFetching,props,thename}) => {
+const {username} = {...credentials}
 // const {value} = {...props}
   const [val,setValue] = useState({
     id:46,
@@ -45,34 +46,37 @@ const credsif = () =>{
     }
 
 }
+const nvr = () =>{
+  if(typeof(username) !== undefined && typeof(credd) !== undefined && typeof(thename) === String ){
 
+    console.log(isFetching,val,thename)
+    credsif();
+  } else if(typeof(credentials) === undefined && credd !== undefined){
+  
+   console.log(isFetching)
+ 
+  } 
+  // else if(credentials !== undefined && credd !== undefined)
+  else{
+    setNewCredd({
+      credentials:{
+          id:0,
+        username: username || ' ',
+        password: ' ',
+        department: 'Nah Deps',
+        role:1
+      }   ,
+      isFetching:false,
+      error:''
+    }),
+    <CredComp />
+
+  }
+}
   useEffect(()=>{
 
   
-      if(typeof(credd) !== undefined ){
-
-        console.log(isFetching,val)
-        credsif();
-      } else if(typeof(credentials) === undefined && credd !== undefined){
-      
-       console.log(isFetching)
-     
-      } 
-      // else if(credentials !== undefined && credd !== undefined)
-      else{
-        setNewCredd({
-          credentials:{
-              id:0,
-            username: username | ' ',
-            password: ' ',
-            department: 'Nah Deps',
-            role:1
-          }   ,
-          isFetching:false,
-          error:''
-        })
-  
-      }
+      nvr()
    
 
   },[{credd}]);
@@ -177,7 +181,9 @@ export default connect(
     handleInputChange: state.handleInputChange,
     value: state.value,
     val: state.val,
+    thename: state.thename,
     cred: state.credReducer,
+    credd: state.credd,
     credentials: state.credReducer.credentials[0],
     handleSubmit: state.handleSubmit,
     isFetching: state.credReducer.isFetching,
@@ -191,7 +197,9 @@ export default connect(
 
 SignupR.propTypes = {
   val: PropTypes.object,
+  credd: PropTypes.object,
   value: PropTypes.object,
+  thename: PropTypes.string,
   credentials: PropTypes.object,
   isFetching: PropTypes.bool,
   handleInputChange: PropTypes.func,

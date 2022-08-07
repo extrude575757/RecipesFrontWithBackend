@@ -5,7 +5,7 @@ import Inputchange  from './Inputchange';
 import Buttonchange from './Buttonchange';
 import PropTypes from 'prop-types';
 
-const Formcomp = ({props,credentials,value,val,handleInputChange,isFetching}) =>{
+const Formcomp = ({props,thename,credentials,value,val,handleInputChange,isFetching}) =>{
   // const {handleSubmit,value,credentials,isFetching} = {...props}
   // const {username, id, password, department, role} = {...credentials}
 
@@ -139,13 +139,21 @@ const Formcomp = ({props,credentials,value,val,handleInputChange,isFetching}) =>
     //     </div>
       
     // }
+
+const Handlec = () =>{
+  if(thename === 'username'){
+    return(
+      <Inputchange {...props} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={credentials?.username} />
+    )
+  }
+}
 const Overboard = () =>{
   if(typeof({value}) !== undefined || typeof(value) !== null ){
     return(
       <>
       <form >
       
-    <Inputchange {...props} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={value?.username} />
+    {Handlec(thename)} 
     <Inputchange  {...props} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={value?.password} />
     <Inputchange  {...props} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={value?.department} />
     <Inputchange  {...props} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={value?.role} />
@@ -172,6 +180,7 @@ const Overboard = () =>{
 export default connect(
   state => ({
     value: state.value,
+    thename: state.thename,
     cred : state,
     credentials: state.credReducer.credentials[0],
     isFetching: state.credReducer.isFetching,
@@ -182,6 +191,7 @@ export default connect(
 )(Formcomp)
 
 Formcomp.propTypes = {
+  thename: PropTypes.string,
   setVal: PropTypes.func,
   credentials: PropTypes.object,
   handleInputChange: PropTypes.func

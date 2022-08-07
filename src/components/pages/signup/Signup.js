@@ -5,7 +5,8 @@ import SignupR from "./SignupR";
 import {credActs} from '../../../state/actions'; 
 import Formcomp from "../../common/Formcomp";
 import { Link, useHistory } from 'react-router-dom';
-const Signup = ({isFetching ,props})=>{
+import PropTypes from 'prop-types';
+const Signup = ({isFetching ,props,thename})=>{
   const { push } = useHistory();
 const [fetched,setFetched] = useState(false);
   // const {credd, isFetching,credentials} = {...props};
@@ -81,26 +82,36 @@ const sl = ( )=>{
 }
  const Shoot = () =>{
   // isFetching  = false
+  console.log('thename')
 return(
-  (typeof(isFetching) !== undefined && isFetching === false) ? 
-<SignupR  isFetching ={isFetching}  />
+  (typeof(thename) !== undefined && typeof(isFetching) !== undefined && isFetching === false) ? 
+<SignupR {...props} thename={'username'} isFetching ={isFetching}  />
 : null
 
 )
 }
 return (
- !isFetching  && <Shoot  />
-
+ typeof(isFetching) === Boolean && isFetching === false  ? <Shoot {...props} thename={'username'} isFetching ={isFetching}   />
+: <CredComp />
 )
 
 }
 export default connect(
   state => ({
+    thename: state.thename,
     isFetching: state.credReducer.isFetching
   }),
   {}
 )(Signup)
 
+
+Signup.propTypes = {
+  thename: PropTypes.string,
+  isFetching: PropTypes.bool,
+  
+
+
+}
 
 
 

@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 // import Inputchange  from './Inputchange';
 // import Buttonchange from './Buttonchange';
 import Formcomp from '../../common/Formcomp';
+import { getCredentials } from '../../../api';
 import Signup from './Signup';
 import SignupR from './SignupR';
-const CredComp = ({handleSubmit,value,handleInputChange,credentials,isFetching}) =>{
+import PropTypes from 'prop-types';
+const CredComp = ({props,handleSubmit,value,handleInputChange,credentials,credd,isFetching}) =>{
   // const {handleSubmit,value,credentials,isFetching} = {...props}
   // const {username, id, password, department, role} = {...credentials}
 
@@ -63,65 +65,76 @@ const CredComp = ({handleSubmit,value,handleInputChange,credentials,isFetching})
 
 
   
-    const formsubs = ()=>{
+    // const formsubs = ()=>{
       
-        <div>
+    //     <div>
         
-        <form onSubmit={(e) =>submitf(e)}>
-          <label htmlFor='username'>
-            Username
-          </label>
-          <input
+    //     <form onSubmit={(e) =>submitf(e)}>
+    //       <label htmlFor='username'>
+    //         Username
+    //       </label>
+    //       <input
           
-            type="text"
-            name="username"
-            value={
-             value.username
-            }
-            onChange={(e) =>{
-              onChang(e)
-            }}
-          />
-          <label htmlFor='password'>
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            value={ value.password}
-            onChange={(e) =>{
-              onChang(e)
-            }}
-          />
-          <label htmlFor='department'>
-              Department
-          </label>
-          <input 
-            type="text"
-            name="department"
-            value={ value.department}
-            onChange={(e) =>{
-              onChang(e)
-            }}
-          />
-          <label htmlFor='role'>
-              Role
-          </label>
-          <input 
-            type="text"
-            name="role"
-            value={value.role}
-            onChange={(e) =>{
-              onchang(e);
-            }}
-          />
-         <button type="Submit">Register</button>
-        </form>
-        </div>
+    //         type="text"
+    //         name="username"
+    //         value={
+    //          value.username
+    //         }
+    //         onChange={(e) =>{
+    //           onChang(e)
+    //         }}
+    //       />
+    //       <label htmlFor='password'>
+    //         Password
+    //       </label>
+    //       <input
+    //         type="password"
+    //         name="password"
+    //         value={ value.password}
+    //         onChange={(e) =>{
+    //           onChang(e)
+    //         }}
+    //       />
+    //       <label htmlFor='department'>
+    //           Department
+    //       </label>
+    //       <input 
+    //         type="text"
+    //         name="department"
+    //         value={ value.department}
+    //         onChange={(e) =>{
+    //           onChang(e)
+    //         }}
+    //       />
+    //       <label htmlFor='role'>
+    //           Role
+    //       </label>
+    //       <input 
+    //         type="text"
+    //         name="role"
+    //         value={value.role}
+    //         onChange={(e) =>{
+    //           onchang(e);
+    //         }}
+    //       />
+    //      <button type="Submit">Register</button>
+    //     </form>
+    //     </div>
       
+    // }
+const [credData,setCredData] = useState({
+  id:0,username: ' ',password:'past',department:'depd',role:1
+})
+    const isprev = (cc) =>{
+      if(typeof(credData) !== undefined, credData.username !== cc.username){
+        console.log('credcomp ',credData.username ,' ', cc.username,{credentials});
+      }
     }
+    useEffect(() => {
+      isprev(credentials);
+    }, [credData]);
 const Overboard = () =>{
-  if(typeof(value) !== undefined || value !== null ){
+  if(typeof(value) !== undefined && typeof(value) === Object || typeof(value) !== null  ){
     return(
       <>
 
@@ -137,7 +150,10 @@ const Overboard = () =>{
     return (
      
       
-      !isFetching && <Overboard />
+       <Overboard {...props} value={value} isFetching={isFetching} 
+       credentials={credentials} credd={credd} 
+       handleSubmit={handleSubmit} 
+       onChange={handleInputChange}   />
         
        
     
@@ -150,11 +166,33 @@ const Overboard = () =>{
 export default connect(
   state => ({
     value: state.value,
+    thename: state.thename,
     cred : state,
+    credd: state.credd,
+    credData: state.credData,
     credentials: state.credReducer.credentials[0],
     isFetching: state.isFetching,
   handleInputChange: state.handleInputChange,
-  handleSubmit:state.handleSubmit
+  handleSubmit:state.handleSubmit,
+  setCredData: state.setCredData
   }),
   {}
 )(CredComp)
+
+
+
+CredComp.propTypes = {
+  credData: PropTypes.object,
+  val: PropTypes.object,
+  thename: PropTypes.string,
+  credd: PropTypes.object,
+  value: PropTypes.object,
+  credentials: PropTypes.object,
+  isFetching: PropTypes.bool,
+  handleInputChange: PropTypes.func,
+  setCredData: PropTypes.func
+  
+  
+
+
+}

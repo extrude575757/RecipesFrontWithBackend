@@ -6,7 +6,7 @@ import SignupR from '../pages/signup/SignupR';
 import Signup from '../pages/signup/Signup';
 import Formcomp from './Formcomp';
 import CredComp from '../pages/signup/CredComp';
-const Inputchange = ({props,handleInputChange,value,val,isFetching,labelFor,credentials}) =>{
+const Inputchange = ({props,handleInputChange,value,val,isFetching,thename,labelFor,credentials}) =>{
 //   const {username, id, password, department, role} = {...credentials}
 
 //   const [value,setValue] = useState({
@@ -18,7 +18,7 @@ const Inputchange = ({props,handleInputChange,value,val,isFetching,labelFor,cred
 // })
 // const {value, onchange,  credentials,isFetching,labelFor } = {...props};
 const { username,department,password,role  } = {...credentials}
-
+const [laname,setLaname] = useState('username')
 // const { val,setVal} = useState({
 // ...value , [value?.target?.name]: value?.target?.value    
 // });
@@ -36,12 +36,21 @@ const { username,department,password,role  } = {...credentials}
         
     // }
 
-    const cval = (e) =>{
+    const cval = (e,aname) =>{
         
         if(typeof(value) !== undefined ){
-         
+            value={...value,[e.target.name]:e.target.value}
+                credentials = {...credentials,...value, [value?.target?.name]:value?.target?.value}
+            console.log('err',aname,{credentials},{value},e.target.name,e.target.value)
+            console.log('aname')
+            setLaname(aname);
+            handleInputChange(e,value)
                
                     return(
+
+            
+                 
+                    
                         {...value, [e.target.name]: e.target.value}
                     )
                 
@@ -66,29 +75,31 @@ const { username,department,password,role  } = {...credentials}
       const onchange = (e)=>{
         
 
-  
-      
-            if(typeof(value ) !== Object && typeof(credentials ) !== Object){
+        const aname = e.target.name;
+        
+            
+            
+        
+            if(typeof(value ) !== Object && typeof(credentials ) !== Object && typeof(aname) == String ||  
+            aname != laname && typeof(handleInputChange) === function(){handleInputChange(e,value)}  ){
                 
-                value={...value,[e.target.name]:e.target.value}
-                credentials = {...credentials,...value, [value?.target?.name]:value?.target?.value}
-            console.log('err',{props,credentials},{value},e.target.name,e.target.value)
-            if( typeof(handleInputChange) === function(){handleInputChange(e,value)} ){
+                // setLaname(aname)
+                
+            
                 return(
                 //     zval(e),
-                cval(e),
-            
-                 
-                    handleInputChange(e,value)
+                cval(e,aname)
+                    ,<Formcomp {...props} thename={laname} credentials={credentials} handleInputChange={handleInputChange} value={value} />
                 )
                   
                    
-               }
+               
             // handleInputChange(e,{...value})
            }
+        
                 else
            {
-            <SignupR {...props} handleInputChange={handleInputChange} value={value}/>
+            <Formcomp {...props} thename={laname} credentials={credentials} handleInputChange={handleInputChange} value={value}/>
            }
       }
 //   useEffect(() =>{
@@ -110,7 +121,11 @@ const { username,department,password,role  } = {...credentials}
 //     console.log(e);
 //    }
 //   },[{...val}])
-  
+  const logm = (e) =>{
+    console.log(e)
+    console.log(credentials.e)
+    return(credentials.e)
+  }
 
     const Thenames = ()=> {
         
@@ -125,7 +140,8 @@ const { username,department,password,role  } = {...credentials}
               type="text"
               name="username"
               value={
-              typeof(username) !== undefined && username
+            //   typeof(username) !== undefined && username
+            logm('username')
               }
               onChange={e =>
                    typeof( onchange) !== function(){return(onchange(e,val))} && onchange(e,val)
@@ -143,7 +159,7 @@ const { username,department,password,role  } = {...credentials}
               <input
                 type="password"
                 name="password"
-                value={ password}
+                value={ logm('password')}
                 onChange={e =>
                   onchange(e)
                 }
@@ -160,7 +176,7 @@ const { username,department,password,role  } = {...credentials}
               <input
                 type="text"
                 name="department"
-                value={ department}
+                value={ logm('department')}
                 onChange={(e) =>{
                   onchange(e)
                 }}
@@ -177,7 +193,7 @@ const { username,department,password,role  } = {...credentials}
               <input
                 type="number"
                 name="role"
-                value={ role}
+                value={ logm('role')}
                 onChange={(e) =>{
                   onchange(e)
                 }}
@@ -216,5 +232,6 @@ Inputchange.propTypes = {
     isFetching: PropTypes.bool,
     onchange: PropTypes.func,
     handleInputChange: PropTypes.func,
+    thename: PropTypes.string
     // setVal: PropTypes.func
 }
