@@ -45,12 +45,14 @@ const CredComp = ({handleSubmit,value,credentials,isFetching}) =>{
             props.handleInputChange(e);
         }
     }
-    const onChange = (e)=>{
+    const onChang = (e)=>{
       
           // setValue({...value, [e.target.name]: e.target.value});
-       
+      if( typeof handleInputChange !== undefined ){
+        console.log(value)
 
             props.handleInputChange(e,value);
+       }
         
     }
 
@@ -72,7 +74,7 @@ const CredComp = ({handleSubmit,value,credentials,isFetching}) =>{
              value.username
             }
             onChange={(e) =>{
-              onChange(e)
+              onChang(e)
             }}
           />
           <label htmlFor='password'>
@@ -83,7 +85,7 @@ const CredComp = ({handleSubmit,value,credentials,isFetching}) =>{
             name="password"
             value={ value.password}
             onChange={(e) =>{
-              onChange(e)
+              onChang(e)
             }}
           />
           <label htmlFor='department'>
@@ -94,7 +96,7 @@ const CredComp = ({handleSubmit,value,credentials,isFetching}) =>{
             name="department"
             value={ value.department}
             onChange={(e) =>{
-              onChange(e)
+              onChang(e)
             }}
           />
           <label htmlFor='role'>
@@ -105,7 +107,7 @@ const CredComp = ({handleSubmit,value,credentials,isFetching}) =>{
             name="role"
             value={value.role}
             onChange={(e) =>{
-              onchange(e);
+              onchang(e);
             }}
           />
          <button type="Submit">Register</button>

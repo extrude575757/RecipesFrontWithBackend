@@ -145,10 +145,10 @@ const Overboard = () =>{
       <>
       <form >
       
-    <Inputchange onchange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={credentials?.username}/>
-    <Inputchange onchange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={credentials?.password}/>
-    <Inputchange onchange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={credentials?.department}/>
-    <Inputchange onchange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={credentials?.role}/>
+    <Inputchange handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={credentials?.username}/>
+    <Inputchange handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={credentials?.password}/>
+    <Inputchange handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={credentials?.department}/>
+    <Inputchange handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={credentials?.role}/>
     
    <Buttonchange value={val}/>
   </form>
