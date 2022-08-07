@@ -127,7 +127,7 @@ const [credData,setCredData] = useState({
 })
     const isprev = (cc) =>{
       if(typeof(credData) !== undefined, credData.username !== cc.username){
-        console.log('credcomp ',credData.username ,' ', cc.username,{credentials});
+        console.log('credData ',credData.username ,' cc,credentials ', cc.username,credentials.username);
       }
     }
     useEffect(() => {

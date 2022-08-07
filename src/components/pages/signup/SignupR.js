@@ -12,7 +12,7 @@ const SignupR = ({credentials,isFetching,props,thename}) => {
 // const {value} = {...props}
   const [val,setVal] = useState({
     id:46,
-    username: ' f', 
+    username: credd?.credentials?.username || ' f', 
     password: 'padnma',
     department:  'No Dep',
     role:1

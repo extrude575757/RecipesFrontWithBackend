@@ -18,7 +18,7 @@ const Inputchange = ({props,handleInputChange,value,val,isFetching,thename,label
 // })
 // const {value, onchange,  credentials,isFetching,labelFor } = {...props};
 const { username,department,password,role  } = {...credentials}
-const [laname,setLaname] = useState('username')
+const [laname,setLaname] = useState({})
 // const { val,setVal} = useState({
 // ...value , [value?.target?.name]: value?.target?.value    
 // });
@@ -39,8 +39,10 @@ const [laname,setLaname] = useState('username')
     const cval = (e,aname) =>{
         
         if(typeof(value) !== undefined ){
+            setLaname(aname)
+                console.log('logg',zval(e))
             value={...value,[e.target.name]:e.target.value}
-                credentials = {...credentials,...value, [value?.target?.name]:value?.target?.value}
+                credentials = {...credentials,...value, [value.target.name]:value.target.value}
             console.log('err',aname,{credentials},{value},e.target.name,e.target.value)
             console.log('aname')
             setLaname(aname);
@@ -62,8 +64,8 @@ const [laname,setLaname] = useState('username')
   
       const zval = (e) =>{
         
-        if( typeof(e?.target?.value) !== undefined ){
-            let zz = e?.target?.value;
+        if( typeof(e.target.value) !== undefined ){
+            let zz = e.target.value;
             return(
                 zz
               
@@ -76,15 +78,15 @@ const [laname,setLaname] = useState('username')
         
 
         const aname = e.target.name;
+        const aval = e.target.value;
         
-            
+            console.log(aval,credentials.username)
             
         
             if(typeof(value ) !== Object && typeof(credentials ) !== Object && typeof(aname) == String ||  
             aname != laname && typeof(handleInputChange) === function(){handleInputChange(e,value)}  ){
                 
-                // setLaname(aname)
-                console.log('logg')
+                
             
                 return(
                 //     zval(e),
@@ -100,7 +102,7 @@ const [laname,setLaname] = useState('username')
         
                 else
            {
-            <Formcomp {...props} thename={laname} credentials={credentials} handleInputChange={handleInputChange} value={value}/>
+            <Formcomp {...props} thename={labelFor} credentials={credentials} handleInputChange={handleInputChange} value={value}/>
            }
       }
 //   useEffect(() =>{
@@ -123,7 +125,8 @@ const [laname,setLaname] = useState('username')
 //    }
 //   },[{...val}])
   const logm = (e) =>{
-    console.log(e)
+    
+    console.log(e, thename)
     console.log(credentials[e])
     return(credentials[e])
   }
@@ -145,8 +148,8 @@ const [laname,setLaname] = useState('username')
             logm('username')
               }
               onChange={e =>
-                   typeof( onchange) === function(){return(onchange(e,val))} && onchange(e,val)
-                
+                //    typeof( onchange) === function(){return(onchange(e,val))} && onchange(e,val)
+                onchange(e)
               }
             />
             </>
@@ -213,7 +216,7 @@ const [laname,setLaname] = useState('username')
 
     return (
        typeof(isFetching) !== undefined && typeof(value) !== undefined && isFetching === false &&
-        <Thenames handleInputChange={handleInputChange} val={val} />
+        <Thenames handleInputChange={handleInputChange} thename={thename} val={val} />
     );
 }
 
