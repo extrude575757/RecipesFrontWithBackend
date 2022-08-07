@@ -85,7 +85,7 @@ const sl = ( )=>{
   console.log('thename')
 return(
   (typeof(thename) !== undefined && typeof(isFetching) !== undefined && isFetching === false) ? 
-<SignupR {...props} thename={'username'} isFetching ={isFetching}  />
+<SignupR {...props} thename={thename} isFetching ={isFetching}  />
 : null
 
 )

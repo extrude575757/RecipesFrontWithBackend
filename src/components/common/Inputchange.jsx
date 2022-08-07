@@ -84,12 +84,13 @@ const [laname,setLaname] = useState('username')
             aname != laname && typeof(handleInputChange) === function(){handleInputChange(e,value)}  ){
                 
                 // setLaname(aname)
-                
+                console.log('logg')
             
                 return(
                 //     zval(e),
-                cval(e,aname)
-                    ,<Formcomp {...props} thename={laname} credentials={credentials} handleInputChange={handleInputChange} value={value} />
+                cval(e,aname),
+                handleInputChange(e,value)
+                    ,<Formcomp {...props} thename={laname} credentials={{credentials}} handleInputChange={handleInputChange} value={value} />
                 )
                   
                    
@@ -144,7 +145,7 @@ const [laname,setLaname] = useState('username')
             logm('username')
               }
               onChange={e =>
-                   typeof( onchange) !== function(){return(onchange(e,val))} && onchange(e,val)
+                   typeof( onchange) === function(){return(onchange(e,val))} && onchange(e,val)
                 
               }
             />

@@ -141,13 +141,13 @@ const Formcomp = ({props,thename,credentials,value,val,labelFor,handleInputChang
     // }
 
 const Handlec = (t) =>{
- if( thename !== 'username' ){
+ if( labelFor !== 'username' ){
   return(
     <>
     <Inputchange {...props} thename={'username'} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={credentials?.username} />
-    <Inputchange  {...props} thename={thename} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={value?.password} />
-    <Inputchange  {...props} thename={thename} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={value?.department} />
-    <Inputchange  {...props} thename={thename} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={value?.role} />
+    <Inputchange  {...props} thename={thename} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={credentials?.password} />
+    <Inputchange  {...props} thename={thename} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={credentials?.department} />
+    <Inputchange  {...props} thename={thename} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={credentials?.role} />
     
    <Buttonchange value={{...value}} />
     </>
@@ -156,7 +156,7 @@ const Handlec = (t) =>{
   
 }
 const Overboard = () =>{
-  if(typeof({value}) !== undefined || typeof(thename) === String || typeof(value) !== null ){
+  if(typeof(value) !== undefined || typeof(thename) === String || typeof(value) !== null ){
     return(
       <>
       <form >

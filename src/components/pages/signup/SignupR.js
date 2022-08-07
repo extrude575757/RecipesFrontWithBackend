@@ -8,9 +8,9 @@ import CredComp from "./CredComp";
 import PropTypes from 'prop-types';
 // import { postNewAvatar } from "../../../../../../ScribleStadium/scribble-stadium-fe/src/api";
 const SignupR = ({credentials,isFetching,props,thename}) => {
-const {username} = {...credentials}
+// const {username} = {...credentials}
 // const {value} = {...props}
-  const [val,setValue] = useState({
+  const [val,setVal] = useState({
     id:46,
     username: ' f', 
     password: 'padnma',
