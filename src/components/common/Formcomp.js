@@ -5,7 +5,7 @@ import Inputchange  from './Inputchange';
 import Buttonchange from './Buttonchange';
 import PropTypes from 'prop-types';
 
-const Formcomp = ({props,thename,credentials,value,val,handleInputChange,isFetching}) =>{
+const Formcomp = ({props,thename,credentials,value,val,labelFor,handleInputChange,isFetching}) =>{
   // const {handleSubmit,value,credentials,isFetching} = {...props}
   // const {username, id, password, department, role} = {...credentials}
 
@@ -140,25 +140,29 @@ const Formcomp = ({props,thename,credentials,value,val,handleInputChange,isFetch
       
     // }
 
-const Handlec = () =>{
-  if(thename === 'username'){
-    return(
-      <Inputchange {...props} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={credentials?.username} />
-    )
-  }
+const Handlec = (t) =>{
+ if( thename !== 'username' ){
+  return(
+    <>
+    <Inputchange {...props} thename={'username'} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={credentials?.username} />
+    <Inputchange  {...props} thename={thename} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={value?.password} />
+    <Inputchange  {...props} thename={thename} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={value?.department} />
+    <Inputchange  {...props} thename={thename} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={value?.role} />
+    
+   <Buttonchange value={{...value}} />
+    </>
+  )
+ }
+  
 }
 const Overboard = () =>{
-  if(typeof({value}) !== undefined || typeof(value) !== null ){
+  if(typeof({value}) !== undefined || typeof(thename) === String || typeof(value) !== null ){
     return(
       <>
       <form >
       
-    {Handlec(thename)} 
-    <Inputchange  {...props} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={value?.password} />
-    <Inputchange  {...props} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={value?.department} />
-    <Inputchange  {...props} value={value} credentials={credentials} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={value?.role} />
+    <Handlec  />
     
-   <Buttonchange value={{...value}} />
   </form>
       </>
     )
