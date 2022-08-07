@@ -68,18 +68,18 @@ const { username,department,password,role  } = {...credentials}
 
   
       
-            if(typeof(value ) !== Object){
+            if(typeof(value ) !== Object && typeof(credentials ) !== Object){
                 
                 value={...value,[e.target.name]:e.target.value}
-                value = {...value,...value}
-            console.log('err',{...value},e.target.name,e.target.value)
+                credentials = {...credentials,...value, [value?.target?.name]:value?.target?.value}
+            console.log('err',{props,credentials},{value},e.target.name,e.target.value)
             if( typeof(handleInputChange) === function(){handleInputChange(e,value)} ){
                 return(
                 //     zval(e),
                 cval(e),
             
                  
-                    handleInputChange(e,{...value})
+                    handleInputChange(e,value)
                 )
                   
                    
@@ -88,7 +88,7 @@ const { username,department,password,role  } = {...credentials}
            }
                 else
            {
-            <SignupR {...props} handleInputChange={handleInputChange} value={{...value}}/>
+            <SignupR {...props} handleInputChange={handleInputChange} value={value}/>
            }
       }
 //   useEffect(() =>{
@@ -205,6 +205,7 @@ export default Inputchange;
 
 Inputchange.propTypes = {
     cred: PropTypes.object,
+    credentials: PropTypes.object,
     id: PropTypes.number,
     username: PropTypes.string,
     password: PropTypes.string,

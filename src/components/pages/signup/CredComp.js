@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import Formcomp from '../../common/Formcomp';
 import Signup from './Signup';
 import SignupR from './SignupR';
-const CredComp = ({handleSubmit,value,credentials,isFetching}) =>{
+const CredComp = ({handleSubmit,value,handleInputChange,credentials,isFetching}) =>{
   // const {handleSubmit,value,credentials,isFetching} = {...props}
   // const {username, id, password, department, role} = {...credentials}
 
@@ -151,7 +151,7 @@ export default connect(
   state => ({
     value: state.value,
     cred : state,
-    credentials: state.credentials,
+    credentials: state.credReducer.credentials[0],
     isFetching: state.isFetching,
   handleInputChange: state.handleInputChange,
   handleSubmit:state.handleSubmit

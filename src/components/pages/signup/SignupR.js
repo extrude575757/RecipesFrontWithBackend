@@ -159,7 +159,7 @@ const credsif = () =>{
 const Signed = () =>{
   (typeof(credd) === undefined ||
     typeof(isFetching) === undefined) ? <Signup credd={credd} /> : 
-    <CredComp value={val} isFetching={isFetching} credentials={credentials} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
+    <CredComp value={val} isFetching={isFetching} credentials={{...credentials}} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
 }
     
         return (
@@ -176,6 +176,7 @@ export default connect(
   state => ({
     handleInputChange: state.handleInputChange,
     value: state.value,
+    val: state.val,
     cred: state.credReducer,
     credentials: state.credReducer.credentials[0],
     handleSubmit: state.handleSubmit,
@@ -189,9 +190,12 @@ export default connect(
 )(SignupR)
 
 SignupR.propTypes = {
+  val: PropTypes.object,
+  value: PropTypes.object,
   credentials: PropTypes.object,
   isFetching: PropTypes.bool,
-  handleInputChange: PropTypes.func
+  handleInputChange: PropTypes.func,
+  setVal: PropTypes.func
   
   
 
