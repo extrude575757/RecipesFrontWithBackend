@@ -82,14 +82,14 @@ const sl = ( )=>{
  const Shoot = () =>{
   // isFetching  = false
 return(
-  (typeof isFetching !== undefined && isFetching === false) ? 
+  (typeof(isFetching) !== undefined && isFetching === false) ? 
 <SignupR  isFetching ={isFetching}  />
 : null
 
 )
 }
 return (
- !isFetching  && <SignupR  />
+ !isFetching  && <Shoot  />
 
 )
 

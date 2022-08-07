@@ -5,7 +5,7 @@ import Inputchange  from './Inputchange';
 import Buttonchange from './Buttonchange';
 import PropTypes from 'prop-types';
 
-const Formcomp = ({credentials,value,handleInputChange,isFetching}) =>{
+const Formcomp = ({props,credentials,value,val,handleInputChange,isFetching}) =>{
   // const {handleSubmit,value,credentials,isFetching} = {...props}
   // const {username, id, password, department, role} = {...credentials}
 
@@ -47,7 +47,7 @@ const Formcomp = ({credentials,value,handleInputChange,isFetching}) =>{
         }
     }
     const cval = (e) =>{
-      if(typeof setVal !== undefined){
+      if(typeof(setVal) !== undefined){
         setVal( currState =>{
           return {...currState, [e?.target?.name]: e?.target?.value}});
        
@@ -55,13 +55,13 @@ const Formcomp = ({credentials,value,handleInputChange,isFetching}) =>{
     }
 
 
-    const { val,setVal} = useState({
-      id:46,
-      username: ' f', 
-      password: 'padnma',
-      department:  'No Dep',
-      role:1
-    });
+    // const { val,setVal} = useState({
+    //   id:46,
+    //   username: ' f', 
+    //   password: 'padnma',
+    //   department:  'No Dep',
+    //   role:1
+    // });
     const onchange = (e)=>{
       
          cval(e)
@@ -69,17 +69,17 @@ const Formcomp = ({credentials,value,handleInputChange,isFetching}) =>{
             handleInputChange(e,value);
         
     }
-useEffect = () =>{
-  if(typeof setVal === undefined ){
-    setVal({
-      id:46,
-      username: ' f', 
-      password: 'padnma',
-      department:  'No Dep',
-      role:1
-    })
-  }
-}
+// useEffect = () =>{
+//   if(typeof(setVal) === undefined ){
+//     setVal({
+//       id:46,
+//       username: ' f', 
+//       password: 'padnma',
+//       department:  'No Dep',
+//       role:1
+//     })
+//   }
+// }
 
   
     // const formsubs = ()=>{
@@ -140,17 +140,17 @@ useEffect = () =>{
       
     // }
 const Overboard = () =>{
-  if(typeof val !== undefined || val !== null ){
+  if(typeof({val}) !== undefined || typeof(val) !== null ){
     return(
       <>
       <form >
       
-    <Inputchange handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={credentials?.username}/>
-    <Inputchange handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={credentials?.password}/>
-    <Inputchange handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={credentials?.department}/>
-    <Inputchange handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={credentials?.role}/>
+    <Inputchange {...props} val={val} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'username'} username={val?.username}/>
+    <Inputchange val={val} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'password'} password={val?.password}/>
+    <Inputchange val={val} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'department'} department={val?.department}/>
+    <Inputchange val={val} handleInputChange={handleInputChange} isFetching={isFetching} labelFor={'role'} role={val?.role}/>
     
-   <Buttonchange value={val}/>
+   <Buttonchange val={val}/>
   </form>
       </>
     )
@@ -181,6 +181,7 @@ export default connect(
   {}
 )(Formcomp)
 
-// Formcomp.propTypes = {
-//   setVal: PropTypes.func
-// }
+Formcomp.propTypes = {
+  setVal: PropTypes.func,
+  handleInputChange: PropTypes.func
+}

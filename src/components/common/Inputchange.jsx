@@ -2,7 +2,11 @@ import React, {useState,useEffect} from 'react';
 import { connect } from "react-redux";
 import {addNewCred,credSignup } from '../../state/actions/credActions'
 import PropTypes from 'prop-types';
-const Inputchange = ({props,handleInputChange,isFetching,labelFor,credentials}) =>{
+import SignupR from '../pages/signup/SignupR';
+import Signup from '../pages/signup/Signup';
+import Formcomp from './Formcomp';
+import CredComp from '../pages/signup/CredComp';
+const Inputchange = ({props,handleInputChange,value,val,isFetching,labelFor,credentials}) =>{
 //   const {username, id, password, department, role} = {...credentials}
 
 //   const [value,setValue] = useState({
@@ -13,47 +17,43 @@ const Inputchange = ({props,handleInputChange,isFetching,labelFor,credentials}) 
 //     role:1
 // })
 // const {value, onchange,  credentials,isFetching,labelFor } = {...props};
-const { username,department,password,role  } = {credentials}
+const { username,department,password,role  } = {...credentials}
 
-const { value,setValue} = useState({
-    id:46,
-    username: ' f', 
-    password: 'padnma',
-    department:  'No Dep',
-    role:1
-  });
+// const { val,setVal} = useState({
+// ...value , [value?.target?.name]: value?.target?.value    
+// });
     const formName =(f)=>{
         if(username !== undefined){
             console.log(f);
-            props.handleInputChange(e);
+            // props.handleInputChange(e);
         }
     }
-    const changit = (e)=>{
+    // const changit = (e)=>{
       
-          setValue({...value, [e.target.name]: e.target.value});
+    //       setVal({...value, [e.target.name]: e.target.value});
        
-            props.handleInputChange(e,value);
+    //         props.handleInputChange(e,value);
         
-    }
+    // }
 
     const cval = (e) =>{
         
-        if(setValue !== undefined ){
-            return(
-                setValue( newVal =>{
+        if(typeof(value) !== undefined ){
+         
+               
                     return(
-                        {...value, [e?.target?.name]: e?.target?.value}
+                        {...value, [e.target.name]: e.target.value}
                     )
-                })
+                
               
-               )
+               
            }
       }
   
   
       const zval = (e) =>{
         
-        if( e.target.value !== undefined ){
+        if( typeof(e?.target?.value) !== undefined ){
             let zz = e?.target?.value;
             return(
                 zz
@@ -67,31 +67,49 @@ const { value,setValue} = useState({
         
 
   
-           if( handleInputChange !== undefined ){
-           
-            return(
-                zval(e),
+      
+            if(typeof(value ) !== Object){
+                
+                value={...value,[e.target.name]:e.target.value}
+                value = {...value,...value}
+            console.log('err',{...value},e.target.name,e.target.value)
+            if( typeof(handleInputChange) === function(){handleInputChange(e,value)} ){
+                return(
+                //     zval(e),
                 cval(e),
-                handleInputChange(e,value)
-              
-               )
+            
+                 
+                    handleInputChange(e,{...value})
+                )
+                  
+                   
+               }
+            // handleInputChange(e,{...value})
+           }
+                else
+           {
+            <SignupR {...props} handleInputChange={handleInputChange} value={{...value}}/>
            }
       }
-  useEffect = () =>{
-    if( setValue !== undefined ){
-        console.log('value')
-      setValue({
-        id:46,
-        username: ' f', 
-        password: 'padnma',
-        department:  'No Dep',
-        role:1
-      })
-    }else{
-        console.log('value')
-        setValue(neval =>{ neval})
-      }
-  }
+//   useEffect(() =>{
+//    try{
+//      // if( typeof(val) !== undefined ){
+//         console.log('value')
+//       setVal({
+//         id:46,
+//         username: val?.username || ' f', 
+//         password: 'padnma',
+//         department:  'No Dep',
+//         role:1
+//       })
+//     // }else{
+//         console.log('value')
+//         setVal(neval =>{ neval})
+//     //   }
+//    }catch(e){
+//     console.log(e);
+//    }
+//   },[{...val}])
   
 
     const Thenames = ()=> {
@@ -107,10 +125,11 @@ const { value,setValue} = useState({
               type="text"
               name="username"
               value={
-              username
+              typeof(username) !== undefined && username
               }
               onChange={e =>
-                onchange(e)
+                   typeof( onchange) !== function(){return(onchange(e,val))} && onchange(e,val)
+                
               }
             />
             </>
@@ -176,8 +195,8 @@ const { value,setValue} = useState({
     }
 
     return (
-       (typeof isFetching !== undefined && typeof value !== undefined && isFetching === false &&
-        <Thenames />)
+       typeof(isFetching) !== undefined && typeof(value) !== undefined && isFetching === false &&
+        <Thenames handleInputChange={handleInputChange} val={val} />
     );
 }
 
@@ -185,6 +204,7 @@ const { value,setValue} = useState({
 export default Inputchange;
 
 Inputchange.propTypes = {
+    cred: PropTypes.object,
     id: PropTypes.number,
     username: PropTypes.string,
     password: PropTypes.string,
@@ -195,5 +215,5 @@ Inputchange.propTypes = {
     isFetching: PropTypes.bool,
     onchange: PropTypes.func,
     handleInputChange: PropTypes.func,
-    setValue: PropTypes.func
+    // setVal: PropTypes.func
 }

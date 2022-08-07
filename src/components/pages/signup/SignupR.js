@@ -49,11 +49,11 @@ const credsif = () =>{
   useEffect(()=>{
 
   
-      if(typeof credd !== undefined ){
+      if(typeof(credd) !== undefined ){
 
-        console.log(isFetching)
+        console.log(isFetching,val)
         credsif();
-      } else if(typeof credentials === undefined && credd !== undefined){
+      } else if(typeof(credentials) === undefined && credd !== undefined){
       
        console.log(isFetching)
      
@@ -99,7 +99,7 @@ const credsif = () =>{
 }
 
   const  handleChange = value => {
-    if(typeof value !== undefined){
+    if(typeof(value) !== undefined){
       setNewCredd({
         ...credd?.credentials,
         [value?.target?.name]: value?.target?.value
@@ -114,7 +114,7 @@ const credsif = () =>{
   }
 
   const handleInputChange=(e,n)=> {
-    if (isFetching === false && typeof n !== undefined){
+    if (isFetching === false && typeof(n) !== undefined){
       const target = e.target;
     
     // console.log('crdr '+ credd.role);
@@ -157,8 +157,8 @@ const credsif = () =>{
   };
 
 const Signed = () =>{
-  (typeof credd === undefined ||
-    typeof isFetching === undefined) ? <Signup credd={credd} /> : 
+  (typeof(credd) === undefined ||
+    typeof(isFetching) === undefined) ? <Signup credd={credd} /> : 
     <CredComp value={val} isFetching={isFetching} credentials={credentials} credd={credd} handleSubmit={handleSubmit} handleInputChange={handleInputChange}   /> 
 }
     
